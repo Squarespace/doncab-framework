@@ -1,0 +1,913 @@
+
+/* TWEAKS
+-------------------------------------------------*/
+
+
+/* Site
+***********************************/
+
+// tweak: { "type" : "color", "category" : "Site", "title" : "Site Background", "target" : "body" }
+@bgColor: #ffffff;
+
+// tweak: { "type" : "value", "category" : "Site", "title" : "Site Max Width", "step" : 10, "min" : 320, "max" : 1280, "target" : "body, .site-container" }
+@pageWidth: 640px;
+
+// tweak: { "category" : "Site", "title" : "Site Spacing", "type" : "dropdown", "options" : [ "Extra Small", "Small", "Medium", "Large", "Extra Large", "Custom" ], "default" : "Medium", "target" : ".site-header, .site-page, .site-footer" }
+
+// tweak: { "type" : "value", "category" : "Site", "title" : "Site Custom Spacing", "step" : 1, "min" : 10, "max" : 150, "target" : ".site-header, .site-page, .site-footer", "showOnlyWhenPresent" : ".site-spacing-custom" }
+@siteCustomSpacing: 20px;
+
+// tweak: { "category" : "Site", "title" : "Site Outer Padding", "type" : "dropdown", "options" : [ "Extra Small", "Small", "Medium", "Large", "Extra Large", "Custom" ], "default" : "Medium", "target" : ".site-header, .site-page, .site-footer" }
+
+// tweak: { "type" : "value", "category" : "Site", "title" : "Site Custom Padding", "step" : 1, "min" : 10, "max" : 150, "target" : ".site-header, .site-page, .site-footer", "showOnlyWhenPresent" : ".site-outer-padding-custom" }
+@siteCustomPadding: 20px;
+
+// tweak: { "category" : "Site", "title" : "Site Alignment", "type" : "dropdown", "options" : [ "Left", "Center", "Right"], "default" : "Left" }
+
+// tweak: { "category" : "Site", "title" : "tweak-site-ajax-loading-enable", "label" : "Enable Ajax Loading", "type" : "checkbox", "active" : true, "js" : true }
+
+/* Site Header
+***********************************/
+
+// tweak: { "type" : "font", "category" : "Site: Header", "title" : "Site Title Font", "target" : ".site-title" }
+.site-title-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 1.25em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+// tweak: { "type" : "color", "category" : "Site: Header", "title" : "Site Title Color", "target" : ".site-title" }
+@siteTitleColor: #111111;
+
+// tweak: { "type" : "font", "category" : "Site: Header", "title" : "Site Tagline Font", "target" : ".site-tagline", "showOnlyWhenPresent" : ".site-tagline" }
+.site-tagline-font {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.25em;
+  letter-spacing: 0em;
+  text-transform: none;
+}
+
+// tweak: { "type" : "color", "category" : "Site: Header", "title" : "Site Tagline Color", "target" : ".site-tagline", "showOnlyWhenPresent" : ".site-tagline"  }
+@siteTaglineColor: #777777;
+
+// tweak: { "type" : "value", "category" : "Site: Header", "title" : "Logo Height (max)", "min" : 30, "max" : 300, "target" : ".logo-image" }
+@logoHeight: 64px;
+
+// tweak: { "type" : "value", "category" : "Site: Header", "title" : "Header Horizontal Spacing", "step" : 1, "min" : 0, "max" : 50, "target" : ".site-header", "showOnlyWhenPresent" : ".ancillary-header-left-layout-horizontal, .ancillary-header-center-layout-horizontal, .ancillary-header-right-layout-horizontal" }
+@headerHorizontalSpacing: 10px;
+
+// tweak: { "type" : "value", "category" : "Site: Header", "title" : "Header Vertical Spacing", "step" : 1, "min" : 0, "max" : 50, "target" : ".site-header", "showOnlyWhenPresent" : ".ancillary-header-left-layout-stacked, .ancillary-header-center-layout-stacked, .ancillary-header-right-layout-stacked"}
+@headerVerticalSpacing: 10px;
+
+// tweak: { "category" : "Site: Header", "type" : "checkbox", "label" : "Full Width Header", "title" : "ancillary-header-full-width", "active" : true, "target" : ".site-header" }
+
+// tweak: { "category" : "Site: Header", "label" : "Cart Style", "title" : "tweak-header-cart-style", "type" : "dropdown", "options" : [ "Text", "Cart", "Bag" ], "default" : "Text", "target" : ".site-header .Cart", "showOnlyWhenPresent" : ".has-cart:not(.ancillary-header-cart-position-hide)" }
+
+// tweak: { "category": "Site: Header", "label" : "Cart Font", "title" : "tweak-header-cart-font", "type" : "font", "target" : ".site-header .Cart", "showOnlyWhenPresent" : ".has-cart:not(.ancillary-header-cart-position-hide)" }
+.tweak-header-cart-font {
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+}
+
+// tweak: { "category": "Site: Header", "label" : "Cart Color", "title" : "tweak-header-cart-color", "type" : "color", "target" : ".site-header .Cart", "showOnlyWhenPresent" : ".has-cart:not(.ancillary-header-cart-position-hide)" }
+@tweak-header-cart-color: #111111;
+
+// tweak: { "category": "Site: Header", "label" : "Cart Quantity Color", "title" : "tweak-header-cart-flag-color", "type" : "color", "target" : ".site-header .Cart", "showOnlyWhenPresent" : ".tweak-header-cart-style-cart.has-cart:not(.ancillary-header-cart-position-hide)", "disableTransparency" : true }
+@tweak-header-cart-flag-color: #ff0000;
+
+// tweak: { "category": "Site: Header", "label" : "Cart Quantity Text Color", "title" : "tweak-header-cart-flag-text-color", "type" : "color", "target" : ".site-header .Cart", "showOnlyWhenPresent" : ".tweak-header-cart-style-cart.has-cart:not(.ancillary-header-cart-position-hide)" }
+@tweak-header-cart-flag-text-color: #111111;
+
+
+/* Site Footer
+***********************************/
+
+// tweak: { "category" : "Site: Footer", "type" : "checkbox", "label" : "Show Global Site Footer", "title" : "show-site-footer", "active" : false, "target" : ".site-footer" }
+
+
+/* Ancillary Tweaks (Header Layout)
+***********************************/
+
+// tweak: { "category" : "Site: Header Layout", "label" : "Branding Position", "title" : "ancillary-header-branding-position", "type" : "dropdown", "options" : [ "Hide", "Left", "Center", "Right"], "default" : "Left" }
+
+// tweak: { "category" : "Site: Header Layout", "label" : "Tagline Position", "title" : "ancillary-header-tagline-position", "type" : "dropdown", "options" : [ "Hide", "Left", "Center", "Right"], "default" : "Left", "showOnlyWhenPresent" : ".has-tagline" }
+
+// tweak: { "category" : "Site: Header Layout", "label" : "Primary Nav Position", "title" : "ancillary-header-primary-nav-position", "type" : "dropdown", "options" : [ "Hide", "Left", "Center", "Right"], "default" : "Left", "showOnlyWhenPresent" : ".has-primary-nav" }
+
+// tweak: { "category" : "Site: Header Layout", "label" : "Secondary Nav Position", "title" : "ancillary-header-secondary-nav-position", "type" : "dropdown", "options" : [ "Hide", "Left", "Center", "Right"], "default" : "Left", "showOnlyWhenPresent" : ".has-secondary-nav" }
+
+// tweak: { "category" : "Site: Header Layout", "label" : "Cart Position", "title" : "ancillary-header-cart-position", "type" : "dropdown", "options" : [ "Hide", "Left", "Center", "Right"], "default" : "Left", "showOnlyWhenPresent" : ".has-cart" }
+
+// tweak: { "category" : "Site: Header Layout", "label": "Left Layout", "title" : "ancillary-header-left-layout", "type" : "dropdown", "options" : [ "Horizontal", "Stacked" ], "default" : "Horizontal", "showOnlyWhenPresent" : ".ancillary-header-branding-position-left.ancillary-header-tagline-position-left, .ancillary-header-branding-position-left.ancillary-header-primary-nav-position-left, .ancillary-header-branding-position-left.ancillary-header-secondary-nav-position-left, .ancillary-header-branding-position-left.ancillary-header-cart-position-left, .ancillary-header-tagline-position-left.ancillary-header-primary-nav-position-left, .ancillary-header-tagline-position-left.ancillary-header-secondary-nav-position-left, .ancillary-header-tagline-position-left.ancillary-header-cart-position-left, .ancillary-header-primary-nav-position-left.ancillary-header-secondary-nav-position-left, .ancillary-header-primary-nav-position-left.ancillary-header-cart-position-left, .ancillary-header-secondary-nav-position-left.ancillary-header-cart-position-left" }
+
+// tweak: { "category" : "Site: Header Layout", "label": "Center Layout", "title" : "ancillary-header-center-layout", "type" : "dropdown", "options" : [ "Horizontal", "Stacked" ], "default" : "Horizontal", "showOnlyWhenPresent" : ".ancillary-header-branding-position-center.ancillary-header-tagline-position-center, .ancillary-header-branding-position-center.ancillary-header-primary-nav-position-center, .ancillary-header-branding-position-center.ancillary-header-secondary-nav-position-center, .ancillary-header-branding-position-center.ancillary-header-cart-position-center, .ancillary-header-tagline-position-center.ancillary-header-primary-nav-position-center, .ancillary-header-tagline-position-center.ancillary-header-secondary-nav-position-center, .ancillary-header-tagline-position-center.ancillary-header-cart-position-center, .ancillary-header-primary-nav-position-center.ancillary-header-secondary-nav-position-center, .ancillary-header-primary-nav-position-center.ancillary-header-cart-position-center, .ancillary-header-secondary-nav-position-center.ancillary-header-cart-position-center" }
+
+// tweak: { "category" : "Site: Header Layout", "label": "Right Layout", "title" : "ancillary-header-right-layout", "type" : "dropdown", "options" : [ "Horizontal", "Stacked" ], "default" : "Horizontal", "showOnlyWhenPresent" : ".ancillary-header-branding-position-right.ancillary-header-tagline-position-right, .ancillary-header-branding-position-right.ancillary-header-primary-nav-position-right, .ancillary-header-branding-position-right.ancillary-header-secondary-nav-position-right, .ancillary-header-branding-position-right.ancillary-header-cart-position-right, .ancillary-header-tagline-position-right.ancillary-header-primary-nav-position-right, .ancillary-header-tagline-position-right.ancillary-header-secondary-nav-position-right, .ancillary-header-tagline-position-right.ancillary-header-cart-position-right, .ancillary-header-primary-nav-position-right.ancillary-header-secondary-nav-position-right, .ancillary-header-primary-nav-position-right.ancillary-header-cart-position-right, .ancillary-header-secondary-nav-position-right.ancillary-header-cart-position-right" }
+
+
+/* Site Navigation
+***********************************/
+
+// tweak: { "type" : "font", "category" : "Site: Navigation", "title" : "Primary Font", "target" : ".primary-nav-wrapper" }
+.primary-nav-font {
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+// tweak: { "type" : "color", "category" : "Site: Navigation", "title" : "Primary Link Color", "target" : ".primary-nav-wrapper" }
+@primaryNavColor: #111111;
+
+// tweak: { "type" : "color", "category" : "Site: Navigation", "title" : "Primary Active Link", "target" : ".primary-nav-wrapper .active-link" }
+@primaryNavActiveColor: #999999;
+
+// tweak: { "type" : "font", "category" : "Site: Navigation", "title" : "Secondary Font", "target" : ".secondary-nav-wrapper" }
+.secondary-nav-font {
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+// tweak: { "type" : "color", "category" : "Site: Navigation", "title" : "Secondary Link Color", "target" : ".secondary-nav-wrapper" }
+@secondaryNavColor: #111111;
+
+// tweak: { "type" : "color", "category" : "Site: Navigation", "title" : "Secondary Active Link", "target" : ".secondary-nav-wrapper .active-link" }
+@secondaryNavActiveColor: #999999;
+
+// tweak: { "type" : "value", "category" : "Site: Navigation", "title" : "Navigation Link Spacing", "label" : "Link Spacing", "step" : 1, "min" : 1, "max" : 50, "target" : ".primary-nav-wrapper, .secondary-nav-wrapper", "showOnlyWhenPresent" : ".primary-nav-wrapper, .secondary-nav-wrapper" }
+@navLinkSpacing: 20px;
+
+// tweak: { "type" : "checkbox", "category" : "Site: Navigation", "title" : "Show Desktop Folder Indicator", "label" : "Show Folder Indicator", "active" : true, "target" : ".primary-nav-wrapper, .secondary-nav-wrapper", "showOnlyWhenPresent" : ".primary-nav-wrapper, .secondary-nav-wrapper" }
+
+
+/* Typography
+***********************************/
+
+// tweak: { "type" : "font", "category" : "Site: Typography", "title" : "Heading 1 Font", "target" : "h1:not(.entry-title):not(.page-title)" }
+.heading1-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 1.25em;
+  letter-spacing: 0em;
+  text-transform: none;
+}
+
+// tweak: { "type" : "checkbox", "category" : "Site: Typography", "title" : "Scale Heading 1 Font Size", "label" : "Scale Heading 1", "active" : false, "target" : "h1:not(.entry-title):not(.page-title)" }
+
+// tweak: { "type" : "value", "category" : "Site: Typography", "title" : "Heading 1 Font Minimum", "label" : "Heading 1 Min", "step" : 1, "min" : 8, "max" : 72, "target" : "h1:not(.entry-title):not(.page-title)", "showOnlyWhenPresent" : ".scale-heading-1-font-size" }
+@heading1Min: 32px;
+
+// tweak: { "type" : "color", "category" : "Site: Typography", "title" : "Heading 1 Color", "target" : "h1:not(.entry-title):not(.page-title)" }
+@heading1Color: #222222;
+
+// tweak: { "type" : "font", "category" : "Site: Typography", "title" : "Heading 2 Font", "target" : "h2:not(.index-item-title)" }
+.heading2-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1.25em;
+  letter-spacing: 0em;
+  text-transform: none;
+}
+
+// tweak: { "type" : "checkbox", "category" : "Site: Typography", "title" : "Scale Heading 2 Font Size", "label" : "Scale Heading 2", "active" : false, "target" : "h2:not(.index-item-title)" }
+
+// tweak: { "type" : "value", "category" : "Site: Typography", "title" : "Heading 2 Font Minimum", "label" : "Heading 2 Min", "step" : 1, "min" : 8, "max" : 72, "target" : "h2:not(.index-item-title)", "showOnlyWhenPresent" : ".scale-heading-2-font-size" }
+@heading2Min: 24px;
+
+// tweak: { "type" : "color", "category" : "Site: Typography", "title" : "Heading 2 Color", "target" : "h2:not(.index-item-title)" }
+@heading2Color: #222222;
+
+// tweak: { "type" : "font", "category" : "Site: Typography", "title" : "Heading 3 Font", "target" : "h3:not(.project-slide-description-title)" }
+.heading3-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 19px;
+  line-height: 1.25em;
+  letter-spacing: 0em;
+  text-transform: none;
+}
+
+// tweak: { "type" : "checkbox", "category" : "Site: Typography", "title" : "Scale Heading 3 Font Size", "label" : "Scale Heading 3", "active" : false, "target" : "h3:not(.project-slide-description-title)" }
+
+// tweak: { "type" : "value", "category" : "Site: Typography", "title" : "Heading 3 Font Minimum", "label" : "Heading 3 Min", "step" : 1, "min" : 8, "max" : 72, "target" : "h3:not(.project-slide-description-title)", "showOnlyWhenPresent" : ".scale-heading-3-font-size" }
+@heading3Min: 19px;
+
+// tweak: { "type" : "color", "category" : "Site: Typography", "title" : "Heading 3 Color", "target" : "h3:not(.project-slide-description-title)" }
+@heading3Color: #666666;
+
+// tweak: { "type" : "font", "category" : "Site: Typography", "title" : "Body Font", "target" : ".site-container", "loadAllVariants" : true }
+.body-font {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.25em;
+  letter-spacing: 0em;
+}
+
+// tweak: { "type" : "color", "category" : "Site: Typography", "title" : "Body Text Color", "target" : ".site-container" }
+@textColor: #666666;
+
+// tweak: { "type" : "color", "category" : "Site: Typography", "title" : "Body Link Color", "target" : ".content a" }
+@linkColor: #6697ea;
+
+// tweak: { "type" : "font", "category" : "Site: Typography", "title" : "Quote Font", "target" : ".quote-block", "showOnlyWhenPresent" : ".quote-block" }
+.quote-font {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 27px;
+  line-height: 1.25em;
+  letter-spacing: 0em;
+  text-transform: none;
+}
+
+// tweak: { "type" : "checkbox", "category" : "Site: Typography", "title" : "Scale Quote Font Size", "label" : "Scale Quote", "active" : false, "target" : ".quote-block", "showOnlyWhenPresent" : ".quote-block" }
+
+// tweak: { "type" : "value", "category" : "Site: Typography", "title" : "Quote Font Minimum", "label" : "Quote Min", "step" : 1, "min" : 8, "max" : 72, "target" : ".quote-block", "showOnlyWhenPresent" : ".scale-quote-font-size .quote-block" }
+@quoteMin: 19px;
+
+// tweak: { "type" : "color", "category" : "Site: Typography", "title" : "Quote Text Color", "target" : ".quote-block", "showOnlyWhenPresent" : ".quote-block" }
+@quoteColor: #999999;
+
+// tweak: { "type": "dropdown",  "category" : "Site: Typography", "title" : "Quote Alignment", "options": ["Left", "Center", "Right"], "default": "Left", "target" : ".quote-block", "showOnlyWhenPresent" : ".quote-block" }
+
+// tweak: { "type" : "checkbox", "category" : "Site: Typography", "title" : "Show Quotation Marks", "active" : true, "target" : ".quote-block", "showOnlyWhenPresent" : ".quote-block" }
+
+// tweak: { "type" : "font", "category" : "Site: Typography", "title" : "Quote Source Font", "target" : ".quote-block", "showOnlyWhenPresent" : ".quote-block .source" }
+.quote-source-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.2em;
+  letter-spacing: 0em;
+  text-transform: none;
+}
+
+// tweak: { "type" : "color", "category" : "Site: Typography", "title" : "Quote Source Color", "target" : ".quote-block", "showOnlyWhenPresent" : ".quote-block .source" }
+@quoteSourceColor: #999999;
+
+
+/* Page
+***********************************/
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Album Banner", "active" : false, "target" : ".page-banner-wrapper", "showOnlyWhenPresent" : ".collection-type-album" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Blog Banner", "active" : false, "target" : ".page-banner-wrapper", "showOnlyWhenPresent" : ".collection-type-blog" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Events Banner", "active" : false, "target" : ".page-banner-wrapper", "showOnlyWhenPresent" : ".collection-type-events" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Gallery Banner", "active" : false, "target" : ".page-banner-wrapper", "showOnlyWhenPresent" : ".collection-type-gallery" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Index Banner", "active" : false, "target" : ".page-banner-wrapper", "showOnlyWhenPresent" : ".collection-type-index" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Page Banner", "active" : false, "target" : ".page-banner-wrapper", "showOnlyWhenPresent" : ".collection-type-page" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Project Banner", "active" : true, "target" : ".page-banner-wrapper", "showOnlyWhenPresent" : ".collection-type-project" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Products Banner", "active" : false, "target" : ".page-banner-wrapper", "showOnlyWhenPresent" : ".collection-type-products" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Homepage Banner", "active" : false, "target" : ".page-banner-wrapper", "showOnlyWhenPresent" : ".homepage.collection-type-album:not(.show-album-banner), .homepage.collection-type-blog:not(.show-blog-banner), .homepage.collection-type-events:not(.show-events-banner), .homepage.collection-type-gallery:not(.show-gallery-banner), .homepage.collection-type-index:not(.show-index-banner), .homepage.collection-type-page:not(.show-page-banner), .homepage.collection-type-products:not(.show-products-banner), .homepage.collection-type-project:not(.show-project-banner)" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Album Title", "active" : true, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ".collection-type-album .page-title" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Album Description", "active" : true, "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ".collection-type-album .page-description" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Blog Title", "active" : true, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ".collection-type-blog .page-title" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Blog Description", "active" : true, "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ".collection-type-blog .page-description" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Events Title", "active" : true, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ".collection-type-events .page-title" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Events Description", "active" : true, "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ".collection-type-events .page-description" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Gallery Title", "active" : true, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ".collection-type-gallery .page-title" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Gallery Categories", "label" : "Show Gallery Categories", "active" : false, "target" : ".page-text-wrapper .page-category-wrapper", "showOnlyWhenPresent" : ".collection-type-gallery .page-category" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Gallery Description", "active" : true, "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ".collection-type-gallery .page-description" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Index Title", "active" : true, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ".collection-type-index .page-title" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Index Description", "active" : true, "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ".collection-type-index .page-description" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Page Title", "active" : true, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ".collection-type-page .page-title" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Page Description", "active" : true, "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ".collection-type-page .page-description" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Project Title", "active" : true, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ".collection-type-project .page-title" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Project Categories", "label" : "Show Project Categories", "active" : false, "target" : ".page-text-wrapper .page-category-wrapper", "showOnlyWhenPresent" : ".collection-type-project .page-category" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Project Description", "active" : true, "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ".collection-type-project .page-description" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Products Title", "active" : true, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ".collection-type-products .page-title" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Products Description", "active" : true, "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ".collection-type-products .page-description" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Collection Page Header", "label" : "Show Page Header", "active" : false, "target" : ".site-page", "showOnlyWhenPresent" : "body:not(.collection-type-page) .site-page" }
+
+// tweak: { "type" : "checkbox", "category" : "Page", "title" : "Show Collection Page Footer", "label" : "Show Page Footer", "active" : false, "target" : ".site-page", "showOnlyWhenPresent" : "body:not(.collection-type-page) .site-page" }
+
+
+/* Banner
+***********************************/
+
+// tweak: { "type": "dropdown",  "category" : "Banner", "title" : "Banner Height", "label" : "Height", "options": ["Small", "Medium", "Large", "Extra Large"], "default": "Large", "target" : ".page-banner-wrapper", "showOnlyWhenPresent" : ".collection-type-album.show-album-banner, .collection-type-blog.show-blog-banner, .collection-type-events.show-events-banner, .collection-type-gallery.show-gallery-banner, .collection-type-index.show-index-banner, .collection-type-page.show-page-banner, .collection-type-project.show-project-banner, .collection-type-products.show-products-banner, .homepage.show-homepage-banner", "js" : true }
+
+// tweak: { "type" : "dropdown", "category" : "Banner", "title" : "Banner Image Alignment", "label" : "Image Alignment", "options" : [ "Top", "Right", "Bottom", "Left", "Center" ], "default" : "Center", "target" : ".page-banner-image-containter", "showOnlyWhenPresent" : ".collection-type-album.show-album-banner, .collection-type-blog.show-blog-banner, .collection-type-events.show-events-banner, .collection-type-gallery.show-gallery-banner, .collection-type-index.show-index-banner, .collection-type-page.show-page-banner, .collection-type-project.show-project-banner, .collection-type-products.show-products-banner, .homepage.show-homepage-banner", "js" : true }
+
+// tweak: { "type" : "checkbox", "category" : "Banner", "title" : "Banner Image Crop", "label" : "Crop Image", "active" : false, "target" : ".page-banner-image-container", "showOnlyWhenPresent" : ".collection-type-album.show-album-banner:not(.banner-image-alignment-bottom):not(.banner-image-alignment-top), .collection-type-blog.show-blog-banner:not(.banner-image-alignment-bottom):not(.banner-image-alignment-top), .collection-type-events.show-events-banner:not(.banner-image-alignment-bottom):not(.banner-image-alignment-top), .collection-type-gallery.show-gallery-banner:not(.banner-image-alignment-bottom):not(.banner-image-alignment-top), .collection-type-index.show-index-banner:not(.banner-image-alignment-bottom):not(.banner-image-alignment-top), .collection-type-page.show-page-banner:not(.banner-image-alignment-bottom):not(.banner-image-alignment-top), .collection-type-project.show-project-banner:not(.banner-image-alignment-bottom):not(.banner-image-alignment-top), .collection-type-products.show-products-banner:not(.banner-image-alignment-bottom):not(.banner-image-alignment-top), .homepage.show-homepage-banner:not(.banner-image-alignment-bottom):not(.banner-image-alignment-top)", "js" : true }
+
+// tweak: { "type" : "checkbox", "category" : "Banner", "title" : "Auto Color Banner Background", "label" : "Auto Color Background", "active" : false, "target" : ".page-banner-wrapper", "showOnlyWhenPresent" : ".collection-type-album.show-album-banner:not(.has-video-background-banner), .collection-type-blog.show-blog-banner:not(.has-video-background-banner), .collection-type-events.show-events-banner:not(.has-video-background-banner), .collection-type-gallery.show-gallery-banner:not(.has-video-background-banner), .collection-type-index.show-index-banner:not(.has-video-background-banner), .collection-type-page.show-page-banner:not(.has-video-background-banner), .collection-type-project.show-project-banner:not(.has-video-background-banner), .collection-type-products.show-products-banner:not(.has-video-background-banner), .homepage.show-homepage-banner:not(.has-video-background-banner)", "js" : true }
+
+// tweak: { "type" : "color", "category" : "Banner", "title" : "Banner Background Color", "label" : "Background Color", "target" : ".page-banner-wrapper", "showOnlyWhenPresent" : ".collection-type-album.show-album-banner:not(.auto-color-banner-background), .collection-type-blog.show-blog-banner:not(.auto-color-banner-background), .collection-type-events.show-events-banner:not(.auto-color-banner-background), .collection-type-gallery.show-gallery-banner:not(.auto-color-banner-background), .collection-type-index.show-index-banner:not(.auto-color-banner-background), .collection-type-page.show-page-banner:not(.auto-color-banner-background), .collection-type-project.show-project-banner:not(.auto-color-banner-background), .collection-type-products.show-products-banner:not(.auto-color-banner-background), .homepage.show-homepage-banner:not(.auto-color-banner-background), .collection-type-album.show-album-banner.has-video-background-banner, .collection-type-blog.show-blog-banner.has-video-background-banner, .collection-type-events.show-events-banner.has-video-background-banner, .collection-type-gallery.show-gallery-banner.has-video-background-banner, .collection-type-index.show-index-banner.has-video-background-banner, .collection-type-page.show-page-banner.has-video-background-banner, .collection-type-project.show-project-banner.has-video-background-banner, .collection-type-products.show-products-banner.has-video-background-banner, .homepage.show-homepage-banner.has-video-background-banner" }
+@bannerBackgroundColor: #f4f4f4;
+
+// tweak: { "type" : "checkbox", "category" : "Banner", "title" : "Full Bleed Banner", "label" : "Full Bleed Banner", "active" : false, "target" : ".page-banner-wrapper", "showOnlyWhenPresent" : ".collection-type-album.show-album-banner, .collection-type-blog.show-blog-banner, .collection-type-events.show-events-banner, .collection-type-gallery.show-gallery-banner, .collection-type-page.show-page-banner, .collection-type-products.show-products-banner, .homepage.show-homepage-banner", "js" : true }
+
+
+/* Page Banner Text
+***********************************/
+
+// tweak: { "type" : "dropdown", "category" : "Banner Text", "title" : "Banner Text Alignment", "label" : "Alignment", "options" : [ "Top Left", "Left", "Bottom Left", "Top", "Center", "Bottom", "Top Right", "Right", "Bottom Right" ], "default" : "Center", "target" : ".page-text-wrapper", "showOnlyWhenPresent" : ".collection-type-album.show-album-banner, .collection-type-blog.show-blog-banner, .collection-type-events.show-events-banner, .collection-type-gallery.show-gallery-banner, .collection-type-index.show-index-banner, .collection-type-page.show-page-banner, .collection-type-project.show-project-banner, .collection-type-products.show-products-banner, .homepage.show-homepage-banner" }
+
+// tweak: { "type" : "dropdown", "category" : "Banner Text", "title" : "Page Banner Text Width", "label" : "Width", "options" : ["Small", "Medium", "Large", "Extra Large"], "default" : "Large", "target" : ".page-text-wrapper", "showOnlyWhenPresent" : ".collection-type-album.show-album-banner, .collection-type-blog.show-blog-banner, .collection-type-events.show-events-banner, .collection-type-gallery.show-gallery-banner, .collection-type-index.show-index-banner, .collection-type-page.show-page-banner, .collection-type-project.show-project-banner, .collection-type-products.show-products-banner, .homepage.show-homepage-banner" }
+
+// tweak: { "type" : "font", "category" : "Banner Text", "title" : "Banner Title Font", "label" : "Title Font", "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ".collection-type-album.show-album-title.show-album-banner, .collection-type-blog.show-blog-title.show-blog-banner, .collection-type-events.show-events-title.show-events-banner, .collection-type-gallery.show-gallery-title.show-gallery-banner, .collection-type-index.show-index-title.show-index-banner, .collection-type-page.show-page-title.show-page-banner, .collection-type-project.show-project-title.show-project-banner, .collection-type-products.show-products-title.show-products-banner, .collection-type-album.show-album-title.homepage.show-homepage-banner, .collection-type-blog.show-blog-title.homepage.show-homepage-banner, .collection-type-events.show-events-title.homepage.show-homepage-banner, .collection-type-gallery.show-gallery-title.homepage.show-homepage-banner, .collection-type-index.show-index-title.homepage.show-homepage-banner, .collection-type-page.show-page-title.homepage.show-homepage-banner, .collection-type-project.show-project-title.homepage.show-homepage-banner, .collection-type-products.show-products-title.homepage.show-homepage-banner" }
+.banner-page-title-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 72px;
+  letter-spacing: 0.1em;
+  line-height: 1.2em;
+  text-transform: none;
+}
+
+// tweak: { "type" : "checkbox", "category" : "Banner Text", "title" : "Scale Banner Title Font Size", "label" : "Scale Title Size", "active" : false, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ".collection-type-album.show-album-title.show-album-banner, .collection-type-blog.show-blog-title.show-blog-banner, .collection-type-events.show-events-title.show-events-banner, .collection-type-gallery.show-gallery-title.show-gallery-banner, .collection-type-index.show-index-title.show-index-banner, .collection-type-page.show-page-title.show-page-banner, .collection-type-project.show-project-title.show-project-banner, .collection-type-products.show-products-title.show-products-banner, .collection-type-album.show-album-title.homepage.show-homepage-banner, .collection-type-blog.show-blog-title.homepage.show-homepage-banner, .collection-type-events.show-events-title.homepage.show-homepage-banner, .collection-type-gallery.show-gallery-title.homepage.show-homepage-banner, .collection-type-index.show-index-title.homepage.show-homepage-banner, .collection-type-page.show-page-title.homepage.show-homepage-banner, .collection-type-project.show-project-title.homepage.show-homepage-banner, .collection-type-products.show-products-title.homepage.show-homepage-banner" }
+
+// tweak: { "type" : "value", "category" : "Banner Text", "title" : "Banner Page Title Minimum", "label" : "Title Min", "step" : 1, "min" : 8, "max" : 72, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ".collection-type-album.show-album-title.show-album-banner.scale-banner-title-font-size, .collection-type-blog.show-blog-title.show-blog-banner.scale-banner-title-font-size, .collection-type-events.show-events-title.show-events-banner.scale-banner-title-font-size, .collection-type-gallery.show-gallery-title.show-gallery-banner.scale-banner-title-font-size, .collection-type-index.show-index-title.show-index-banner.scale-banner-title-font-size, .collection-type-page.show-page-title.show-page-banner.scale-banner-title-font-size, .collection-type-project.show-project-title.show-project-banner.scale-banner-title-font-size, .collection-type-products.show-products-title.show-products-banner.scale-banner-title-font-size, .collection-type-album.show-album-title.homepage.show-homepage-banner.scale-banner-title-font-size, .collection-type-blog.show-blog-title.homepage.show-homepage-banner.scale-banner-title-font-size, .collection-type-events.show-events-title.homepage.show-homepage-banner.scale-banner-title-font-size, .collection-type-gallery.show-gallery-title.homepage.show-homepage-banner.scale-banner-title-font-size, .collection-type-index.show-index-title.homepage.show-homepage-banner.scale-banner-title-font-size, .collection-type-page.show-page-title.homepage.show-homepage-banner.scale-banner-title-font-size, .collection-type-project.show-project-title.homepage.show-homepage-banner.scale-banner-title-font-size, .collection-type-products.show-products-title.homepage.show-homepage-banner.scale-banner-title-font-size" }
+@bannerPageTitleMin: 30px;
+
+// tweak: { "type" : "color", "category" : "Banner Text", "title" : "Banner Title Color", "label" : "Title Color", "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ".collection-type-album.show-album-title.show-album-banner, .collection-type-blog.show-blog-title.show-blog-banner, .collection-type-events.show-events-title.show-events-banner, .collection-type-gallery.show-gallery-title.show-gallery-banner, .collection-type-index.show-index-title.show-index-banner, .collection-type-page.show-page-title.show-page-banner, .collection-type-project.show-project-title.show-project-banner, .collection-type-products.show-products-title.show-products-banner, .collection-type-album.show-album-title.homepage.show-homepage-banner, .collection-type-blog.show-blog-title.homepage.show-homepage-banner, .collection-type-events.show-events-title.homepage.show-homepage-banner, .collection-type-gallery.show-gallery-title.homepage.show-homepage-banner, .collection-type-index.show-index-title.homepage.show-homepage-banner, .collection-type-page.show-page-title.homepage.show-homepage-banner, .collection-type-project.show-project-title.homepage.show-homepage-banner, .collection-type-products.show-products-title.homepage.show-homepage-banner" }
+@bannerPageTitleColor: #ffffff;
+
+// tweak: { "type" : "value", "category" : "Banner Text", "title" : "Banner Title Spacing", "label" : "Title Spacing", "step" : 0.1, "min" : 0, "max" : 3, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ".collection-type-album.show-album-title.show-album-banner, .collection-type-blog.show-blog-title.show-blog-banner, .collection-type-events.show-events-title.show-events-banner, .collection-type-gallery.show-gallery-title.show-gallery-banner, .collection-type-index.show-index-title.show-index-banner, .collection-type-page.show-page-title.show-page-banner, .collection-type-project.show-project-title.show-project-banner, .collection-type-products.show-products-title.show-products-banner, .collection-type-album.show-album-title.homepage.show-homepage-banner, .collection-type-blog.show-blog-title.homepage.show-homepage-banner, .collection-type-events.show-events-title.homepage.show-homepage-banner, .collection-type-gallery.show-gallery-title.homepage.show-homepage-banner, .collection-type-index.show-index-title.homepage.show-homepage-banner, .collection-type-page.show-page-title.homepage.show-homepage-banner, .collection-type-project.show-project-title.homepage.show-homepage-banner, .collection-type-products.show-products-title.homepage.show-homepage-banner" }
+@bannerTitleSpacing: .5em;
+
+// tweak: { "type" : "font", "category" : "Banner Text", "title" : "Banner Category Font", "label" : "Category Font", "target" : ".page-text-wrapper .page-category-wrapper", "showOnlyWhenPresent" : ".collection-type-project.show-project-categories.show-project-banner .page-category, .collection-type-gallery.show-gallery-categories.show-gallery-banner .page-category, .collection-type-project.show-project-categories.homepage.show-homepage-banner .page-category, .collection-type-gallery.show-gallery-categories.homepage.show-homepage-banner .page-category" }
+.banner-category-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.25em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+// tweak: { "type" : "color", "category" : "Banner Text", "title" : "Banner Category Color", "label" : "Category Color", "target" : ".page-text-wrapper .page-category-wrapper", "showOnlyWhenPresent" : ".collection-type-project.show-project-categories.show-project-banner .page-category, .collection-type-gallery.show-gallery-categories.show-gallery-banner .page-category, .collection-type-project.show-project-categories.homepage.show-homepage-banner .page-category, .collection-type-gallery.show-gallery-categories.homepage.show-homepage-banner .page-category" }
+@bannerPageCategoryColor: #FFFFFF;
+
+// tweak: { "type" : "value", "category" : "Banner Text", "title" : "Banner Category Spacing", "label" : "Category Spacing", "step" : 0.1, "min" : 0, "max" : 3, "target" : ".page-text-wrapper .page-category-wrapper", "showOnlyWhenPresent" : ".collection-type-project.show-project-categories.show-project-banner .page-category, .collection-type-gallery.show-gallery-categories.show-gallery-banner .page-category, .collection-type-project.show-project-categories.homepage.show-homepage-banner .page-category, .collection-type-gallery.show-gallery-categories.homepage.show-homepage-banner .page-category" }
+@bannerPageCategorySpacing: .5em;
+
+// tweak: { "type" : "font", "category" : "Banner Text", "title" : "Banner Description Font", "label" : "Description Font", "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ".collection-type-album.show-album-description.show-album-banner, .collection-type-blog.show-blog-description.show-blog-banner, .collection-type-events.show-events-description.show-events-banner, .collection-type-gallery.show-gallery-description.show-gallery-banner, .collection-type-index.show-index-description.show-index-banner, .collection-type-page.show-page-description.show-page-banner, .collection-type-project.show-project-description.show-project-banner, .collection-type-products.show-products-description.show-products-banner, .collection-type-album.show-album-description.homepage.show-homepage-banner, .collection-type-blog.show-blog-description.homepage.show-homepage-banner, .collection-type-events.show-events-description.homepage.show-homepage-banner, .collection-type-gallery.show-gallery-description.homepage.show-homepage-banner, .collection-type-index.show-index-description.homepage.show-homepage-banner, .collection-type-page.show-page-description.homepage.show-homepage-banner, .collection-type-project.show-project-description.homepage.show-homepage-banner, .collection-type-products.show-products-description.homepage.show-homepage-banner" }
+.banner-page-description-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  line-height: 1.2em;
+  text-transform: none;
+}
+
+// tweak: { "type" : "checkbox", "category" : "Banner Text", "title" : "Scale Banner Description Font Size", "label" : "Scale Description Size", "active" : false, "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ".collection-type-album.show-album-description.show-album-banner, .collection-type-blog.show-blog-description.show-blog-banner, .collection-type-events.show-events-description.show-events-banner, .collection-type-gallery.show-gallery-description.show-gallery-banner, .collection-type-index.show-index-description.show-index-banner, .collection-type-page.show-page-description.show-page-banner, .collection-type-project.show-project-description.show-project-banner, .collection-type-products.show-products-description.show-products-banner, .collection-type-album.show-album-description.homepage.show-homepage-banner, .collection-type-blog.show-blog-description.homepage.show-homepage-banner, .collection-type-events.show-events-description.homepage.show-homepage-banner, .collection-type-gallery.show-gallery-description.homepage.show-homepage-banner, .collection-type-index.show-index-description.homepage.show-homepage-banner, .collection-type-page.show-page-description.homepage.show-homepage-banner, .collection-type-project.show-project-description.homepage.show-homepage-banner, .collection-type-products.show-products-description.homepage.show-homepage-banner" }
+
+// tweak: { "type" : "value", "category" : "Banner Text", "title" : "Banner Page Description Min", "label" : "Description Min", "step" : 1, "min" : 8, "max" : 72, "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ".collection-type-album.show-album-description.show-album-banner.scale-banner-description-font-size, .collection-type-blog.show-blog-description.show-blog-banner.scale-banner-description-font-size, .collection-type-events.show-events-description.show-events-banner.scale-banner-description-font-size, .collection-type-gallery.show-gallery-description.show-gallery-banner.scale-banner-description-font-size, .collection-type-index.show-index-description.show-index-banner.scale-banner-description-font-size, .collection-type-page.show-page-description.show-page-banner.scale-banner-description-font-size, .collection-type-project.show-project-description.show-project-banner.scale-banner-description-font-size, .collection-type-products.show-products-description.show-products-banner.scale-banner-description-font-size, .collection-type-album.show-album-description.homepage.show-homepage-banner.scale-banner-description-font-size, .collection-type-blog.show-blog-description.homepage.show-homepage-banner.scale-banner-description-font-size, .collection-type-events.show-events-description.homepage.show-homepage-banner.scale-banner-description-font-size, .collection-type-gallery.show-gallery-description.homepage.show-homepage-banner.scale-banner-description-font-size, .collection-type-index.show-index-description.homepage.show-homepage-banner.scale-banner-description-font-size, .collection-type-page.show-page-description.homepage.show-homepage-banner.scale-banner-description-font-size, .collection-type-project.show-project-description.homepage.show-homepage-banner.scale-banner-description-font-size, .collection-type-products.show-products-description.homepage.show-homepage-banner.scale-banner-description-font-size" }
+@bannerPageDescriptionMin: 20px;
+
+// tweak: { "type" : "color", "category" : "Banner Text", "title" : "Banner Description Color", "label" : "Description Color", "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ".collection-type-album.show-album-description.show-album-banner, .collection-type-blog.show-blog-description.show-blog-banner, .collection-type-events.show-events-description.show-events-banner, .collection-type-gallery.show-gallery-description.show-gallery-banner, .collection-type-index.show-index-description.show-index-banner, .collection-type-page.show-page-description.show-page-banner, .collection-type-project.show-project-description.show-project-banner, .collection-type-products.show-products-description.show-products-banner, .collection-type-album.show-album-description.homepage.show-homepage-banner, .collection-type-blog.show-blog-description.homepage.show-homepage-banner, .collection-type-events.show-events-description.homepage.show-homepage-banner, .collection-type-gallery.show-gallery-description.homepage.show-homepage-banner, .collection-type-index.show-index-description.homepage.show-homepage-banner, .collection-type-page.show-page-description.homepage.show-homepage-banner, .collection-type-project.show-project-description.homepage.show-homepage-banner, .collection-type-products.show-products-description.homepage.show-homepage-banner" }
+@bannerPageDescriptionColor: #ffffff;
+
+// tweak: { "type" : "checkbox", "category" : "Banner Text", "title" : "Banner Text Background", "label" : "Highlight Text", "active" : "false", "target" : ".page-text-wrapper", "showOnlyWhenPresent" : ".collection-type-album.show-album-banner, .collection-type-blog.show-blog-banner, .collection-type-events.show-events-banner, .collection-type-gallery.show-gallery-banner, .collection-type-index.show-index-banner, .collection-type-page.show-page-banner, .collection-type-project.show-project-banner, .collection-type-products.show-products-banner, .collection-type-album.homepage.show-homepage-banner, .collection-type-blog.homepage.show-homepage-banner, .collection-type-events.homepage.show-homepage-banner, .collection-type-gallery.homepage.show-homepage-banner, .collection-type-index.homepage.show-homepage-banner, .collection-type-page.homepage.show-homepage-banner, .collection-type-project.homepage.show-homepage-banner, .collection-type-products.homepage.show-homepage-banner" }
+
+// tweak: { "type" : "color", "category" : "Banner Text", "title" : "Banner Text Background Color", "label" : "Text Highlight Color", "target" : ".page-text-wrapper", "showOnlyWhenPresent" : ".collection-type-album.show-album-banner.banner-text-background, .collection-type-blog.show-blog-banner.banner-text-background, .collection-type-events.show-events-banner.banner-text-background, .collection-type-gallery.show-gallery-banner.banner-text-background, .collection-type-index.show-index-banner.banner-text-background, .collection-type-page.show-page-banner.banner-text-background, .collection-type-project.show-project-banner.banner-text-background, .collection-type-products.show-products-banner.banner-text-background, .collection-type-album.homepage.show-homepage-banner.banner-text-background, .collection-type-blog.homepage.show-homepage-banner.banner-text-background, .collection-type-events.homepage.show-homepage-banner.banner-text-background, .collection-type-gallery.homepage.show-homepage-banner.banner-text-background, .collection-type-index.homepage.show-homepage-banner.banner-text-background, .collection-type-page.homepage.show-homepage-banner.banner-text-background, .collection-type-project.homepage.show-homepage-banner.banner-text-background, .collection-type-products.homepage.show-homepage-banner.banner-text-background", "disableTransparency" : true }
+@bannerTextBackgroundColor: #000000;
+
+// tweak: { "type" : "dropdown", "category" : "Banner Text", "title" : "Banner Text Background Indent", "label" : "Text Highlight Indent", "options" : ["Small", "Medium", "Large", "Custom"], "default" : "Custom", "target" : ".page-text-wrapper", "showOnlyWhenPresent" : ".collection-type-album.show-album-banner.banner-text-background, .collection-type-blog.show-blog-banner.banner-text-background, .collection-type-events.show-events-banner.banner-text-background, .collection-type-gallery.show-gallery-banner.banner-text-background, .collection-type-index.show-index-banner.banner-text-background, .collection-type-page.show-page-banner.banner-text-background, .collection-type-project.show-project-banner.banner-text-background, .collection-type-products.show-products-banner.banner-text-background, .collection-type-album.homepage.show-homepage-banner.banner-text-background, .collection-type-blog.homepage.show-homepage-banner.banner-text-background, .collection-type-events.homepage.show-homepage-banner.banner-text-background, .collection-type-gallery.homepage.show-homepage-banner.banner-text-background, .collection-type-index.homepage.show-homepage-banner.banner-text-background, .collection-type-page.homepage.show-homepage-banner.banner-text-background, .collection-type-project.homepage.show-homepage-banner.banner-text-background, .collection-type-products.homepage.show-homepage-banner.banner-text-background" }
+
+// tweak: { "type" : "value", "category" : "Banner Text", "title" : "Custom Banner Text Background Indent", "label" : "Custom Highlight Indent", "step" : 1, "min" : 0, "max" : 25, "target" : ".page-text-wrapper", "showOnlyWhenPresent" : ".collection-type-album.show-album-banner.banner-text-background.banner-text-background-indent-custom, .collection-type-blog.show-blog-banner.banner-text-background.banner-text-background-indent-custom, .collection-type-events.show-events-banner.banner-text-background.banner-text-background-indent-custom, .collection-type-gallery.show-gallery-banner.banner-text-background.banner-text-background-indent-custom, .collection-type-index.show-index-banner.banner-text-background.banner-text-background-indent-custom, .collection-type-page.show-page-banner.banner-text-background.banner-text-background-indent-custom, .collection-type-project.show-project-banner.banner-text-background.banner-text-background-indent-custom, .collection-type-products.show-products-banner.banner-text-background.banner-text-background-indent-custom, .collection-type-album.homepage.show-homepage-banner.banner-text-background.banner-text-background-indent-custom, .collection-type-blog.homepage.show-homepage-banner.banner-text-background.banner-text-background-indent-custom, .collection-type-events.homepage.show-homepage-banner.banner-text-background.banner-text-background-indent-custom, .collection-type-gallery.homepage.show-homepage-banner.banner-text-background.banner-text-background-indent-custom, .collection-type-index.homepage.show-homepage-banner.banner-text-background.banner-text-background-indent-custom, .collection-type-page.homepage.show-homepage-banner.banner-text-background.banner-text-background-indent-custom, .collection-type-project.homepage.show-homepage-banner.banner-text-background.banner-text-background-indent-custom, .collection-type-products.homepage.show-homepage-banner.banner-text-background.banner-text-background-indent-custom" }
+@customBannerTextBackgroundIndent: 10px;
+
+
+/* Page Intro
+***********************************/
+
+// tweak: { "type" : "font", "category" : "Page: Intro Text", "title" : "Page Title Font", "label" : "Title Font", "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ":not(.homepage).collection-type-album:not(.show-album-banner).show-album-title, :not(.homepage).collection-type-blog:not(.show-blog-banner).show-blog-title, :not(.homepage).collection-type-events:not(.show-events-banner).show-events-title, :not(.homepage).collection-type-gallery:not(.show-gallery-banner).show-gallery-title, :not(.homepage).collection-type-page:not(.show-page-banner).show-page-title, :not(.homepage).collection-type-project:not(.show-project-banner).show-project-title, :not(.homepage).collection-type-products:not(.show-products-banner).show-products-title, .homepage:not(.show-homepage-banner).collection-type-album:not(.show-album-banner).show-album-title, .homepage:not(.show-homepage-banner).collection-type-blog:not(.show-blog-banner).show-blog-title, .homepage:not(.show-homepage-banner).collection-type-events:not(.show-events-banner).show-events-title, .homepage:not(.show-homepage-banner).collection-type-gallery:not(.show-gallery-banner).show-gallery-title, .homepage:not(.show-homepage-banner).collection-type-page:not(.show-page-banner).show-page-title, .homepage:not(.show-homepage-banner).collection-type-project:not(.show-project-banner).show-project-title, .homepage:not(.show-homepage-banner).collection-type-products:not(.show-products-banner).show-products-title" }
+.page-title-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 1.25em;
+  letter-spacing: 0em;
+  text-transform: none;
+}
+
+// tweak: { "type" : "checkbox", "category" : "Page: Intro Text", "title" : "Scale Page Title Font Size", "label" : "Scale Title Size", "active" : false, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ":not(.homepage).collection-type-album:not(.show-album-banner).show-album-title, :not(.homepage).collection-type-blog:not(.show-blog-banner).show-blog-title, :not(.homepage).collection-type-events:not(.show-events-banner).show-events-title, :not(.homepage).collection-type-gallery:not(.show-gallery-banner).show-gallery-title, :not(.homepage).collection-type-page:not(.show-page-banner).show-page-title, :not(.homepage).collection-type-project:not(.show-project-banner).show-project-title, :not(.homepage).collection-type-products:not(.show-products-banner).show-products-title, .homepage:not(.show-homepage-banner).collection-type-album:not(.show-album-banner).show-album-title, .homepage:not(.show-homepage-banner).collection-type-blog:not(.show-blog-banner).show-blog-title, .homepage:not(.show-homepage-banner).collection-type-events:not(.show-events-banner).show-events-title, .homepage:not(.show-homepage-banner).collection-type-gallery:not(.show-gallery-banner).show-gallery-title, .homepage:not(.show-homepage-banner).collection-type-page:not(.show-page-banner).show-page-title, .homepage:not(.show-homepage-banner).collection-type-project:not(.show-project-banner).show-project-title, .homepage:not(.show-homepage-banner).collection-type-products:not(.show-products-banner).show-products-title" }
+
+// tweak: { "type" : "value", "category" : "Page: Intro Text", "title" : "Page Title Minimum", "label" : "Title Min", "step" : 1, "min" : 8, "max" : 72, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ":not(.homepage).collection-type-album:not(.show-album-banner).show-album-title.scale-page-title-font-size, :not(.homepage).collection-type-blog:not(.show-blog-banner).show-blog-title.scale-page-title-font-size, :not(.homepage).collection-type-events:not(.show-events-banner).show-events-title.scale-page-title-font-size, :not(.homepage).collection-type-gallery:not(.show-gallery-banner).show-gallery-title.scale-page-title-font-size, :not(.homepage).collection-type-page:not(.show-page-banner).show-page-title.scale-page-title-font-size, :not(.homepage).collection-type-project:not(.show-project-banner).show-project-title.scale-page-title-font-size, :not(.homepage).collection-type-products:not(.show-products-banner).show-products-title.scale-page-title-font-size, .homepage:not(.show-homepage-banner).collection-type-album:not(.show-album-banner).show-album-title.scale-page-title-font-size, .homepage:not(.show-homepage-banner).collection-type-blog:not(.show-blog-banner).show-blog-title.scale-page-title-font-size, .homepage:not(.show-homepage-banner).collection-type-events:not(.show-events-banner).show-events-title.scale-page-title-font-size, .homepage:not(.show-homepage-banner).collection-type-gallery:not(.show-gallery-banner).show-gallery-title.scale-page-title-font-size, .homepage:not(.show-homepage-banner).collection-type-page:not(.show-page-banner).show-page-title.scale-page-title-font-size, .homepage:not(.show-homepage-banner).collection-type-project:not(.show-project-banner).show-project-title.scale-page-title-font-size, .homepage:not(.show-homepage-banner).collection-type-products:not(.show-products-banner).show-products-title.scale-page-title-font-size" }
+@pageTitleMin: 30px;
+
+// tweak: { "type" : "color", "category" : "Page: Intro Text", "title" : "Page Title Color", "label" : "Title Color", "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ":not(.homepage).collection-type-album:not(.show-album-banner).show-album-title, :not(.homepage).collection-type-blog:not(.show-blog-banner).show-blog-title, :not(.homepage).collection-type-events:not(.show-events-banner).show-events-title, :not(.homepage).collection-type-gallery:not(.show-gallery-banner).show-gallery-title, :not(.homepage).collection-type-page:not(.show-page-banner).show-page-title, :not(.homepage).collection-type-project:not(.show-project-banner).show-project-title, :not(.homepage).collection-type-products:not(.show-products-banner).show-products-title, .homepage:not(.show-homepage-banner).collection-type-album:not(.show-album-banner).show-album-title, .homepage:not(.show-homepage-banner).collection-type-blog:not(.show-blog-banner).show-blog-title, .homepage:not(.show-homepage-banner).collection-type-events:not(.show-events-banner).show-events-title, .homepage:not(.show-homepage-banner).collection-type-gallery:not(.show-gallery-banner).show-gallery-title, .homepage:not(.show-homepage-banner).collection-type-page:not(.show-page-banner).show-page-title, .homepage:not(.show-homepage-banner).collection-type-project:not(.show-project-banner).show-project-title, .homepage:not(.show-homepage-banner).collection-type-products:not(.show-products-banner).show-products-title" }
+@pageTitleColor: #222222;
+
+// tweak: { "type" : "value", "category" : "Page: Intro Text", "title" : "Page Title Spacing", "label" : "Title Spacing", "step" : 0.1, "min" : 0, "max" : 3, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ":not(.homepage).collection-type-album:not(.show-album-banner).show-album-title, :not(.homepage).collection-type-blog:not(.show-blog-banner).show-blog-title, :not(.homepage).collection-type-events:not(.show-events-banner).show-events-title, :not(.homepage).collection-type-gallery:not(.show-gallery-banner).show-gallery-title, :not(.homepage).collection-type-page:not(.show-page-banner).show-page-title, :not(.homepage).collection-type-project:not(.show-project-banner).show-project-title, :not(.homepage).collection-type-products:not(.show-products-banner).show-products-title, .homepage:not(.show-homepage-banner).collection-type-album:not(.show-album-banner).show-album-title, .homepage:not(.show-homepage-banner).collection-type-blog:not(.show-blog-banner).show-blog-title, .homepage:not(.show-homepage-banner).collection-type-events:not(.show-events-banner).show-events-title, .homepage:not(.show-homepage-banner).collection-type-gallery:not(.show-gallery-banner).show-gallery-title, .homepage:not(.show-homepage-banner).collection-type-page:not(.show-page-banner).show-page-title, .homepage:not(.show-homepage-banner).collection-type-project:not(.show-project-banner).show-project-title, .homepage:not(.show-homepage-banner).collection-type-products:not(.show-products-banner).show-products-title" }
+@pageTitleSpacing: .5em;
+
+// tweak: { "type" : "font", "category" : "Page: Intro Text", "title" : "Page Category Font", "label" : "Category Font", "target" : ".page-text-wrapper .page-category-wrapper", "showOnlyWhenPresent" : ":not(.homepage).collection-type-project:not(.show-project-banner).show-project-categories .page-category, :not(.homepage).collection-type-gallery:not(.show-gallery-banner).show-gallery-categories .page-category, .homepage:not(.show-homepage-banner).collection-type-project:not(.show-project-banner).show-project-categories .page-category, .homepage:not(.show-homepage-banner).collection-type-gallery:not(.show-gallery-banner).show-gallery-categories .page-category" }
+.page-category-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.25em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+// tweak: { "type" : "color", "category" : "Page: Intro Text", "title" : "Page Category Color", "label" : "Category Color", "target" : ".page-text-wrapper .page-category-wrapper", "showOnlyWhenPresent" : ":not(.homepage).collection-type-project:not(.show-project-banner).show-project-categories .page-category, :not(.homepage).collection-type-gallery:not(.show-gallery-banner).show-gallery-categories .page-category, .homepage:not(.show-homepage-banner).collection-type-project:not(.show-project-banner).show-project-categories .page-category, .homepage:not(.show-homepage-banner).collection-type-gallery:not(.show-gallery-banner).show-gallery-categories .page-category" }
+@pageCategoryColor: #CCC;
+
+// tweak: { "type" : "value", "category" : "Page: Intro Text", "title" : "Page Category Spacing", "label" : "Category Spacing", "step" : 0.1, "min" : 0, "max" : 3, "target" : ".page-text-wrapper .page-category-wrapper", "showOnlyWhenPresent" : ":not(.homepage).collection-type-project:not(.show-project-banner).show-project-categories .page-category, :not(.homepage).collection-type-gallery:not(.show-gallery-banner).show-gallery-categories .page-category, .homepage:not(.show-homepage-banner).collection-type-project:not(.show-project-banner).show-project-categories .page-category, .homepage:not(.show-homepage-banner).collection-type-gallery:not(.show-gallery-banner).show-gallery-categories .page-category" }
+@pageCategorySpacing: .5em;
+
+// tweak: { "type" : "font", "category" : "Page: Intro Text", "title" : "Page Description Font", "label" : "Description Font", "target" : ".page-text-wrapper .page-description", "loadAllVariants" : true, "showOnlyWhenPresent" : ":not(.homepage).collection-type-album:not(.show-album-banner).show-album-description, :not(.homepage).collection-type-blog:not(.show-blog-banner).show-blog-description, :not(.homepage).collection-type-events:not(.show-events-banner).show-events-description, :not(.homepage).collection-type-gallery:not(.show-gallery-banner).show-gallery-description, :not(.homepage).collection-type-page:not(.show-page-banner).show-page-description, :not(.homepage).collection-type-project:not(.show-project-banner).show-project-description, :not(.homepage).collection-type-products:not(.show-products-banner).show-products-description, .homepage:not(.show-homepage-banner).collection-type-album:not(.show-album-banner).show-album-description, .homepage:not(.show-homepage-banner).collection-type-blog:not(.show-blog-banner).show-blog-description, .homepage:not(.show-homepage-banner).collection-type-events:not(.show-events-banner).show-events-description, .homepage:not(.show-homepage-banner).collection-type-gallery:not(.show-gallery-banner).show-gallery-description, .homepage:not(.show-homepage-banner).collection-type-page:not(.show-page-banner).show-page-description, .homepage:not(.show-homepage-banner).collection-type-project:not(.show-project-banner).show-project-description, .homepage:not(.show-homepage-banner).collection-type-products:not(.show-products-banner).show-products-description" }
+.page-description-font {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.25em;
+  letter-spacing: 0em;
+  text-transform: none;
+}
+
+// tweak: { "type" : "checkbox", "category" : "Page: Intro Text", "title" : "Scale Page Description Font Size", "label" : "Scale Description Size", "active" : false, "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ":not(.homepage).collection-type-album:not(.show-album-banner).show-album-description, :not(.homepage).collection-type-blog:not(.show-blog-banner).show-blog-description, :not(.homepage).collection-type-events:not(.show-events-banner).show-events-description, :not(.homepage).collection-type-gallery:not(.show-gallery-banner).show-gallery-description, :not(.homepage).collection-type-page:not(.show-page-banner).show-page-description, :not(.homepage).collection-type-project:not(.show-project-banner).show-project-description, :not(.homepage).collection-type-products:not(.show-products-banner).show-products-description, .homepage:not(.show-homepage-banner).collection-type-album:not(.show-album-banner).show-album-description, .homepage:not(.show-homepage-banner).collection-type-blog:not(.show-blog-banner).show-blog-description, .homepage:not(.show-homepage-banner).collection-type-events:not(.show-events-banner).show-events-description, .homepage:not(.show-homepage-banner).collection-type-gallery:not(.show-gallery-banner).show-gallery-description, .homepage:not(.show-homepage-banner).collection-type-page:not(.show-page-banner).show-page-description, .homepage:not(.show-homepage-banner).collection-type-project:not(.show-project-banner).show-project-description, .homepage:not(.show-homepage-banner).collection-type-products:not(.show-products-banner).show-products-description" }
+
+// tweak: { "type" : "value", "category" : "Page: Intro Text", "title" : "Page Description Minimum", "label" : "Description Min", "step" : 1, "min" : 8, "max" : 72, "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ":not(.homepage).collection-type-album:not(.show-album-banner).show-album-description.scale-page-description-font-size, :not(.homepage).collection-type-blog:not(.show-blog-banner).show-blog-description.scale-page-description-font-size, :not(.homepage).collection-type-events:not(.show-events-banner).show-events-description.scale-page-description-font-size, :not(.homepage).collection-type-gallery:not(.show-gallery-banner).show-gallery-description.scale-page-description-font-size, :not(.homepage).collection-type-page:not(.show-page-banner).show-page-description.scale-page-description-font-size, :not(.homepage).collection-type-project:not(.show-project-banner).show-project-description.scale-page-description-font-size, :not(.homepage).collection-type-products:not(.show-products-banner).show-products-description.scale-page-description-font-size, .homepage:not(.show-homepage-banner).collection-type-album:not(.show-album-banner).show-album-description.scale-page-description-font-size, .homepage:not(.show-homepage-banner).collection-type-blog:not(.show-blog-banner).show-blog-description.scale-page-description-font-size, .homepage:not(.show-homepage-banner).collection-type-events:not(.show-events-banner).show-events-description.scale-page-description-font-size, .homepage:not(.show-homepage-banner).collection-type-gallery:not(.show-gallery-banner).show-gallery-description.scale-page-description-font-size, .homepage:not(.show-homepage-banner).collection-type-page:not(.show-page-banner).show-page-description.scale-page-description-font-size, .homepage:not(.show-homepage-banner).collection-type-project:not(.show-project-banner).show-project-description.scale-page-description-font-size, .homepage:not(.show-homepage-banner).collection-type-products:not(.show-products-banner).show-products-description.scale-page-description-font-size" }
+@pageDescriptionMin: 20px;
+
+// tweak: { "type" : "color", "category" : "Page: Intro Text", "title" : "Page Description Color", "label" : "Description Color", "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ":not(.homepage).collection-type-album:not(.show-album-banner).show-album-description, :not(.homepage).collection-type-blog:not(.show-blog-banner).show-blog-description, :not(.homepage).collection-type-events:not(.show-events-banner).show-events-description, :not(.homepage).collection-type-gallery:not(.show-gallery-banner).show-gallery-description, :not(.homepage).collection-type-page:not(.show-page-banner).show-page-description, :not(.homepage).collection-type-project:not(.show-project-banner).show-project-description, :not(.homepage).collection-type-products:not(.show-products-banner).show-products-description, .homepage:not(.show-homepage-banner).collection-type-album:not(.show-album-banner).show-album-description, .homepage:not(.show-homepage-banner).collection-type-blog:not(.show-blog-banner).show-blog-description, .homepage:not(.show-homepage-banner).collection-type-events:not(.show-events-banner).show-events-description, .homepage:not(.show-homepage-banner).collection-type-gallery:not(.show-gallery-banner).show-gallery-description, .homepage:not(.show-homepage-banner).collection-type-page:not(.show-page-banner).show-page-description, .homepage:not(.show-homepage-banner).collection-type-project:not(.show-project-banner).show-project-description, .homepage:not(.show-homepage-banner).collection-type-products:not(.show-products-banner).show-products-description" }
+@pageDescriptionColor: #111111;
+
+// tweak: { "type" : "dropdown", "category" : "Page: Intro Text", "title" : "Intro Text Width", "label" : "Text Width", "options" : ["Small", "Medium", "Large", "Extra Large"], "default" : "Large", "target" : ".page-text-wrapper", "showOnlyWhenPresent" : ":not(.homepage).collection-type-album:not(.show-album-banner), :not(.homepage).collection-type-blog:not(.show-blog-banner), :not(.homepage).collection-type-events:not(.show-events-banner), :not(.homepage).collection-type-gallery:not(.show-gallery-banner), :not(.homepage).collection-type-page:not(.show-page-banner), :not(.homepage).collection-type-project:not(.show-project-banner), :not(.homepage).collection-type-products:not(.show-products-banner), .homepage:not(.show-homepage-banner).collection-type-album:not(.show-album-banner), .homepage:not(.show-homepage-banner).collection-type-blog:not(.show-blog-banner), .homepage:not(.show-homepage-banner).collection-type-events:not(.show-events-banner), .homepage:not(.show-homepage-banner).collection-type-gallery:not(.show-gallery-banner), .homepage:not(.show-homepage-banner).collection-type-page:not(.show-page-banner), .homepage:not(.show-homepage-banner).collection-type-project:not(.show-project-banner), .homepage:not(.show-homepage-banner).collection-type-products:not(.show-products-banner)" }
+
+// tweak: { "type" : "dropdown", "category" : "Page: Intro Text", "title" : "Intro Text Height", "label" : "Text Height", "options" : ["Small", "Medium", "Large", "Extra Large"], "default" : "Medium", "target" : ".page-text-wrapper", "showOnlyWhenPresent" : ":not(.homepage).collection-type-album:not(.show-album-banner), :not(.homepage).collection-type-blog:not(.show-blog-banner), :not(.homepage).collection-type-events:not(.show-events-banner), :not(.homepage).collection-type-gallery:not(.show-gallery-banner), :not(.homepage).collection-type-page:not(.show-page-banner), :not(.homepage).collection-type-project:not(.show-project-banner), :not(.homepage).collection-type-products:not(.show-products-banner), .homepage:not(.show-homepage-banner).collection-type-album:not(.show-album-banner), .homepage:not(.show-homepage-banner).collection-type-blog:not(.show-blog-banner), .homepage:not(.show-homepage-banner).collection-type-events:not(.show-events-banner), .homepage:not(.show-homepage-banner).collection-type-gallery:not(.show-gallery-banner), .homepage:not(.show-homepage-banner).collection-type-page:not(.show-page-banner), .homepage:not(.show-homepage-banner).collection-type-project:not(.show-project-banner), .homepage:not(.show-homepage-banner).collection-type-products:not(.show-products-banner)" }
+
+
+/* Index Intro
+***********************************/
+
+// tweak: { "type" : "font", "category" : "Index: Intro Text", "title" : "Index Title Font", "label" : "Title Font", "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ":not(.homepage).collection-type-index:not(.show-index-banner).show-index-title, .homepage:not(.show-homepage-banner).collection-type-index:not(.show-index-banner).show-index-title" }
+.index-page-title-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 1.25em;
+  letter-spacing: 0em;
+  text-transform: none;
+}
+
+// tweak: { "type" : "checkbox", "category" : "Index: Intro Text", "title" : "Scale Index Title Font Size", "label" : "Scale Title Size", "active" : false, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ":not(.homepage).collection-type-index:not(.show-index-banner).show-index-title, .homepage:not(.show-homepage-banner).collection-type-index:not(.show-index-banner).show-index-title" }
+
+// tweak: { "type" : "value", "category" : "Index: Intro Text", "title" : "Index Title Minimum", "label" : "Title Min Size", "step" : 1, "min" : 8, "max" : 72, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ":not(.homepage).collection-type-index:not(.show-index-banner).show-index-title.scale-index-title-font-size, .homepage:not(.show-homepage-banner).collection-type-index:not(.show-index-banner).show-index-title.scale-index-title-font-size" }
+@indexPageTitleMin: 30px;
+
+// tweak: { "type" : "color", "category" : "Index: Intro Text", "title" : "Index Title Color", "label" : "Title Color", "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ":not(.homepage).collection-type-index:not(.show-index-banner).show-index-title, .homepage:not(.show-homepage-banner).collection-type-index:not(.show-index-banner).show-index-title" }
+@indexPageTitleColor: #222222;
+
+// tweak: { "type" : "value", "category" : "Index: Intro Text", "title" : "Index Title Spacing", "label" : "Title Spacing", "step" : 0.1, "min" : 0, "max" : 3, "target" : ".page-text-wrapper .page-title", "showOnlyWhenPresent" : ":not(.homepage).collection-type-index:not(.show-index-banner).show-index-title, .homepage:not(.show-homepage-banner).collection-type-index:not(.show-index-banner).show-index-title" }
+@indexTitleSpacing: .5em;
+
+// tweak: { "type" : "font", "category" : "Index: Intro Text", "title" : "Index Description Font", "label" : "Description Font", "target" : ".page-text-wrapper .page-description", "loadAllVariants" : true, "showOnlyWhenPresent" : ":not(.homepage).collection-type-index:not(.show-index-banner).show-index-description, .homepage:not(.show-homepage-banner).collection-type-index:not(.show-index-banner).show-index-description" }
+.index-page-description-font {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.25em;
+  letter-spacing: 0em;
+  text-transform: none;
+}
+
+// tweak: { "type" : "checkbox", "category" : "Index: Intro Text", "title" : "Scale Index Description Font Size", "label" : "Scale Description Size", "active" : false, "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ":not(.homepage).collection-type-index:not(.show-index-banner).show-index-description, .homepage:not(.show-homepage-banner).collection-type-index:not(.show-index-banner).show-index-description" }
+
+// tweak: { "type" : "value", "category" : "Index: Intro Text", "title" : "Index Description Minimum", "label" : "Description Min Size", "step" : 1, "min" : 8, "max" : 72, "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ":not(.homepage).collection-type-index:not(.show-index-banner).show-index-description.scale-index-description-font-size, .homepage:not(.show-homepage-banner).collection-type-index:not(.show-index-banner).show-index-description.scale-index-description-font-size" }
+@indexPageDescriptionMin: 20px;
+
+// tweak: { "type" : "color", "category" : "Index: Intro Text", "title" : "Index Description Color", "label" : "Description Color", "target" : ".page-text-wrapper .page-description", "showOnlyWhenPresent" : ":not(.homepage).collection-type-index:not(.show-index-banner).show-index-description, .homepage:not(.show-homepage-banner).collection-type-index:not(.show-index-banner).show-index-description" }
+@indexPageDescriptionColor: #111111;
+
+// tweak: { "type" : "dropdown", "category" : "Index: Intro Text", "title" : "Index Intro Text Width", "label" : "Text Width", "options" : ["Small", "Medium", "Large", "Extra Large"], "default" : "Large", "target" : ".page-text-wrapper", "showOnlyWhenPresent" : ":not(.homepage).collection-type-index:not(.show-index-banner), .homepage:not(.show-homepage-banner).collection-type-index:not(.show-index-banner)" }
+
+// tweak: { "type" : "dropdown", "category" : "Index: Intro Text", "title" : "Index Intro Text Height", "label" : "Text Height", "options" : ["Small", "Medium", "Large", "Extra Large"], "default" : "Medium", "target" : ".page-text-wrapper", "showOnlyWhenPresent" : ":not(.homepage).collection-type-index:not(.show-index-banner), .homepage:not(.show-homepage-banner).collection-type-index:not(.show-index-banner)" }
+
+
+/* Index Layout
+***********************************/
+
+// tweak: { "type" : "dropdown",  "category" : "Index: Layout", "title" : "Index Item Width", "label" : "Item Width", "options": ["Full", "Half", "Grid"], "default" : "Full", "target" : ".index-item", "showOnlyWhenPresent" : ".collection-type-index", "js" : true }
+
+// tweak: { "type" : "value", "category" : "Index: Layout", "title" : "tweak-index-items-per-row", "label" : "Columns", "step" : 1, "min" : 2, "max" : 6, "target" : ".index-item", "showOnlyWhenPresent" : ".collection-type-index.index-item-width-grid", "js" : true }
+@indexItemsPerRow: 3;
+
+// tweak: { "type" : "value", "category" : "Index: Layout", "title" : "tweak-index-items-per-row", "label" : "Tablet: Columns", "step" : 1, "min" : 2, "max" : 6, "target" : ".index-item", "showOnlyWhenPresent" : ".collection-type-index.index-item-width-grid", "js" : true }
+@tabletItemsPerRow: 2;
+
+// tweak: { "type" : "value", "category" : "Index: Layout", "title" : "tweak-index-items-per-row", "label" : "Mobile: Columns", "step" : 1, "min" : 2, "max" : 6, "target" : ".index-item", "showOnlyWhenPresent" : ".collection-type-index.index-item-width-grid", "js" : true }
+@mobileItemsPerRow: 2;
+
+// tweak: { "type" : "value", "category" : "Index: Layout", "title" : "tweak-thumbnail-aspect-ratio", "label" : "Thumbnail Ratio", "target" : ".index-list", "min" : 20, "max" : 200, "property" : "height", "showOnlyWhenPresent" : ".collection-type-index.index-item-width-grid .index-list", "js" : true }
+@thumbnailRatio: 150;
+
+// tweak: { "type" : "dropdown",  "category" : "Index: Layout", "title" : "Index Item Height", "label" : "Item Height", "options": ["Small", "Medium", "Large", "Extra Large"], "default" : "Large", "target" : ".index-item", "showOnlyWhenPresent" : ".collection-type-index:not(.index-item-width-grid)", "js" : true }
+
+// tweak: { "type" : "dropdown",  "category" : "Index: Layout", "title" : "Index Item Spacing", "label" : "Item Spacing", "options": ["Small", "Medium", "Large", "Custom"], "default" : "Medium", "target" : ".index-item", "showOnlyWhenPresent" : ".collection-type-index" }
+
+// tweak: { "type" : "value", "category" : "Index: Layout", "title" : "Index Item Custom Spacing", "label" : "Item Custom Spacing", "step" : 2, "min" : 0, "max" : 150, "target" : ".index-item", "showOnlyWhenPresent" : ".collection-type-index.index-item-spacing-custom" }
+@indexItemSpacing: 20px;
+
+// tweak: { "type" : "checkbox", "category" : "Index: Layout", "title" : "Index Item Alternate Widths", "label" : "Alternate Widths", "active" : false, "target" : ".index-item", "showOnlyWhenPresent" : ".index-item-image-alignment-center:not(.index-item-width-grid) .index-list", "js" : true }
+
+// tweak: { "type" : "checkbox", "category" : "Index: Layout", "title" : "Index Item Alternate Sides", "label" : "Alternate Sides", "active" : false, "target" : ".index-item", "showOnlyWhenPresent" : ".collection-type-index:not(.index-item-width-half).index-item-image-alignment-right .index-list, .collection-type-index:not(.index-item-width-half).index-item-image-alignment-left .index-list", "js" : true }
+
+// tweak: { "type" : "checkbox", "category" : "Index: Layout", "title" : "Full Bleed Index", "active" : false, "target" : ".index-list", "showOnlyWhenPresent" : ".index-list", "js" : true }
+
+
+
+/* Index Item Image
+***********************************/
+
+// tweak: { "type" : "dropdown",  "category" : "Index: Item Image", "title" : "Index Item Image Alignment", "label" : "Image Alignment", "options": ["Top", "Right", "Bottom", "Left", "Center"], "default" : "Center", "target" : ".index-item", "showOnlyWhenPresent" : ".collection-type-index", "js" : true }
+
+// tweak: { "type" : "checkbox", "category" : "Index: Item Image", "title" : "Index Item Image Crop", "label" : "Crop Image", "active" : false, "target" : ".index-item", "showOnlyWhenPresent" : ".index-item-image-alignment-center .index-list, .index-item-image-alignment-left .index-list, .index-item-image-alignment-right .index-list", "js" : true }
+
+// tweak: { "type" : "value", "category" : "Index: Item Image", "title" : "Index Item Image Width", "label" : "Image Width", "step" : 1, "min" : 1, "max" : 10, "target" : ".index-item-image", "showOnlyWhenPresent" : ".collection-type-index:not(.index-item-image-crop)", "js" : true }
+@indexItemWidth: 4;
+
+//OFFtweak: { "type" : "checkbox", "category" : "Index: Item Image", "title" : "Fade Index Item Image on Hover", "label" : "Fade Image on Hover", "active" : true, "target" : ".index-item", "showOnlyWhenPresent" : ".collection-type-index .index-list" }
+
+//OFFtweak: { "type" : "value", "category" : "Index: Item Image", "title" : "Index Item Image Fade", "label" : "Image Fade Amount", "step" : 10, "min" : 0, "max" : 100, "target" : ".index-item", "showOnlyWhenPresent" : ".collection-type-index.fade-index-item-image-on-hover" }
+@indexItemImageFade: 20;
+
+// tweak: { "type" : "value", "category" : "Index: Item Image", "title" : "Index Item Image Opacity", "label" : "Image Opacity", "step" : 5, "min" : 0, "max" : 100, "target" : ".index-item", "showOnlyWhenPresent" : ".collection-type-index .index-item-image-wrapper" }
+@indexItemImageOpacity: 100;
+
+// tweak: { "type" : "value", "category" : "Index: Item Image", "title" : "Index Item Image Opacity Hover", "label" : "Image Hover Opacity", "step" : 5, "min" : 0, "max" : 100, "target" : ".index-item", "showOnlyWhenPresent" : ".collection-type-index .index-item-image-wrapper" }
+@indexItemImageHoverOpacity: 100;
+
+// tweak: { "type" : "checkbox", "category" : "Index: Item Image", "title" : "Auto Color Index Item BG", "label" : "Auto Color Background", "active" : true, "target" : ".index-item", "showOnlyWhenPresent" : ".collection-type-index", "js" : true }
+
+// tweak: { "type" : "color", "category" : "Index: Item Image", "title" : "Index Item Background", "label" : "Item Background Color", "target" : ".index-item", "showOnlyWhenPresent" : ".collection-type-index:not(.auto-color-index-item-bg), .collection-type-index .has-item-video" }
+@indexItemBgColor: #f7f7f7;
+
+
+/* Index Item Text
+***********************************/
+
+// tweak: { "type" : "dropdown",  "category" : "Index: Item Text", "title" : "Index Item Title Display", "label" : "Title Display", "options": ["Hidden", "On Hover", "On Scroll", "Always On"], "default" : "Always On", "target" : ".index-item-title", "showOnlyWhenPresent" : ".collection-type-index .index-list", "js" : true }
+
+// tweak: { "type" : "dropdown",  "category" : "Index: Item Text", "title" : "Index Item Title Alignment", "label" : "Text Alignment", "options": ["Top Left", "Left", "Bottom Left", "Top", "Center", "Bottom", "Top Right", "Right", "Bottom Right"], "default" : "Center", "target" : ".index-item-title", "showOnlyWhenPresent" : ".collection-type-index:not(.index-item-title-display-hidden) .index-list" }
+
+// tweak: { "type" : "font", "category" : "Index: Item Text", "title" : "Index Item Title Font", "label" : "Title Font", "target" : ".index-item-title", "showOnlyWhenPresent" : ".collection-type-index:not(.index-item-title-display-hidden) .index-list" }
+.index-item-title-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 1.25em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+// tweak: { "type" : "checkbox", "category" : "Index: Item Text", "title" : "Scale Index Item Title Font Size", "label" : "Scale Title Size", "active" : false, "target" : ".index-item-title", "showOnlyWhenPresent" : ".collection-type-index:not(.index-item-title-display-hidden) .index-list" }
+
+// tweak: { "type" : "value", "category" : "Index: Item Text", "title" : "Index Item Title Minimum", "label" : "Title Min Size", "step" : 1, "min" : 8, "max" : 72, "target" : ".index-item-title", "showOnlyWhenPresent" : ".collection-type-index:not(.index-item-title-display-hidden).scale-index-item-title-font-size .index-list" }
+@indexItemTitleMin: 30px;
+
+// tweak: { "type" : "color", "category" : "Index: Item Text", "title" : "Index Item Title Color", "label" : "Title Color", "target" : ".index-item-title", "showOnlyWhenPresent" : ".collection-type-index:not(.index-item-title-display-hidden) .index-list" }
+@indexItemTitleColor: #FFFFFF;
+
+// tweak: { "type" : "checkbox", "category" : "Index: Item Text", "title" : "Index Item Title Background", "label" : "Use Title Background", "active" : false, "target" : ".index-item-title", "showOnlyWhenPresent" : ".collection-type-index:not(.index-item-title-display-hidden) .index-list", "js" : true }
+
+// tweak: { "type" : "color", "category" : "Index: Item Text", "title" : "Index Item Title Background Color", "label" : "Title Background Color", "target" : ".index-item-title", "showOnlyWhenPresent" : ".collection-type-index:not(.index-item-title-display-hidden).index-item-title-background .index-list", "disableTransparency" : true }
+@indexItemTitleBgColor: #111111;
+
+// tweak: { "type" : "value", "category" : "Index: Item Text", "title" : "Index Item Title Spacing", "label" : "Title Spacing", "step" : 0.1, "min" : 0, "max" : 3, "target" : ".index-item-title", "showOnlyWhenPresent" : ".collection-type-index:not(.index-item-title-display-hidden) .index-list" }
+@indexItemTitleSpacing: .25em;
+
+// tweak: { "type" : "checkbox", "category" : "Index: Item Text", "title" : "Show Index Item Categories", "label" : "Show Categories", "active" : true, "target" : ".index-item-category", "showOnlyWhenPresent" : ".collection-type-index .index-list .index-item-category" }
+
+// tweak: { "type" : "font", "category" : "Index: Item Text", "title" : "Index Item Category Font", "label" : "Category Font", "target" : ".index-item-category", "showOnlyWhenPresent" : ".collection-type-index.show-index-item-categories .index-list .index-item-category" }
+.index-item-category-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.25em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+// tweak: { "type" : "color", "category" : "Index: Item Text", "title" : "Index Item Category Color", "label" : "Category Color", "target" : ".index-item-category-wrapper", "showOnlyWhenPresent" : ".collection-type-index.show-index-item-categories .index-list .index-item-category" }
+@indexItemCategoryColor: #FFFFFF;
+
+// tweak: { "type" : "checkbox", "category" : "Index: Item Text", "title" : "Index Item Category Background", "label" : "Use Category Background", "active" : false, "target" : ".index-item-category-wrapper", "showOnlyWhenPresent" : ".collection-type-index.show-index-item-categories .index-list .index-item-category", "js" : true }
+
+// tweak: { "type" : "color", "category" : "Index: Item Text", "title" : "Index Item Category Background Color", "label" : "Category Background Color", "target" : ".index-item-category-wrapper", "showOnlyWhenPresent" : ".collection-type-index.index-item-category-background .index-list .index-item-category", "disableTransparency" : true }
+@indexItemCategoryBgColor: #111111;
+
+
+// Project: Layout Tweaks
+
+// tweak: { "type" : "dropdown", "category" : "Project: Layout", "title" : "Project Image Alignment", "label" : "Image Alignment", "options" : [ "Left", "Center", "Right" ], "default" : "Center", "showOnlyWhenPresent" : ".collection-type-project", "target" : ".project-slide", "js" : true }
+
+// tweak: { "type" : "dropdown",  "category" : "Project: Layout", "title" : "Project Image Spacing", "label" : "Image Spacing", "options": ["Small", "Medium", "Large", "Custom"], "default" : "Medium", "target" : ".project-slide", "showOnlyWhenPresent" : ".collection-type-project" }
+
+// tweak: { "type" : "value", "category" : "Project: Layout", "title" : "Project Image Custom Spacing", "label" : "Image Custom Spacing", "min" : 0, "max" : 150, "showOnlyWhenPresent" : ".collection-type-project.project-image-spacing-custom", "target" : ".project-slide" }
+@projectImageSpacing: 0px;
+
+// tweak: { "type" : "dropdown",  "category" : "Project: Layout", "title" : "Project Banner Spacing", "label" : "Banner Spacing", "options": ["Small", "Medium", "Large", "Custom"], "default" : "Medium", "target" : ".page-banner-wrapper", "showOnlyWhenPresent" : ".collection-type-project.show-project-banner, .homepage.show-homepage-banner.collection-type-project" }
+
+// tweak: { "type" : "value", "category" : "Project: Layout", "title" : "Project Banner Custom Spacing", "label" : "Banner Custom Spacing", "min" : 0, "max" : 150, "showOnlyWhenPresent" : ".collection-type-project.show-project-banner.project-banner-spacing-custom, .homepage.show-homepage-banner.collection-type-project.project-banner-spacing-custom", "target" : ".page-banner-wrapper" }
+@projectBannerSpacing: 0px;
+
+// tweak: { "type" : "checkbox", "category" : "Project: Layout", "title" : "Show Project Captions", "active" : true, "showOnlyWhenPresent" : ".collection-type-project", "target" : ".project-slide" }
+
+// tweak: { "type" : "dropdown", "category" : "Project: Layout", "title" : "Project Image Portrait Caption Style", "label" : "Portrait and Square Caption Style", "options" : [ "Standard", "Offset", "Alternate" ], "default" : "Standard", "target" : ".project-slide-portrait, .project-slide-square", "showOnlyWhenPresent" : ".collection-type-project.show-project-captions.project-image-alignment-center .project-slide-portrait, .collection-type-project.show-project-captions.project-image-alignment-center .project-slide-square", "js" : true }
+
+// tweak: { "type" : "checkbox", "category" : "Project: Layout", "title" : "Align Alternate Caption to Image", "label" : "Align Alternate Captions to Image", "active" : false, "target" : ".project-slide-portrait, .project-slide-square", "showOnlyWhenPresent" : ".collection-type-project.show-project-captions.project-image-alignment-center.project-image-portrait-caption-style-alternate .project-slide-portrait, .collection-type-project.show-project-captions.project-image-alignment-center.project-image-portrait-caption-style-alternate .project-slide-square", "js" : true }
+
+// tweak: { "type" : "dropdown", "category" : "Project: Layout", "title" : "Project Image Landscape Caption Style", "label" : "Landscape Caption Style", "options" : [ "Standard", "Offset", "Inset" ], "default" : "Standard", "target" : ".project-slide-landscape", "showOnlyWhenPresent" : ".collection-type-project.show-project-captions.project-image-alignment-center .project-slide-pano, .collection-type-project.show-project-captions.project-image-alignment-center .project-slide-landscape", "js" : true }
+
+// tweak: { "type" : "dropdown", "category" : "Project: Layout", "title" : "Project Left Image Portrait Caption Style", "label" : "Portrait and Square Caption Style", "options" : [ "Standard", "Offset", "Side" ], "default" : "Standard", "target" : ".project-slide-portrait, .project-slide-square", "showOnlyWhenPresent" : ".collection-type-project.show-project-captions.project-image-alignment-left .project-slide-portrait, .collection-type-project.show-project-captions.project-image-alignment-left .project-slide-square", "js" : true }
+
+// tweak: { "type" : "dropdown", "category" : "Project: Layout", "title" : "Project Left Image Landscape Caption Style", "label" : "Landscape Caption Style", "options" : [ "Standard", "Offset" ], "default" : "Standard", "target" : ".project-slide-landscape", "showOnlyWhenPresent" : ".collection-type-project.show-project-captions.project-image-alignment-left .project-slide-pano, .collection-type-project.show-project-captions.project-image-alignment-left .project-slide-landscape", "js" : true }
+
+// tweak: { "type" : "dropdown", "category" : "Project: Layout", "title" : "Project Right Image Portrait Caption Style", "label" : "Portrait and Square Caption Style", "options" : [ "Standard", "Offset", "Side" ], "default" : "Standard", "target" : ".project-slide-portrait, .project-slide-square", "showOnlyWhenPresent" : ".collection-type-project.show-project-captions.project-image-alignment-right .project-slide-portrait, .collection-type-project.show-project-captions.project-image-alignment-right .project-slide-square", "js" : true }
+
+// tweak: { "type" : "dropdown", "category" : "Project: Layout", "title" : "Project Right Image Landscape Caption Style", "label" : "Landscape Caption Style", "options" : [ "Standard", "Offset" ], "default" : "Standard", "target" : ".project-slide-landscape", "showOnlyWhenPresent" : ".collection-type-project.show-project-captions.project-image-alignment-right .project-slide-pano, .collection-type-project.show-project-captions.project-image-alignment-right .project-slide-landscape", "js" : true }
+
+// tweak: { "type" : "checkbox", "category" : "Project: Layout", "title" : "Allow Full Width Portrait", "label" : "Allow Full Width Portrait and Square", "active" : false, "showOnlyWhenPresent" : ".collection-type-project.project-image-alignment-center.project-image-portrait-caption-style-offset .project-slide-portrait, .collection-type-project.project-image-alignment-center.project-image-portrait-caption-style-offset .project-slide-square, .collection-type-project.project-image-alignment-center.project-image-portrait-caption-style-standard .project-slide-portrait, .collection-type-project.project-image-alignment-center.project-image-portrait-caption-style-standard .project-slide-square, .collection-type-project.project-image-alignment-left.project-left-image-portrait-caption-style-offset .project-slide-portrait, .collection-type-project.project-image-alignment-left.project-left-image-portrait-caption-style-offset .project-slide-square, .collection-type-project.project-image-alignment-left.project-left-image-portrait-caption-style-standard .project-slide-portrait, .collection-type-project.project-image-alignment-left.project-left-image-portrait-caption-style-standard .project-slide-square, .collection-type-project.project-image-alignment-right.project-right-image-portrait-caption-style-offset .project-slide-portrait, .collection-type-project.project-image-alignment-right.project-right-image-portrait-caption-style-offset .project-slide-square, .collection-type-project.project-image-alignment-right.project-right-image-portrait-caption-style-standard .project-slide-portrait, .collection-type-project.project-image-alignment-right.project-right-image-portrait-caption-style-standard .project-slide-square", "target" : ".project-slide-portrait, .project-slide-square" }
+
+// tweak: { "type" : "checkbox", "category" : "Project: Layout", "title" : "Collapse Landscape Spacing", "active" : false, "target" : ".project-slide-landscape", "showOnlyWhenPresent" : ".collection-type-project .project-slide-landscape:not(.project-slide-has-description)", "js" : true }
+
+// tweak: { "type" : "checkbox", "category" : "Project: Layout", "title" : "Full Bleed Project", "active" : false, "target" : ".project-slide, .project-container", "showOnlyWhenPresent" : ".collection-type-project.project-image-alignment-center", "js" : true }
+
+// tweak: { "type" : "checkbox", "category" : "Project: Layout", "label" : "Cascade Images and Captions", "title" : "tweak-project-slide-transition", "active" : true, "target" : ".project-slide", "showOnlyWhenPresent" : ".collection-type-project", "js" : true }
+
+// Project: Fonts Tweaks
+
+// tweak: { "type" : "font", "category" : "Project: Fonts", "title" : "Image Caption Title Font", "label" : "Caption Title Font", "target" : ".project-slide-description-title", "showOnlyWhenPresent" : ".collection-type-project .project-slide-description-body" }
+.image-caption-title-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  line-height: 1.2em;
+  text-transform: none;
+}
+
+// tweak: { "type" : "dropdown", "category" : "Project: Fonts", "title" : "Image Caption Title Alignment", "label" : "Caption Title Align", "options" : [ "Left", "Center", "Right" ], "default" : "Center", "target" : ".project-slide-description-title", "showOnlyWhenPresent" : ".collection-type-project.show-project-captions .project-slide-has-description" }
+
+// tweak: { "type" : "checkbox", "category" : "Project: Fonts", "title" : "Scale Image Caption Title Font", "label" : "Scale Caption Title", "active" : false, "target" : ".project-slide-description-title", "showOnlyWhenPresent" : ".collection-type-project .project-slide-description-body" }
+
+// tweak: { "type" : "value", "category" : "Project: Fonts", "title" : "Image Caption Title Font Minimum", "label" : "Caption Title Min", "step" : 1, "min" : 8, "max" : 72, "target" : ".project-slide-description-title", "showOnlyWhenPresent" : ".collection-type-project.scale-image-caption-title-font .project-slide-description-body" }
+@imageCaptionTitleMin: 20px;
+
+// tweak: { "type" : "color", "category" : "Project: Fonts", "title" : "Image Caption Title Color", "label" : "Caption Title Color", "showOnlyWhenPresent" : ".collection-type-project .project-slide-description-body", "target" : ".project-slide-description-title" }
+@imageCaptionTitleColor: #000000;
+
+// tweak: { "type" : "value", "category" : "Project: Fonts", "title" : "Image Caption Title Spacing", "label" : "Caption Title Spacing", "step": 0.05, "min" : 0, "max" : 3, "showOnlyWhenPresent" : ".collection-type-project .project-slide-description-body", "target" : ".project-slide-description-title" }
+@projectCaptionTitleSpacing: 1em;
+
+// tweak: { "type" : "font", "category" : "Project: Fonts", "title" : "Image Caption Body Font", "label" : "Caption Body Font", "showOnlyWhenPresent" : ".collection-type-project .project-slide-description-body", "target" : ".project-slide-description-text" }
+.image-caption-body-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  line-height: 1.2em;
+  text-transform: none;
+}
+
+// tweak: { "type" : "dropdown", "category" : "Project: Fonts", "title" : "Image Caption Body Alignment", "label" : "Caption Body Align", "options" : [ "Left", "Center", "Right" ], "default" : "Left", "target" : ".project-slide-description-body", "showOnlyWhenPresent" : ".collection-type-project.show-project-captions .project-slide-has-description" }
+
+// tweak: { "type" : "checkbox", "category" : "Project: Fonts", "title" : "Scale Image Caption Body Font", "label" : "Scale Caption Body", "active" : false, "target" : ".project-slide-description-title", "showOnlyWhenPresent" : ".collection-type-project .project-slide-description-body" }
+
+// tweak: { "type" : "value", "category" : "Project: Fonts", "title" : "Image Caption Body Font Minimum", "label" : "Caption Body Min", "step" : 1, "min" : 8, "max" : 72, "target" : ".project-slide-description-title", "showOnlyWhenPresent" : ".collection-type-project.scale-image-caption-body-font .project-slide-description-body" }
+@imageCaptionBodyMin: 16px;
+
+// tweak: { "type" : "color", "category" : "Project: Fonts", "title" : "Image Caption Body Color", "label" : "Caption Body Color", "showOnlyWhenPresent" : ".collection-type-project .project-slide-description-body", "target" : ".project-slide-description-text" }
+@imageCaptionBodyColor: #000000;
+
+
+/* Index: Navigation
+***********************************/
+
+// tweak: { "type" : "checkbox", "category" : "Index: Navigation", "title" : "Show Index Navigation", "active" : true, "target" : ".index-item-navigation", "showOnlyWhenPresent" : ".index-item-navigation" }
+
+// tweak: { "type" : "dropdown", "category" : "Index: Navigation", "title" : "Index Link Spacing", "label" : "Spacing", "options" : ["Small", "Medium", "Large", "Custom"], "default" : "Medium", "target" : ".index-navigation", "showOnlyWhenPresent" : ".show-index-navigation .index-navigation" }
+
+// tweak: { "type" : "value", "category" : "Index: Navigation", "title" : "Index Link Custom Spacing", "label" : "Custom Spacing", "step" : 1, "min" : 0, "max" : 150, "target" : ".index-navigation", "showOnlyWhenPresent" : ".show-index-navigation.index-link-spacing-custom .index-navigation" }
+@indexLinkSpacing: 20px;
+
+// tweak: { "type" : "font", "category" : "Index: Navigation", "title" : "Index Link Font", "label" : "Link Font", "target" : ".index-navigation", "showOnlyWhenPresent" : ".show-index-navigation .index-navigation" }
+.index-link-font {
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 16px;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+}
+
+// tweak: { "type" : "checkbox", "category" : "Index: Navigation", "title" : "Scale Index Link Font Size", "label" : "Scale Link Size", "active" : false, "target" : ".index-navigation", "showOnlyWhenPresent" : ".show-index-navigation .index-navigation" }
+
+// tweak: { "type" : "value", "category" : "Index: Navigation", "title" : "Index Link Font Minimum", "label" : "Index Link Min", "step" : 1, "min" : 8, "max" : 72, "target" : ".index-navigation", "showOnlyWhenPresent" : ".show-index-navigation.scale-index-link-font-size .index-navigation" }
+@indexLinkMin: 16px;
+
+// tweak: { "type" : "color", "category" : "Index: Navigation", "title" : "Index Link Color", "label" : "Link Color", "target" : ".index-navigation", "showOnlyWhenPresent" : ".show-index-navigation .index-navigation" }
+@indexLinkColor: #111111;
+
+// tweak: { "type" : "color", "category" : "Index: Navigation", "title" : "Index Active Link", "label" : "Active Link Color", "target" : ".index-navigation .active-link", "showOnlyWhenPresent" : ".show-index-navigation.index-link-style-list-inline .index-navigation, .show-index-navigation.index-link-style-list-stacked .index-navigation" }
+@indexLinkActiveColor: #999999;
+
+// tweak: { "type" : "dropdown", "category" : "Index: Navigation", "title" : "Index Link Style", "label" : "Link Style", "options" : ["List (inline)", "List (stacked)", "Next (inline)", "Next (stacked)"], "default" : "Next (inline)", "target" : ".index-navigation", "showOnlyWhenPresent" : ".show-index-navigation .index-navigation" }
+
+// tweak: { "type" : "dropdown", "category" : "Index: Navigation", "title" : "Index Link Delimiter Type", "label" : "Link Delimiter", "options" : ["None", "Slash", "Bullet"], "default" : "Slash", "target" : ".index-navigation", "showOnlyWhenPresent" : ".show-index-navigation.index-link-style-list-inline .index-navigation" }
+
+// tweak: { "type" : "value", "category" : "Index: Navigation", "title" : "Index Link Item Spacing", "label" : "Link Spacing", "step" : 0.05, "min" : 0, "max" : 3, "target" : ".index-navigation", "showOnlyWhenPresent" : ".show-index-navigation.index-link-style-list-stacked .index-navigation, .show-index-navigation.index-link-style-next-stacked .index-navigation" }
+@indexLinkItemSpacing: 0em;
+
+// tweak: { "type" : "checkbox", "category" : "Index: Navigation", "title" : "Show Next Label Only", "label" : "Show Label Only", "active" : true, "target" : ".index-navigation", "showOnlyWhenPresent" : ".show-index-navigation.index-link-style-next-stacked .index-next, .show-index-navigation.index-link-style-next-inline .index-next" }
+
+// tweak: { "type" : "checkbox", "category" : "Index: Navigation", "label" : "Page Transition Animation", "title" : "tweak-page-transition-animation", "active" : true, "target" : ".index-item", "showOnlyWhenPresent" : ".collection-type-index, .index-item-navigation", "js" : true }
+
+
+/* Mobile: Bar
+***********************************/
+
+// tweak: { "category" : "Mobile: Bar", "label" : "Mobile Bar Position", "title" : "tweak-mobile-bar-position", "type" : "dropdown", "options" : [ "Standard", "Top Fixed", "Bottom Fixed" ], "default" : "Standard", "target" : ".mobile-bar-wrapper", "js" : true }
+
+// tweak: { "type" : "checkbox", "category" : "Mobile: Bar", "label" : "Transparent Mobile Bar", "title" : "tweak-transparent-fixed-mobile-bar", "active" : false, "target" : ".mobile-bar-wrapper", "showOnlyWhenPresent" : ".tweak-mobile-bar-position-top-fixed, .tweak-mobile-bar-position-bottom-fixed" }
+
+// tweak: { "category" : "Mobile: Bar", "label" : "Branding Position", "title" : "tweak-mobile-bar-branding-position", "type" : "dropdown", "options" : [ "Left", "Right", "Center" ], "default" : "Left", "target" : ".mobile-bar-wrapper, .mobile-branding-wrapper" }
+
+// tweak: { "category" : "Mobile: Bar", "label" : "Menu Icon Position", "title" : "tweak-mobile-bar-menu-icon-position", "type" : "dropdown", "options" : [ "Left", "Right" ], "default" : "Right", "target" : ".mobile-bar-wrapper, .mobile-nav-toggle-label", "showOnlyWhenPresent" : ".tweak-mobile-bar-branding-position-center" }
+
+// tweak: { "category" : "Mobile: Bar", "label" : "Logo Width", "title" : "tweak-mobile-bar-branding-logo-width", "type" : "value", "step" : 1, "min" : 20, "max" : 240, "target" : ".mobile-bar-wrapper, .mobile-branding-wrapper", "property" : "width", "showOnlyWhenPresent" : ".mobile-logo-image" }
+@tweak-mobile-bar-branding-logo-width: 80px;
+
+// tweak: { "category": "Mobile: Bar", "label" : "Site Title Font", "title" : "tweak-mobile-bar-branding-site-title-font", "type" : "font", "target" : ".mobile-bar-wrapper, .mobile-site-title", "showOnlyWhenPresent" : ".mobile-site-title" }
+.tweak-mobile-bar-branding-site-title-font {
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 27px;
+  letter-spacing: 0em;
+  line-height: 1em;
+  text-transform: uppercase;
+}
+
+// tweak: { "category": "Mobile: Bar", "label" : "Site Title Color", "title" : "tweak-mobile-bar-branding-site-title-color", "type" : "color", "target" : ".mobile-bar-wrapper, .mobile-site-title", "showOnlyWhenPresent" : ".mobile-site-title" }
+@tweak-mobile-bar-branding-site-title-color: #111111;
+
+// tweak: { "category": "Mobile: Bar", "label" : "Menu Icon Color", "title" : "tweak-mobile-bar-menu-icon-color", "type" : "color", "target" : ".mobile-bar-wrapper, .mobile-nav-toggle-label" }
+@tweak-mobile-bar-menu-icon-color: #111111;
+
+// tweak: { "category" : "Mobile: Bar", "label" : "Tagline Position", "title" : "tweak-mobile-bar-site-tagline-position", "type" : "dropdown", "options" : [ "Hide", "Below Branding", "Beside Branding" ], "default" : "Hide", "target" : ".mobile-bar-wrapper, .mobile-site-tagline", "showOnlyWhenPresent" : ".mobile-site-tagline", "js" : true }
+
+// tweak: { "category": "Mobile: Bar", "label" : "Tagline Font", "title" : "tweak-mobile-bar-site-tagline-font", "type" : "font", "target" : ".mobile-bar-wrapper, .mobile-site-tagline", "showOnlyWhenPresent" : ".tweak-mobile-bar-site-tagline-position-below-branding, .tweak-mobile-bar-site-tagline-position-beside-branding" }
+.tweak-mobile-bar-site-tagline-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  letter-spacing: 0em;
+  line-height: 1em;
+  text-transform: uppercase;
+}
+
+// tweak: { "category": "Mobile: Bar", "label" : "Tagline Color", "title" : "tweak-mobile-bar-site-tagline-color", "type" : "color", "target" : ".mobile-bar-wrapper, .mobile-site-tagline", "showOnlyWhenPresent" : ".tweak-mobile-bar-site-tagline-position-below-branding, .tweak-mobile-bar-site-tagline-position-beside-branding" }
+@tweak-mobile-bar-site-tagline-color: #111111;
+
+// tweak: { "type" : "value", "category" : "Mobile: Bar", "label" : "Tagline Spacing", "title" : "Mobile Bar Tagline Spacing", "step" : 1, "min" : 0, "max" : 50, "target" : ".mobile-bar-wrapper, .mobile-site-tagline", "showOnlyWhenPresent" : ".tweak-mobile-bar-site-tagline-position-below-branding, .tweak-mobile-bar-site-tagline-position-beside-branding" }
+@tweak-mobile-bar-site-tagline-spacing: 6px;
+
+
+/* Mobile Menu
+***********************************/
+
+// tweak: { "category": "Mobile: Menu", "label": "Background Color", "title" : "tweak-mobile-overlay-menu-color", "type" : "color", "target" : ".overlay-nav-wrapper" }
+@tweak-mobile-overlay-menu-color: #ffffff;
+
+// tweak: { "category": "Mobile: Menu", "label" : "Site Title Color", "title" : "tweak-mobile-menu-branding-site-title-color", "type" : "color", "target" : ".mobile-menu-open .mobile-bar-wrapper, .mobile-site-title", "showOnlyWhenPresent" : ".mobile-site-title" }
+@tweak-mobile-menu-branding-site-title-color: #111111;
+
+// tweak: { "category": "Mobile: Menu", "label" : "Menu Icon Color", "title" : "tweak-mobile-menu-menu-icon-color", "type" : "color", "target" : ".mobile-menu-open .mobile-bar-wrapper" }
+@tweak-mobile-menu-menu-icon-color: #111111;
+
+// tweak: { "category": "Mobile: Menu", "label" : "Tagline Color", "title" : "tweak-mobile-menu-site-tagline-color", "type" : "color", "target" : ".mobile-menu-open .mobile-bar-wrapper", "showOnlyWhenPresent" : ".tweak-mobile-bar-site-tagline-position-w-branding" }
+@tweak-mobile-menu-site-tagline-color: #111111;
+
+// tweak: { "category": "Mobile: Menu", "label" : "Primary Link Font", "title" : "tweak-mobile-overlay-menu-primary-font", "type" : "font", "target" : ".mobile-primary-nav-wrapper" }
+.tweak-mobile-overlay-menu-primary-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  letter-spacing: 0em;
+  line-height: 1em;
+  text-transform: none;
+}
+
+// tweak: { "category": "Mobile: Menu", "label": "Primary Link Color", "title" : "tweak-mobile-overlay-menu-primary-text-color", "type" : "color", "target" : ".mobile-primary-nav-wrapper" }
+@tweak-mobile-overlay-menu-primary-text-color: #000000;
+
+// tweak: { "category": "Mobile: Menu", "label" : "Secondary Link Font", "title" : "tweak-mobile-overlay-menu-secondary-font", "type" : "font", "target" : ".mobile-secondary-nav-wrapper" }
+.tweak-mobile-overlay-menu-secondary-font {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 1em;
+  text-transform: none;
+}
+
+// tweak: { "category": "Mobile: Menu", "label": "Secondary Link Color", "title" : "tweak-mobile-overlay-menu-secondary-text-color", "type" : "color", "target" : ".mobile-secondary-nav-wrapper" }
+@tweak-mobile-overlay-menu-secondary-text-color: #666666;
+
+// tweak: { "type" : "value", "category" : "Mobile: Menu", "title" : "Mobile Menu Vertical Spacing", "label" : "Vertical Spacing", "step" : 1, "min" : 0, "max" : 100, "target" : ".overlay-nav-wrapper", "showOnlyWhenPresent" : ".mobile-secondary-nav-wrapper" }
+@mobileMenuVerticalSpacing: 20px;
+
+
+/* Mobile Cart
+***********************************/
+
+// tweak: { "category" : "Mobile: Cart", "label" : "Hide", "title" : "tweak-mobile-bar-cart-hidden", "type" : "checkbox", "active" : false, "target" : ".overlay-nav-wrapper .Cart", "showOnlyWhenPresent" : ".has-cart" }
+
+// tweak: { "category" : "Mobile: Cart", "label" : "Style", "title" : "tweak-mobile-bar-cart-style", "type" : "dropdown", "options" : [ "Text", "Cart", "Bag" ], "default" : "Text", "target" : ".overlay-nav-wrapper .Cart", "showOnlyWhenPresent" : ".has-cart:not(.tweak-mobile-bar-cart-hidden)" }
+
+// tweak: { "category": "Mobile: Cart", "label" : "Font", "title" : "tweak-mobile-bar-cart-font", "type" : "font", "target" : ".overlay-nav-wrapper .Cart", "showOnlyWhenPresent" : ".has-cart:not(.tweak-mobile-bar-cart-hidden)" }
+.tweak-mobile-bar-cart-font {
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+}
+
+// tweak: { "category": "Mobile: Cart", "label" : "Color", "title" : "tweak-mobile-bar-cart-color", "type" : "color", "target" : ".overlay-nav-wrapper .Cart", "showOnlyWhenPresent" : ".has-cart:not(.tweak-mobile-bar-cart-hidden)" }
+@tweak-mobile-bar-cart-color: #ffffff;
+
+// tweak: { "category": "Mobile: Cart", "label" : "Quantity Color", "title" : "tweak-mobile-bar-cart-flag-color", "type" : "color", "target" : ".overlay-nav-wrapper .Cart", "showOnlyWhenPresent" : ".tweak-mobile-bar-cart-style-cart.has-cart:not(.tweak-mobile-bar-cart-hidden)" }
+@tweak-mobile-bar-cart-flag-color: #ff0000;
+
+// tweak: { "category": "Mobile: Cart", "label" : "Quantity Text Color", "title" : "tweak-mobile-bar-cart-flag-text-color", "type" : "color", "target" : ".overlay-nav-wrapper .Cart", "showOnlyWhenPresent" : ".tweak-mobile-bar-cart-style-cart.has-cart:not(.tweak-mobile-bar-cart-hidden)" }
+@tweak-mobile-bar-cart-flag-text-color: #ffffff;
+
+// tweak: { "type" : "value", "category" : "Mobile: Cart", "title" : "Mobile Menu Cart Spacing", "label" : "Cart Spacing", "step" : 1, "min" : 0, "max" : 100, "target" : ".overlay-nav-wrapper", "showOnlyWhenPresent" : ".has-cart:not(.tweak-mobile-bar-cart-hidden)" }
+@mobileMenuCartSpacing: 20px;

@@ -1,0 +1,752 @@
+
+/* PAGE BANNER
+***********************************/
+
+
+// Page banner basics
+
+.page-banner-wrapper {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  .display-flex(flex);
+  .flex-direction(column);
+  .flex(0 1 auto);
+
+  .site-outer-padding-extra-small & {
+    margin-right: 1.5vw;
+    margin-left: 1.5vw;
+  }
+  .site-outer-padding-small & {
+    margin-right: 3vw;
+    margin-left: 3vw;
+  }
+  .site-outer-padding-medium & {
+    margin-right: 5vw;
+    margin-left: 5vw;
+  }
+  .site-outer-padding-large & {
+    margin-right: 8vw;
+    margin-left: 8vw;
+  }
+  .site-outer-padding-extra-large & {
+    margin-right: 10vw;
+    margin-left: 10vw;
+  }
+  .site-outer-padding-custom & {
+    margin-right: @siteCustomPadding;
+    margin-left: @siteCustomPadding;
+  }
+}
+
+// Hide banner image container until enabled
+
+.page-banner-image-container {
+  display: none;
+  visibility: hidden;
+}
+
+// Collection image hide class
+
+.hide-collection-image {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+
+// Show page banner (banner enabled)
+// Provides a collection specific page banner option
+.collection-type-album.show-album-banner,
+.collection-type-blog.view-list.show-blog-banner,
+.collection-type-events.view-list.show-events-banner,
+.collection-type-gallery.show-gallery-banner,
+.collection-type-index.show-index-banner,
+.collection-type-page.show-page-banner,
+.collection-type-project.show-project-banner,
+.collection-type-products.view-list.show-products-banner,
+.homepage.show-homepage-banner {
+
+  // Banner image containers
+
+  .page-banner-image-container {
+    display: block;
+    visibility: visible;
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+    max-width: 100%;
+    width: 40%;
+    height: 70%;
+
+    .project-banner-image,
+    .page-banner-image {
+      position: relative;
+      top: 50%;
+      .transform(translate(0%, -50%));
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  // Banner text containers
+
+  .page-text-wrapper.hide {
+    visibility: hidden;
+  }
+
+  .page-text-wrapper {
+    z-index: 999;
+    max-width: 100%;
+  }
+
+  @media screen and (min-width: 768px) {
+    .page-title,
+    .page-category-wrapper,
+    .page-description {
+      max-width: 42em;
+    }
+  }
+
+  .page-title {
+    .banner-page-title-font;
+    color: @bannerPageTitleColor;
+    margin-bottom: @bannerTitleSpacing;
+  }
+
+  .page-category-wrapper {
+    .banner-category-font;
+    color: @bannerPageCategoryColor;
+    margin-bottom: @bannerPageCategorySpacing;
+  }
+
+  .page-description {
+    .banner-page-description-font;
+    color: @bannerPageDescriptionColor;
+    p { margin: auto; }
+    p:last-child { margin: 0; }
+  }
+
+  &.show-page-description.sqs-edit-mode .page-description:empty:after {
+    content: 'Page Description';
+  }
+
+  // enable scaling font size for banner title and description
+
+  &.scale-banner-title-font-size {
+    .page-text-wrapper .page-title {
+      .scale-font (@bannerPageTitleMin, @banner-page-title-font-font-size, 1920px);
+    }
+  }
+
+  &.scale-banner-description-font-size {
+    .page-text-wrapper .page-description {
+      .scale-font (@bannerPageDescriptionMin, @banner-page-description-font-font-size, 1920px);
+    }
+  }
+
+  // Banner text width
+
+  @media screen and (min-width: 768px) {
+    &.page-banner-text-width-small {
+      .page-text-wrapper {
+        width: ~'calc(100% - 67vw)';
+      }
+    }
+
+    &.page-banner-text-width-medium {
+      .page-text-wrapper {
+        width: ~'calc(100% - 50vw)';
+      }
+    }
+
+    &.page-banner-text-width-large {
+      .page-text-wrapper {
+        width: ~'calc(100% - 33vw)';
+      }
+    }
+
+    &.page-banner-text-width-extra-large {
+      .page-text-wrapper {
+        width: ~'calc(100% - 10vw)';
+      }
+    }
+  }
+
+  // If there's no banner image, apply user selected background color
+
+  .page-banner-wrapper:not(.page-banner-has-image) {
+    background-color: @bannerBackgroundColor;
+  }
+
+  // Banner Height
+
+  &.banner-height-small {
+   .page-banner-wrapper {
+      height: 24vh;
+    }
+  }
+
+  &.banner-height-medium {
+   .page-banner-wrapper {
+      height: 48vh;
+    }
+  }
+
+  &.banner-height-large {
+   .page-banner-wrapper {
+      height: 72vh;
+    }
+  }
+
+  &.banner-height-extra-large {
+   .page-banner-wrapper {
+      height: 100vh;
+    }
+  }
+
+  // Banner Background Color
+
+  &:not(.auto-color-banner-background) {
+    .page-banner-wrapper {
+      background-color: @bannerBackgroundColor;
+    }
+  }
+
+  // Banner Image Crop
+
+  &.banner-image-alignment-center.banner-image-crop,
+  &.banner-image-alignment-left.banner-image-crop,
+  &.banner-image-alignment-right.banner-image-crop {
+    .project-banner-image-container.content-fill,
+    .page-banner-image-container.content-fill {
+      height: 100%;
+      width: 100%;
+      max-height: none;
+      max-width: none;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      .transform(translate(0%, 0%));
+    }
+  }
+
+  &.banner-image-alignment-left.banner-image-crop {
+    .project-banner-image-container.content-fill,
+    .page-banner-image-container.content-fill {
+      width: 50%;
+      right: auto;
+      left: 0;
+      text-align: center;
+    }
+  }
+
+  &.banner-image-alignment-right.banner-image-crop {
+    .project-banner-image-container.content-fill,
+    .page-banner-image-container.content-fill {
+      width: 50%;
+      left: auto;
+      right: 0;
+      text-align: center;
+    }
+  }
+
+  // Banner Image Alignment (not cropped)
+
+  &.banner-image-alignment {
+
+    &-top .page-banner-has-image .page-banner-image-container,
+    &-top .page-banner-has-video .page-banner-image-container {
+      position: absolute;
+      top: 5%;
+      right: auto;
+      bottom: auto;
+      left: 50%;
+      .transform(translate(-50%, 0%));
+    }
+
+    &-right .page-banner-has-image .page-banner-image-container,
+    &-right .page-banner-has-video .page-banner-image-container {
+      text-align: right;
+      position: absolute;
+      top: 50%;
+      right: 7%;
+      bottom: auto;
+      left: auto;
+      .transform(translate(0%, -50%));
+    }
+
+    &-bottom .page-banner-has-image .page-banner-image-container,
+    &-bottom .page-banner-has-video .page-banner-image-container {
+      position: absolute;
+      top: auto;
+      right: auto;
+      bottom: 5%;
+      left: 50%;
+      .transform(translate(-50%, 0%));
+    }
+
+    &-left .page-banner-has-image .page-banner-image-container,
+    &-left .page-banner-has-video .page-banner-image-container {
+      text-align: left;
+      position: absolute;
+      top: 50%;
+      right: auto;
+      bottom: auto;
+      left: 7%;
+      .transform(translate(0%, -50%));
+    }
+
+    &-center .page-banner-has-image .page-banner-image-container,
+    &-center .page-banner-has-video .page-banner-image-container {
+      position: absolute;
+      top: 50%;
+      right: auto;
+      bottom: auto;
+      left: 50%;
+      .transform(translate(-50%, -50%));
+    }
+
+  }
+
+  // Banner text alignment
+
+  &.banner-text-alignment {
+
+    &-top-left .page-text-wrapper {
+      margin-top: 5vw;
+      margin-right: 5vw;
+      margin-bottom: auto;
+      margin-left: 5vw;
+      text-align: left;
+      .align-content(flex-start);
+
+
+      .page-title {
+        text-align: left;
+        margin-left: 0;
+        margin-right: auto;
+        width: 100%;
+      }
+
+      .page-category-wrapper,
+      .page-description {
+        text-align: left;
+        margin-left: 0;
+        margin-right: auto;
+        width: 100%;
+      }
+    }
+
+    &-left .page-text-wrapper {
+      margin-top: auto;
+      margin-right: 5vw;
+      margin-bottom: auto;
+      margin-left: 5vw;
+      text-align: left;
+      .align-content(center);
+
+      .page-title {
+        text-align: left;
+        margin-left: 0;
+        margin-right: auto;
+        width: 100%;
+      }
+
+      .page-category-wrapper,
+      .page-description {
+        text-align: left;
+        margin-left: 0;
+        margin-right: auto;
+        width: 100%;
+      }
+    }
+
+    &-bottom-left .page-text-wrapper {
+      margin-top: auto;
+      margin-right: auto;
+      margin-bottom: 5vw;
+      margin-left: 5vw;
+      text-align: left;
+      .align-content(flex-end);
+
+      .page-title {
+        text-align: left;
+        margin-left: 0;
+        margin-right: auto;
+        width: 100%;
+      }
+
+      .page-category-wrapper,
+      .page-description {
+        text-align: left;
+        margin-left: 0;
+        margin-right: auto;
+        width: 100%;
+      }
+    }
+
+    &-top-right .page-text-wrapper {
+      margin-top: 5vw;
+      margin-right: 5vw;
+      margin-bottom: auto;
+      margin-left: auto;
+      text-align: right;
+      .align-content(flex-start);
+
+      .page-title {
+        text-align: right;
+        margin-left: auto;
+        margin-right: 0;
+        width: 100%;
+      }
+
+      .page-category-wrapper,
+      .page-description {
+        text-align: right;
+        margin-left: auto;
+        margin-right: 0;
+        width: 100%;
+      }
+    }
+
+    &-right .page-text-wrapper {
+      margin-top: auto;
+      margin-right: 5vw;
+      margin-bottom: auto;
+      margin-left: auto;
+      text-align: right;
+      .align-content(center);
+
+      .page-title {
+        text-align: right;
+        margin-left: auto;
+        margin-right: 0;
+        width: 100%;
+      }
+
+      .page-category-wrapper,
+      .page-description {
+        text-align: right;
+        margin-left: auto;
+        margin-right: 0;
+        width: 100%;
+      }
+    }
+
+    &-bottom-right .page-text-wrapper {
+      margin-top: auto;
+      margin-right: 5vw;
+      margin-bottom: 5vw;
+      margin-left: auto;
+      text-align: right;
+      .align-content(flex-end);
+
+      .page-title {
+        text-align: right;
+        margin-left: auto;
+        margin-right: 0;
+        width: 100%;
+      }
+
+      .page-category-wrapper,
+      .page-description {
+        text-align: right;
+        margin-left: auto;
+        margin-right: 0;
+        width: 100%;
+      }
+    }
+
+    &-top .page-text-wrapper {
+      margin-top: 5vw;
+      margin-right: auto;
+      margin-bottom: auto;
+      margin-left: auto;
+      text-align: center;
+      //padding keeps text from touching parent
+      padding-right: 5vw;
+      padding-left: 5vw;
+      .align-content(flex-start);
+
+      .page-title {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+      }
+
+      .page-category-wrapper,
+      .page-description {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+      }
+    }
+
+    &-center .page-text-wrapper {
+      margin-top: auto;
+      margin-right: auto;
+      margin-bottom: auto;
+      margin-left: auto;
+      text-align: center;
+      //padding keeps text from touching parent
+      padding-right: 5vw;
+      padding-left: 5vw;
+      .align-content(center);
+
+      .page-title {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+      }
+
+      .page-category-wrapper,
+      .page-description {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+      }
+    }
+
+    &-bottom .page-text-wrapper {
+      margin-top: auto;
+      margin-right: auto;
+      margin-bottom: 5vw;
+      margin-left: auto;
+      text-align: center;
+      //padding keeps text from touching parent
+      padding-right: 5vw;
+      padding-left: 5vw;
+      .align-content(flex-end);
+
+      .page-title {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+      }
+
+      .page-category-wrapper,
+      .page-description {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+      }
+    }
+  }
+
+  // Banner Title Background Color (highlighted text)
+
+  &.banner-text-background {
+
+    // using respective font line height + math to set a magic number for top and bottom hightlight spacing
+    .page-text-wrapper {
+      .page-title span {
+        padding-top: (@banner-page-title-font-line-height * 0.0825);
+        padding-bottom: (@banner-page-title-font-line-height * 0.0825);
+      }
+      .page-description span,
+      .page-category {
+        padding-top: (@banner-page-description-font-line-height * 0.125);
+        padding-bottom: (@banner-page-description-font-line-height * 0.125);
+      }
+    }
+
+    // using scalable vw unit for left and right hightlight spacing
+    &.banner-text-background-indent-small {
+
+      .page-text-wrapper {
+
+        .page-title span,
+        .page-description span,
+        .page-category {
+          background-color: @bannerTextBackgroundColor;
+          -webkit-box-shadow: -1vw 0 0 0 @bannerTextBackgroundColor, 1vw 0 0 0 @bannerTextBackgroundColor;
+          -moz-box-shadow: -1vw 0 0 0 @bannerTextBackgroundColor, 1vw 0 0 0 @bannerTextBackgroundColor;
+          -ms-box-shadow: -1vw 0 0 0 @bannerTextBackgroundColor, 1vw 0 0 0 @bannerTextBackgroundColor;
+          box-shadow: -1vw 0 0 0 @bannerTextBackgroundColor, 1vw 0 0 0 @bannerTextBackgroundColor;
+          -webkit-box-decoration-break: clone;
+          box-decoration-break: clone;
+        }
+      }
+    }
+    &.banner-text-background-indent-medium {
+
+      .page-text-wrapper {
+
+        .page-title span,
+        .page-description span,
+        .page-category {
+          background-color: @bannerTextBackgroundColor;
+          -webkit-box-shadow: -1.5vw 0 0 0 @bannerTextBackgroundColor, 1.5vw 0 0 0 @bannerTextBackgroundColor;
+          -moz-box-shadow: -1.5vw 0 0 0 @bannerTextBackgroundColor, 1.5vw 0 0 0 @bannerTextBackgroundColor;
+          -ms-box-shadow: -1.5vw 0 0 0 @bannerTextBackgroundColor, 1.5vw 0 0 0 @bannerTextBackgroundColor;
+          box-shadow: -1.5vw 0 0 0 @bannerTextBackgroundColor, 1.5vw 0 0 0 @bannerTextBackgroundColor;
+          -webkit-box-decoration-break: clone;
+          box-decoration-break: clone;
+        }
+      }
+    }
+    &.banner-text-background-indent-large {
+
+      .page-text-wrapper {
+
+        .page-title span,
+        .page-description span,
+        .page-category {
+          background-color: @bannerTextBackgroundColor;
+          -webkit-box-shadow: -2vw 0 0 0 @bannerTextBackgroundColor, 2vw 0 0 0 @bannerTextBackgroundColor;
+          -moz-box-shadow: -2vw 0 0 0 @bannerTextBackgroundColor, 2vw 0 0 0 @bannerTextBackgroundColor;
+          -ms-box-shadow: -2vw 0 0 0 @bannerTextBackgroundColor, 2vw 0 0 0 @bannerTextBackgroundColor;
+          box-shadow: -2vw 0 0 0 @bannerTextBackgroundColor, 2vw 0 0 0 @bannerTextBackgroundColor;
+          -webkit-box-decoration-break: clone;
+          box-decoration-break: clone;
+        }
+      }
+    }
+    &.banner-text-background-indent-custom {}
+
+    .page-text-wrapper {
+
+      .page-title span,
+      .page-description span,
+      .page-category {
+        background-color: @bannerTextBackgroundColor;
+        -webkit-box-shadow: -@customBannerTextBackgroundIndent 0 0 0 @bannerTextBackgroundColor, @customBannerTextBackgroundIndent 0 0 0 @bannerTextBackgroundColor;
+        -moz-box-shadow: -@customBannerTextBackgroundIndent 0 0 0 @bannerTextBackgroundColor, @customBannerTextBackgroundIndent 0 0 0 @bannerTextBackgroundColor;
+        -ms-box-shadow: -@customBannerTextBackgroundIndent 0 0 0 @bannerTextBackgroundColor, @customBannerTextBackgroundIndent 0 0 0 @bannerTextBackgroundColor;
+        box-shadow: -@customBannerTextBackgroundIndent 0 0 0 @bannerTextBackgroundColor, @customBannerTextBackgroundIndent 0 0 0 @bannerTextBackgroundColor;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+      }
+    }
+  }
+
+}
+
+// If full bleed is enabled but banner is not, put site padding on the intro text wrapper for right and left site alignment
+
+
+.homepage:not(.show-homepage-banner).collection-type-project:not(.show-project-banner).full-bleed-project,
+.homepage:not(.show-homepage-banner).collection-type-gallery:not(.show-gallery-banner).full-bleed-gallery,
+.homepage:not(.show-homepage-banner).collection-type-index:not(.show-index-banner).full-bleed-index,
+:not(.homepage).collection-type-project:not(.show-project-banner).full-bleed-project,
+:not(.homepage).collection-type-gallery:not(.show-gallery-banner).full-bleed-gallery,
+:not(.homepage).collection-type-index:not(.show-index-banner).full-bleed-index {
+
+  // left aligned site
+  &.site-alignment-left.site-outer-padding-extra-small .page-text-wrapper {
+    margin-right: auto;
+    margin-left: 1.5vw;
+  }
+  &.site-alignment-left.site-outer-padding-small .page-text-wrapper {
+    margin-right: auto;
+    margin-left: 3vw;
+  }
+  &.site-alignment-left.site-outer-padding-medium .page-text-wrapper {
+    margin-right: auto;
+    margin-left: 5vw;
+  }
+  &.site-alignment-left.site-outer-padding-large .page-text-wrapper {
+    margin-right: auto;
+    margin-left: 8vw;
+  }
+  &.site-alignment-left.site-outer-padding-extra-large .page-text-wrapper {
+    margin-right: auto;
+    margin-left: 10vw;
+  }
+  &.site-alignment-left.site-outer-padding-custom .page-text-wrapper {
+    margin-right: auto;
+    margin-left: @siteCustomPadding;
+  }
+
+  // right aligned site
+  &.site-alignment-right.site-outer-padding-extra-small .page-text-wrapper {
+    margin-right: 1.5vw;
+    margin-left: auto;
+  }
+  &.site-alignment-right.site-outer-padding-small .page-text-wrapper {
+    margin-right: 3vw;
+    margin-left: auto;
+  }
+  &.site-alignment-right.site-outer-padding-medium .page-text-wrapper {
+    margin-right: 5vw;
+    margin-left: auto;
+  }
+  &.site-alignment-right.site-outer-padding-large .page-text-wrapper {
+    margin-right: 8vw;
+    margin-left: auto;
+  }
+  &.site-alignment-right.site-outer-padding-extra-large .page-text-wrapper {
+    margin-right: 10vw;
+    margin-left: auto;
+  }
+  &.site-alignment-right.site-outer-padding-custom .page-text-wrapper {
+    margin-right: @siteCustomPadding;
+    margin-left: auto;
+  }
+}
+
+// If full bleed collection is enabled, remove banner right/left margin
+
+.collection-type-project.show-project-banner.full-bleed-project,
+.collection-type-gallery.show-gallery-banner.full-bleed-gallery,
+.collection-type-index.show-index-banner.full-bleed-index,
+.homepage.show-homepage-banner.collection-type-project.full-bleed-project,
+.homepage.show-homepage-banner.collection-type-gallery.full-bleed-gallery,
+.homepage.show-homepage-banner.collection-type-index.full-bleed-index {
+
+  .page-banner-wrapper {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+// If full bleed banner is enabled, remove banner right/left margin
+
+.collection-type-album.show-album-banner,
+.collection-type-blog.view-list.show-blog-banner,
+.collection-type-events.view-list.show-events-banner,
+.collection-type-gallery.show-gallery-banner,
+.collection-type-page.show-page-banner,
+.collection-type-products.view-list.show-products-banner,
+.homepage.show-homepage-banner:not(.collection-type-index):not(.collection-type-project) {
+
+  &.full-bleed-banner {
+
+    .page-banner-wrapper {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
+// totally collapse page banner wrapper when hidden
+// so as to disable the annotation from being seen
+
+.homepage:not(.show-homepage-banner).collection-type-album:not(.show-album-banner):not(.show-album-title):not(.show-album-description),
+.homepage:not(.show-homepage-banner).collection-type-blog.view-list:not(.show-blog-banner):not(.show-blog-title):not(.show-blog-description),
+.homepage:not(.show-homepage-banner).collection-type-events.view-list:not(.show-events-banner):not(.show-events-title):not(.show-events-description),
+.homepage:not(.show-homepage-banner).collection-type-gallery:not(.show-gallery-banner):not(.show-gallery-title):not(.show-gallery-description),
+.homepage:not(.show-homepage-banner).collection-type-index:not(.show-index-banner):not(.show-index-title):not(.show-index-description),
+.homepage:not(.show-homepage-banner).collection-type-page:not(.show-page-banner):not(.show-page-title):not(.show-page-description),
+.homepage:not(.show-homepage-banner).collection-type-project:not(.show-project-banner):not(.show-project-title):not(.show-project-description),
+.homepage:not(.show-homepage-banner).collection-type-products.view-list:not(.show-products-banner):not(.show-products-title):not(.show-products-description),
+:not(.homepage).collection-type-album:not(.show-album-banner):not(.show-album-title):not(.show-album-description),
+:not(.homepage).collection-type-blog.view-list:not(.show-blog-banner):not(.show-blog-title):not(.show-blog-description),
+:not(.homepage).collection-type-events.view-list:not(.show-events-banner):not(.show-events-title):not(.show-events-description),
+:not(.homepage).collection-type-gallery:not(.show-gallery-banner):not(.show-gallery-title):not(.show-gallery-description),
+:not(.homepage).collection-type-index:not(.show-index-banner):not(.show-index-title):not(.show-index-description),
+:not(.homepage).collection-type-page:not(.show-page-banner):not(.show-page-title):not(.show-page-description),
+:not(.homepage).collection-type-project:not(.show-project-banner):not(.show-project-title):not(.show-project-description),
+:not(.homepage).collection-type-products.view-list:not(.show-products-banner):not(.show-products-title):not(.show-products-description) {
+  .page-banner-wrapper {
+    display: none;
+    visibility: hidden;
+  }
+}

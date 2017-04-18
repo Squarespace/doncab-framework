@@ -1,0 +1,345 @@
+
+// =======================================================
+//                      _ _ _
+//     /\              (_) | |
+//    /  \   _ __   ___ _| | | __ _ _ __ _   _
+//   / /\ \ | '_ \ / __| | | |/ _` | '__| | | |
+//  / ____ \| | | | (__| | | | (_| | |  | |_| |
+// /_/    \_\_| |_|\___|_|_|_|\__,_|_|   \__, |
+//                                        __/ |
+//                                       |___/
+
+//  Template:   Doncab
+//  Module:     Ancillary
+//  Contact:    gzhang@squarespace.com
+//  Updated:    2015-10-22
+
+// =======================================================
+
+
+
+
+// =======================================================
+
+//    Standard CSS
+
+// =======================================================
+
+
+// -----------------------------------------
+
+//  Groups
+
+
+[data-nc-group] {
+  .nc-parent;
+  .nc-align(center);
+  .nc-justify(center);
+  // Wrap children for now, until collision detection is implemented
+  // .flex-wrap(wrap);
+}
+
+
+// -----------------------------------------
+
+//  Containers
+
+[data-nc-container] {
+  .nc-parent;
+  .nc-align(center);
+  // Wrap children for now, until collision detection is implemented
+  .flex-wrap(wrap);
+
+  // <= 2 containers. Proportional
+  // container basis, which each
+  // container growing/shrinking
+  // according to the size of its
+  // contents.
+  .nc-flex(1 1 auto);
+
+  // Allow containers to be shrinkable
+  // below their intrinsic width.
+  min-width: 0;
+
+  // Prevent containers from expanding
+  // past width of entire group (like
+  // when there's only 1 container
+  // showing in the group)
+  max-width: 100%;
+}
+
+// Centered
+
+.nc-parent-center {
+  [data-nc-container] {
+
+    // > 2 containers. Containers in the
+    // middle have one size, and don't
+    // shrink or grow.
+    .nc-flex(0 0 auto);
+
+    &:first-child,
+    &:last-child {
+
+      // Containers on the sides grow and
+      // shrink, but don't have any inherent
+      // basis, in order to keep their widths
+      // equal.
+      .nc-flex(1 1 0px);
+    }
+  }
+
+  &[data-nc-collapse] [data-nc-container] {
+
+    // In collapse state, all containers grow
+    // and shrink, and have equal size.
+    .nc-flex(1 1 0px);
+  }
+}
+
+
+// -----------------------------------------
+
+//  Element
+
+
+[data-nc-element] {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  // Original, before wrapping
+  // .nc-flex(0 0 auto);
+  // Modified to include wrapping
+  .nc-flex(0 1 auto);
+}
+
+[data-nc-collapse] [data-nc-element] {
+  .nc-flex(0 1 auto);
+
+  // Prevent elements from expanding
+  // beyond the width of the entire
+  // container.
+  max-width: 100%;
+}
+
+
+
+// -----------------------------------------
+
+//  Mixins
+
+
+// nc-parent sets the group or container
+// to be flex.
+.nc-parent {
+  display: -webkit-box; // Safari 6
+  display: -ms-flexbox; // IE 10
+  display: -webkit-flex;  // Safari 7+
+  display: flex; // Modern browsers
+
+  // Modernizr fallback
+  .no-flexbox & { display: block; }
+}
+
+// Shorthand for all flex properties
+.nc-flex (@string, @legacy: 1) {
+  -webkit-box-flex: @legacy; // Safari 6
+  -ms-flex: @string; // IE 10
+  -webkit-flex: @string; // Safari 7+
+  flex: @string; // Modern browsers
+}
+
+
+// Justify Content affects alignment
+// of elements inside containers.
+.nc-justify (@string) when (@string = left) {
+  text-align: left;
+
+  -webkit-box-pack: start; // Safari 6
+  -ms-flex-pack: start; // IE 10
+  -webkit-justify-content: flex-start; // Safari 7+
+  justify-content: flex-start; // Modern browsers
+}
+.nc-justify (@string) when (@string = center) {
+  text-align: center;
+
+  -webkit-box-pack: center; // Safari 6
+  -ms-flex-pack: center; // IE 10
+  -webkit-justify-content: center; // Safari 7+
+  justify-content: center; // Modern browsers
+}
+.nc-justify (@string) when (@string = right) {
+  text-align: right;
+
+  -webkit-box-pack: end; // Safari 6
+  -ms-flex-pack: end; // IE 10
+  -webkit-justify-content: flex-end; // Safari 7+
+  justify-content: flex-end; // Modern browsers
+}
+.nc-justify (@string) when (@string = justify) {
+  -webkit-box-pack: justify; // Safari 6
+  -ms-flex-pack: justify; // IE 10
+  -webkit-justify-content: space-between; // Safari 7+
+  justify-content: space-between; // Modern browsers
+}
+
+// Stacked containers' children
+// stack on top of each other
+.nc-direction (@string) when (@string = column) {
+  -webkit-box-orient: vertical; // Safari 6
+  -ms-flex-direction: column; // IE 10
+  -webkit-flex-direction: column; // Safari 7+
+  flex-direction: column; // Modern browsers
+}
+
+// Align is for alignment
+// specifically when flex-direction
+// is set to column
+.nc-align (@string) when (@string = left) {
+  -webkit-box-align: start; // Safari 6
+  -ms-flex-align: start; // IE 10
+  -webkit-align-items: flex-start; // Safari 7+
+  align-items: flex-start; // Modern browsers
+}
+.nc-align (@string) when (@string = center) {
+  -webkit-box-align: center; // Safari 6
+  -ms-flex-align: center; // IE 10
+  -webkit-align-items: center; // Safari 7+
+  align-items: center; // Modern browsers
+}
+.nc-align (@string) when (@string = right) {
+  -webkit-box-align: end; // Safari 6
+  -ms-flex-align: end; // IE 10
+  -webkit-align-items: flex-end; // Safari 7+
+  align-items: flex-end; // Modern browsers
+}
+
+// Order
+.nc-order (@num) {
+  -webkit-box-ordinal-group: @num; // Safari 6
+  -ms-flex-order: @num; // IE 10
+  -webkit-order: @num; // Safari 7+
+  order: @num; // Modern browsers
+}
+
+// Hidden, present in markup but
+// not displayed.
+.nc-display (@string) when (@string = hide) {
+  display: none;
+}
+// Meant to override nc-hide
+.nc-display (@string) when (@string = show) {
+  &[data-nc-container] { .nc-parent; }
+  &[data-nc-element] { display: block; }
+}
+
+
+// =======================================================
+
+//    Template-Specific CSS
+
+// =======================================================
+
+
+@media screen and (max-width: 768px) {
+  [data-nc-base="header"] { display: none; }
+}
+[data-nc-base="header"] [data-nc-container="left"] {
+  .nc-justify(left);
+  [data-nc-element="branding"] { .nc-order(1); }
+  [data-nc-element="tagline"] { .nc-order(2); }
+  [data-nc-element="primary-nav"] { .nc-order(3); }
+  [data-nc-element="secondary-nav"] { .nc-order(4); }
+  [data-nc-element="cart"] { .nc-order(5); }
+  .nc-display(hide);
+}
+.ancillary-header-left-layout-stacked [data-nc-base="header"] [data-nc-container="left"] {
+  .nc-direction(column);
+  .nc-align(left);
+  [data-nc-element="branding"] {
+    .nc-order(0);
+  }
+}
+.ancillary-header-branding-position-left,
+.ancillary-header-tagline-position-left.has-tagline,
+.ancillary-header-primary-nav-position-left.has-primary-nav,
+.ancillary-header-secondary-nav-position-left.has-secondary-nav,
+.ancillary-header-cart-position-left.has-cart {
+  [data-nc-base="header"] [data-nc-container="left"] {
+    .nc-display(show);
+  }
+}
+[data-nc-base="header"] [data-nc-container="center"] {
+  .nc-justify(center);
+  [data-nc-element="branding"] { .nc-order(1); }
+  [data-nc-element="tagline"] { .nc-order(2); }
+  [data-nc-element="primary-nav"] { .nc-order(3); }
+  [data-nc-element="secondary-nav"] { .nc-order(4); }
+  [data-nc-element="cart"] { .nc-order(5); }
+  .nc-display(hide);
+}
+.ancillary-header-center-layout-stacked [data-nc-base="header"] [data-nc-container="center"] {
+  .nc-direction(column);
+  .nc-align(center);
+  [data-nc-element="branding"] {
+    .nc-order(0);
+  }
+}
+.ancillary-header-branding-position-center,
+.ancillary-header-tagline-position-center.has-tagline,
+.ancillary-header-primary-nav-position-center.has-primary-nav,
+.ancillary-header-secondary-nav-position-center.has-secondary-nav,
+.ancillary-header-cart-position-center.has-cart {
+  [data-nc-base="header"] [data-nc-container="center"] {
+    .nc-display(show);
+  }
+  [data-nc-base="header"][data-nc-group="header"] { .nc-parent-center; }
+  [data-nc-base="header"] [data-nc-container="left"] { .nc-display(show); }
+  [data-nc-base="header"] [data-nc-container="right"] { .nc-display(show); }
+  &:not(.ancillary-header-branding-position-left):not(.ancillary-header-branding-position-right):not(.ancillary-header-tagline-position-left.has-tagline):not(.ancillary-header-tagline-position-right.has-tagline):not(.ancillary-header-primary-nav-position-left.has-primary-nav):not(.ancillary-header-primary-nav-position-right.has-primary-nav):not(.ancillary-header-secondary-nav-position-left.has-secondary-nav):not(.ancillary-header-secondary-nav-position-right.has-secondary-nav):not(.ancillary-header-cart-position-left.has-cart):not(.ancillary-header-cart-position-right.has-cart) {
+    [data-nc-base="header"] [data-nc-container="left"] { .nc-display(hide); }
+    [data-nc-base="header"] [data-nc-container="right"] { .nc-display(hide); }
+   }
+}
+.ancillary-header-branding-position-center:not(.ancillary-header-center-layout-stacked) {
+  &.ancillary-header-primary-nav-position-center.ancillary-header-secondary-nav-position-center {
+    [data-nc-base="header"] [data-nc-element="primary-nav"] { .nc-order(0); }
+  }
+  &.ancillary-header-primary-nav-position-center.ancillary-header-tagline-position-center {
+    [data-nc-base="header"] [data-nc-element="primary-nav"] { .nc-order(0); }
+  }
+  &.ancillary-header-primary-nav-position-center.ancillary-header-cart-position-center {
+    [data-nc-base="header"] [data-nc-element="primary-nav"] { .nc-order(0); }
+  }
+  &.ancillary-header-secondary-nav-position-center.ancillary-header-tagline-position-center {
+    [data-nc-base="header"] [data-nc-element="secondary-nav"] { .nc-order(0); }
+  }
+  &.ancillary-header-secondary-nav-position-center.ancillary-header-cart-position-center {
+    [data-nc-base="header"] [data-nc-element="secondary-nav"] { .nc-order(0); }
+  }
+}
+[data-nc-base="header"] [data-nc-container="right"] {
+  .nc-justify(right);
+  [data-nc-element="tagline"] { .nc-order(1); }
+  [data-nc-element="primary-nav"] { .nc-order(2); }
+  [data-nc-element="secondary-nav"] { .nc-order(3); }
+  [data-nc-element="branding"] { .nc-order(4); }
+  [data-nc-element="cart"] { .nc-order(5); }
+  .nc-display(hide);
+}
+.ancillary-header-right-layout-stacked [data-nc-base="header"] [data-nc-container="right"] {
+  .nc-direction(column);
+  .nc-align(right);
+  [data-nc-element="branding"] {
+    .nc-order(0);
+  }
+}
+.ancillary-header-branding-position-right,
+.ancillary-header-tagline-position-right.has-tagline,
+.ancillary-header-primary-nav-position-right.has-primary-nav,
+.ancillary-header-secondary-nav-position-right.has-secondary-nav,
+.ancillary-header-cart-position-right.has-cart {
+  [data-nc-base="header"] [data-nc-container="right"] {
+    .nc-display(show);
+  }
+}

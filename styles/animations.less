@@ -1,0 +1,404 @@
+
+/* ANIMATION STYLES
+-------------------------------------------------*/
+
+// moveup (slide up) when page is loaded
+
+@keyframes moveup {
+  from {
+    -webkit-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+  to {
+    -webkit-transform: translateY(-1000px);
+    -ms-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+  }
+}
+
+
+
+// (slide into view)
+
+@keyframes slideintoview {
+  from {
+    -webkit-transform: translateY(50px);
+    -ms-transform: translateY(50px);
+    transform: translateY(50px);
+  }
+  to {
+    -webkit-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+}
+
+
+// When Page Transition Animation is checked
+.tweak-page-transition-animation {
+  .slide-up {
+    -webkit-animation: moveup 1.2s cubic-bezier(.33, 0, .2, 1);
+    animation: moveup 1.2s cubic-bezier(.33, 0, .2, 1);
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    z-index: 1;
+    will-change: transform;
+  }
+
+  .slide-into-view {
+    -webkit-animation: slideintoview .5s cubic-bezier(.33, 0, .2, 1);
+    animation: slideintoview .5s cubic-bezier(.33, 0, .2, 1);
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    z-index: 1;
+    will-change: transform;
+  }
+}
+
+// index item title on scroll
+
+.index-item-title-display-on-scroll {
+
+  .index-item-text-wrapper {
+    opacity: 0;
+
+    &.reveal-index-title {
+      opacity: 1;
+      .transition(opacity 1s cubic-bezier(.33, 0, .2, 1));
+    }
+  }
+}
+
+// project image cascade on scroll
+@keyframes slideInProjectImage {
+  from {
+    .translate3d(0px, 120px, 0px);
+  }
+  to {
+    .translate3d(0px, 0px, 0px);
+  }
+}
+
+
+// Default reveal opacity on scroll
+.project-slide {
+  opacity: 0;
+  will-change: opacity;
+  &.slide-in {
+    opacity: 1;
+    .transition(opacity 1s cubic-bezier(.33, 0, .2, 1));
+  }
+  // The already-animated class is for Style Editor, so on tweak changes, the images won't disappear
+  &.already-animated {
+    opacity: 1;
+  }
+}
+
+// Only when Slide Animation is checked and captions are not offset
+.tweak-project-slide-transition:not(.project-image-portrait-caption-style-offset):not(.project-image-landscape-caption-style-offset) {
+
+  .project-slide {
+    opacity: 0;
+    will-change: transform, opacity;
+    .translate(0px, 120px);
+    &.slide-in {
+      opacity: 1;
+      .transition(opacity .5s cubic-bezier(.33, 0, .2, 1));
+      -webkit-animation: slideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+      animation: slideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+      .translate(0px, 0px);
+    }
+    &.already-animated {
+      opacity: 1;
+      .translate(0px, 0px);
+    }
+  }
+}
+
+// Transition tweaks for when captions are offset
+.tweak-project-slide-transition {
+  // Offset Portrait Caption transition
+  &.project-image-portrait-caption-style-offset {
+    .project-slide {
+      opacity: 1;
+      .translate(0px, 0px);
+    }
+    .project-slide-landscape {
+      opacity: 0;
+      will-change: transform, opacity;
+      .translate(0px, 120px);
+      &.slide-in {
+        opacity: 1;
+        .transition(opacity .5s cubic-bezier(.33, 0, .2, 1));
+        -webkit-animation: slideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+        animation: slideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+        .translate(0px, 0px);
+      }
+      &.already-animated {
+        opacity: 1;
+        .translate(0px, 0px);
+      }
+    }
+    .project-slide-portrait .project-slide-image-container,
+    .project-slide-portrait .project-slide-description-wrapper,
+    .project-slide-square .project-slide-image-container,
+    .project-slide-square .project-slide-description-wrapper {
+      opacity: 0;
+      will-change: transform, opacity;
+      .translate(0px, 120px);
+      &.slide-in {
+        opacity: 1;
+        .transition(opacity .5s cubic-bezier(.33, 0, .2, 1));
+        -webkit-animation: slideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+        animation: slideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+        .translate(0px, 0px);
+      }
+      &.already-animated {
+        opacity: 1;
+        .translate(0px, 0px);
+      }
+    }
+  }
+
+  // Offset Landscape Caption transition
+  &.project-image-landscape-caption-style-offset {
+    .project-slide {
+      opacity: 1;
+      .translate(0px, 0px);
+    }
+    .project-slide-portrait, .project-slide-square {
+      opacity: 0;
+      will-change: transform, opacity;
+      .translate(0px, 120px);
+      &.slide-in {
+        opacity: 1;
+        .transition(opacity .5s cubic-bezier(.33, 0, .2, 1));
+        -webkit-animation: slideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+        animation: slideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+        .translate(0px, 0px);
+      }
+      &.already-animated {
+        opacity: 1;
+        .translate(0px, 0px);
+      }
+    }
+    .project-slide-landscape .project-slide-image-container,
+    .project-slide-landscape .project-slide-description-wrapper,
+    .project-slide-video .project-slide-video-wrapper,
+    .project-slide-video .project-slide-description-wrapper {
+      opacity: 0;
+      will-change: transform, opacity;
+      .translate(0px, 120px);
+      &.slide-in {
+        opacity: 1;
+        .transition(opacity .5s cubic-bezier(.33, 0, .2, 1));
+        -webkit-animation: slideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+        animation: slideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+        .translate(0px, 0px);
+      }
+      &.already-animated {
+        opacity: 1;
+        .translate(0px, 0px);
+      }
+    }
+  }
+  // Both Landscape and Portrait Caption Offset
+  &.project-image-landscape-caption-style-offset.project-image-portrait-caption-style-offset {
+    .project-slide {
+      opacity: 1;
+      .translate(0px, 0px);
+      .project-slide-image-container,
+      .project-slide-description-wrapper  {
+        will-change: transform, opacity;
+        opacity: 0;
+        .translate(0px, 120px);
+        &.slide-in {
+          opacity: 1;
+          .transition(opacity .5s cubic-bezier(.33, 0, .2, 1));
+          -webkit-animation: slideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+          animation: slideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+          .translate(0px, 0px);
+        }
+        &.already-animated {
+          opacity: 1;
+          .translate(0px, 0px);
+        }
+      }
+    }
+  }
+
+  .already-animated {
+    opacity: 1;
+    .translate(0px, 0px);
+  }
+}
+
+
+
+
+
+
+// project image cascade on mobile scroll
+@keyframes mobileSlideInProjectImage {
+  from {
+    .translate3d(0px, 60px, 0px);
+  }
+  to {
+    .translate3d(0px, 0px, 0px);
+  }
+}
+
+
+// Mobile Slide Animation
+@media screen and (max-width: 767px) {
+  .tweak-project-slide-transition {
+    .project-slide {
+      opacity: 0;
+      will-change: transform, opacity;
+      .translate(0px, 60px);
+      &.slide-in {
+        opacity: 1;
+        .transition(opacity .5s cubic-bezier(.33, 0, .2, 1));
+        -webkit-animation: mobileSlideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+        animation: mobileSlideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+        .translate(0px, 0px);
+      }
+    }
+  }
+  .tweak-project-slide-transition {
+    // Offset Portrait Caption transition
+    &.project-image-portrait-caption-style-offset {
+      .project-slide {
+        opacity: 1;
+        .translate(0px, 0px);
+      }
+      .project-slide-landscape {
+        opacity: 0;
+        will-change: transform, opacity;
+        .translate(0px, 60px);
+        &.slide-in {
+          opacity: 1;
+          .transition(opacity .5s cubic-bezier(.33, 0, .2, 1));
+          -webkit-animation: mobileSlideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+          animation: mobileSlideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+          .translate(0px, 0px);
+        }
+      }
+      .project-slide-portrait .project-slide-image-container,
+      .project-slide-portrait .project-slide-description-wrapper,
+      .project-slide-square .project-slide-image-container,
+      .project-slide-square .project-slide-description-wrapper {
+        opacity: 0;
+        will-change: transform, opacity;
+        .translate(0px, 60px);
+        &.slide-in {
+          opacity: 1;
+          .transition(opacity .5s cubic-bezier(.33, 0, .2, 1));
+          -webkit-animation: mobileSlideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+          animation: mobileSlideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+          .translate(0px, 0px);
+        }
+      }
+    }
+
+    // Offset Landscape Caption transition
+    &.project-image-landscape-caption-style-offset {
+      .project-slide {
+        opacity: 1;
+        .translate(0px, 0px);
+      }
+      .project-slide-portrait, .project-slide-square {
+        opacity: 0;
+        will-change: transform, opacity;
+        .translate(0px, 60px);
+        &.slide-in {
+          opacity: 1;
+          .transition(opacity .5s cubic-bezier(.33, 0, .2, 1));
+          -webkit-animation: mobileSlideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+          animation: mobileSlideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+          .translate(0px, 0px);
+        }
+      }
+      .project-slide-landscape .project-slide-image-container,
+      .project-slide-landscape .project-slide-description-wrapper,
+      .project-slide-video .project-slide-video-wrapper,
+      .project-slide-video .project-slide-description-wrapper {
+        opacity: 0;
+        will-change: transform, opacity;
+        .translate(0px, 60px);
+        &.slide-in {
+          opacity: 1;
+          .transition(opacity .5s cubic-bezier(.33, 0, .2, 1));
+          -webkit-animation: mobileSlideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+          animation: mobileSlideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+          .translate(0px, 0px);
+        }
+      }
+    }
+    // Both Landscape and Portrait Caption Offset
+    &.project-image-landscape-caption-style-offset.project-image-portrait-caption-style-offset {
+      .project-slide {
+        opacity: 1;
+        .translate(0px, 0px);
+        .project-slide-image-container,
+        .project-slide-description-wrapper  {
+          will-change: transform, opacity;
+          opacity: 0;
+          .translate(0px, 60px);
+          &.slide-in {
+            opacity: 1;
+            .transition(opacity .5s cubic-bezier(.33, 0, .2, 1));
+            -webkit-animation: mobileSlideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+            animation: mobileSlideInProjectImage .5s cubic-bezier(.33, 0, .2, 1);
+            .translate(0px, 0px);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Index Navigation (at bottom of collections in index)
+.index-item-navigation:not(.hide) {
+  opacity: 0;
+  will-change: opacity;
+  &.reveal-index-nav {
+    opacity: 1;
+    .transition(opacity .78s cubic-bezier(.33, 0, .2, 1) .25s);
+  }
+}
+
+// regular load page fade in
+
+.content-container {
+  opacity: 1;
+  .transition(opacity .78s);
+  &.fade-out {
+    opacity: 0;
+    .transition(opacity .2s);
+  }
+}
+
+.disable-hover,
+.disable-hover * {
+  pointer-events: none !important;
+}
+
+// Pulse animation for 'loading' (project image wrapper)
+
+@-webkit-keyframes colorPulse {
+  0% { background-color: rgba(0,0,0,0); }
+  100% { background-color: rgba(0,0,0,0.05); }
+}
+
+@keyframes colorPulse {
+  0% { background-color: rgba(0,0,0,0); }
+  100% { background-color: rgba(0,0,0,0.05); }
+}

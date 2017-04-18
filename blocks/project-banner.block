@@ -1,0 +1,31 @@
+{.var @firstImg items.0}
+{.var @pageThumb collection.mainImage}
+
+{.section collection}
+  <div data-controller="BannerController" class="page-banner-wrapper {.background-source-video?}page-banner-has-video{.or}{.if @pageThumb}page-banner-has-image{.end}{.end}" {.background-source-video?}{.or}{.if @firstImg}data-suggested-bg-color-promoted="#{@firstImg.colorData.suggestedBgColor}"{.end}{.end} {.background-source-video?}{.or}{.if @pageThumb}data-suggested-bg-color-thumbnail="#{@pageThumb.colorData.suggestedBgColor}"{.end}{.end}>
+
+    <div{.background-source-video?} data-controller="VideoBackground"{.end} class="page-banner-image-container collection-thumbnail-image-container hide-collection-image" data-edit-main-image="Background">
+
+      {.background-source-video?}
+        {@|apply sqs-video-background.block}
+      {.or}
+        {.if @pageThumb}
+          <img class="page-banner-image js-page-banner-image loading" {@pageThumb|image-meta} data-load="false" />
+        {.end}
+      {.end}
+
+    </div>
+
+    <div class="page-text-wrapper hide clearfix" data-collection-id="{collection.id}" data-edit-main-image="Background">
+      <h1 class="page-title"><span data-content-field="title">{title}</span></h1>
+
+			{.if categories}
+				<div class="page-category-wrapper">
+		  		<span class="page-category">{.repeated section categories}{@|safe}{.alternates with}, {.end}</span>
+		  	</div>
+			{.end}
+
+      <div class="page-description" data-content-field="description">{description}</div>
+    </div>
+  </div>
+{.end}

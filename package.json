@@ -1,0 +1,44 @@
+{
+  "name": "doncab-framework",
+  "version": "1.0.0",
+  "author": "Squarespace, Inc.",
+  "description": "A portfolio framework with a stacked landing page",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Squarespace/doncab-framework.git"
+  },
+  "scripts": {
+    "build": "squarespace assemble && webpack",
+    "clean": "squarespace clean",
+    "deploy": "squarespace setup && squarespace deploy",
+    "lint": "eslint scripts",
+    "start": "squarespace setup && (npm run watch & npm run server)",
+    "server": "squarespace runserver --auth",
+    "server:auth": "npm run server -- --run-authenticated",
+    "watch": "squarespace assemble --watch & webpack --watch"
+  },
+
+  "dependencies": {
+    "@squarespace/ancillary": "^1.0.2",
+    "@squarespace/controller": "^1.0.3",
+    "@squarespace/core": "^1.0.1",
+    "@squarespace/video-background": "^1.0.2",
+    "babel-runtime": "^6.23.0"
+  },
+  "devDependencies": {
+    "@squarespace/toolbelt": "^0.7.10",
+    "babel-core": "^6.23.1",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.3.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "eslint": "^3.0.1",
+    "eslint-config-squarespace": "^1.0.1",
+    "eslint-loader": "^1.6.3",
+    "webpack": "^1.14.0"
+  },
+  "squarespace" : {
+    "templateId": "york-demo"
+  }
+}

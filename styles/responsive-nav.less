@@ -1,0 +1,558 @@
+
+/* RESPONSIVE NAV STYLES
+-------------------------------------------------*/
+@mobileBgColorFadeIn: 100ms;
+@mobileOpacityFadeOut: 100ms;
+@mobileSubNavOpacity: 250ms;
+@mobileSubNavHeight: 500ms;
+
+
+// =======================================================
+//
+//    Mobile Bar Defaults
+//
+// =======================================================
+
+
+body:not(.mobile-menu-open) {
+  height: 100%;
+  // delay body height change when closed
+  .transition-delay (0ms);
+}
+
+.overflow-wrapper {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
+  min-height: 100vh;
+  background-color: @bgColor;
+  .transition (background-color @mobileBgColorFadeIn linear);
+}
+
+.site-container {
+  opacity: 1;
+  height: 100%;
+  .transition (opacity @mobileOpacityFadeOut linear @mobileOpacityFadeOut);
+}
+
+// mobile bar structure and layering
+
+.mobile-bar-wrapper {
+  display: none;
+}
+
+.mobile-bar-flex-child {
+  display: none;
+  visibility: hidden;
+  width: @icon--hamburger-width;
+  height: @icon--hamburger-height;
+}
+
+.mobile-branding-wrapper {
+  display: block;
+  .flex-grow(0);
+  .align-self(center);
+
+  a { display: block; }
+}
+
+.mobile-nav-toggle-label {
+  .border-box;
+  .no-select;
+  .flex-grow(0);
+  .align-self(center);
+}
+
+// mobile menu overlay
+
+.overlay-nav-container {
+  position: absolute;
+  z-index: 10001;
+  box-sizing: border-box;
+  min-height: 100vh;
+  width: 0;
+  text-align: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  pointer-events: none;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 100%;
+  // need delay to avoid animation of left postion in hidden state
+  .transition-delay (@mobileBgColorFadeIn);
+  // flex it so hard
+  .display-flex(flex);
+  .align-items(center);
+  .justify-content(center);
+  .flex-direction(column);
+}
+
+.overlay-nav-wrapper {
+  margin: auto;
+  // padding: 20vh 20vw;
+  opacity: 0;
+  // .border-box;
+  .transition (opacity @mobileOpacityFadeOut linear);
+}
+
+
+/* Media Query, Tablet Landscape
+***********************************/
+
+@media only screen and (max-width: 1024px) {
+
+  // Kills the default background color on tapped links
+  .touch-styles {
+    a,
+    label {
+      -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+      -moz-tap-highlight-color: rgba(0,0,0,0) !important;
+      tap-highlight-color: rgba(0,0,0,0) !important;
+    }
+  }
+}
+
+
+/* Media Query, Tablet Portrait
+***********************************/
+
+@media only screen and (max-width: 768px) {
+
+  // mobile bar defaults
+
+  .mobile-bar-wrapper {
+    z-index: 10002;
+    position: relative;
+    width: 100vw;
+    .display-flex;
+    .justify-content(space-between);
+  }
+
+  // mobile bar fixed positions
+
+  .tweak-mobile-bar-position-top-fixed {
+
+    .mobile-bar-wrapper {
+      position: fixed;
+      top: 0;
+      width: 100vw;
+    }
+
+    .overlay-nav-container {
+      position: absolute;
+    }
+
+    &:not(.tweak-transparent-fixed-mobile-bar) .mobile-bar-wrapper {
+      background-color: @bgColor;
+      .transition (background-color @mobileBgColorFadeIn linear);
+    }
+  }
+
+  .tweak-mobile-bar-position-bottom-fixed {
+
+    .mobile-bar-wrapper {
+      position: fixed;
+      bottom: 0;
+      width: 100vw;
+    }
+
+    .overlay-nav-container {
+      .flex-order(1);
+    }
+
+    &:not(.tweak-transparent-fixed-mobile-bar) .mobile-bar-wrapper {
+      .flex-order(2);
+      background-color: @bgColor;
+      .transition (background-color @mobileBgColorFadeIn linear);
+    }
+  }
+
+  // mobile bar transparent background option
+
+  .tweak-mobile-bar-position-top-fixed:not(.mobile-menu-open).tweak-transparent-fixed-mobile-bar,
+  .tweak-mobile-bar-position-bottom-fixed:not(.mobile-menu-open).tweak-transparent-fixed-mobile-bar {
+    .mobile-bar-wrapper {
+      background-color: transparent;
+    }
+  }
+
+  // mobile bar site tagline position
+
+
+  .tweak-mobile-bar-site-tagline-position-hide {
+
+    .mobile-site-tagline { display: none; }
+  }
+
+  .tweak-mobile-bar-site-tagline-position-below-branding {
+
+    .mobile-site-tagline {
+      display: block;
+      margin-top: @tweak-mobile-bar-site-tagline-spacing;
+    }
+  }
+
+  .tweak-mobile-bar-site-tagline-position-beside-branding {
+
+    .mobile-site-title,
+    .mobile-site-tagline {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .mobile-site-tagline {
+      margin-left: @tweak-mobile-bar-site-tagline-spacing;
+    }
+  }
+
+  // overlay nav defaults
+
+  .overlay-nav-container {
+
+    // folder defaults
+
+    .folder {
+      position: relative;
+    }
+
+    // folder is closed
+    .svg & .folder-toggle-label { margin-right: -1em; }
+
+    // svg fallback
+    .no-svg & {
+      .folder-toggle-label:after {
+        content: '\25BE';
+        width: 1em;
+        display: inline-block;
+      }
+    }
+
+    .subnav {
+      max-height: 0;
+      overflow: hidden;
+      position: relative;
+      opacity: 0;
+      .border-box;
+      .transition2(max-height @mobileSubNavOpacity + 200 cubic-bezier(.33, 0, .2, 1), opacity @mobileSubNavOpacity + 1000 cubic-bezier(.33, 0, .2, 1));
+
+      .folder-link:last-child {
+        padding-bottom: @mobileMenuVerticalSpacing;
+      }
+    }
+
+    // folder is open
+    .folder-toggle-box:checked {
+
+      .no-svg & {
+        ~ .folder-toggle-label:after {
+          .transform(rotate(-180deg));
+          .transform-origin(center, center);
+        }
+      }
+
+      ~ .folder-toggle-label .Icon--caretSmall--right {
+        .transform(rotate(-90deg));
+      }
+
+      ~ .subnav {
+         max-height: 100vh;
+         opacity: 1;
+         .transition(max-height @mobileSubNavHeight cubic-bezier(.33, 0, .2, 1));
+      }
+    }
+  }
+
+  // mobile branding colors and fonts
+
+  .mobile-branding-wrapper {
+
+    .mobile-site-title {
+      .tweak-mobile-bar-branding-site-title-font;
+
+      a {
+        color: @tweak-mobile-bar-branding-site-title-color;
+        .transition (color 300ms linear);
+        text-decoration: none;
+      }
+
+      .mobile-menu-open & a { color: @tweak-mobile-menu-branding-site-title-color; }
+    }
+
+    .mobile-logo-image {
+      a {
+        max-width: @tweak-mobile-bar-branding-logo-width;
+        display: block;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+    }
+
+    .mobile-site-tagline {
+      .tweak-mobile-bar-site-tagline-font;
+      color: @tweak-mobile-bar-site-tagline-color;
+      .transition (color 300ms linear);
+
+      .mobile-menu-open & { color: @tweak-mobile-menu-site-tagline-color; }
+    }
+  }
+
+  // mobile nav link colors and icons
+
+  .mobile-primary-nav-links {
+    .tweak-mobile-overlay-menu-primary-font;
+
+    a, .folder-toggle-label {
+      display: block;
+      color: @tweak-mobile-overlay-menu-primary-text-color;
+    }
+    .Icon {
+      stroke: @tweak-mobile-overlay-menu-primary-text-color;
+    }
+    .Icon--caretSmall--right {
+      width: 1em;
+      height: .5em;
+      .transform(rotate(90deg));
+    }
+  }
+
+  .mobile-secondary-nav-links {
+    .tweak-mobile-overlay-menu-secondary-font;
+
+    a, .folder-toggle-label {
+      display: block;
+      color: @tweak-mobile-overlay-menu-secondary-text-color;
+    }
+    .Icon {
+      stroke: @tweak-mobile-overlay-menu-secondary-text-color;
+    }
+    .Icon--caretSmall--right {
+      width: 1em;
+      height: .5em;
+      .transform(rotate(90deg));
+    }
+  }
+
+  // mobile branding position (left or right)
+
+  .mobile-branding-wrapper {
+
+    .tweak-mobile-bar-branding-position-left & {
+      .flex-order(0);
+      text-align: left;
+
+      .mobile-logo-image a {
+        margin-right: auto;
+      }
+    }
+    .tweak-mobile-bar-branding-position-right & {
+      .flex-order(1);
+      text-align: right;
+
+      .mobile-logo-image a {
+        margin-left: auto;
+      }
+    }
+  }
+
+  // mobile branding position (center)
+
+  .tweak-mobile-bar-branding-position-center {
+    .mobile-branding-wrapper {
+      text-align: center;
+
+      .mobile-logo-image a {
+        margin: auto;
+      }
+    }
+
+    .mobile-bar-flex-child {
+      display: block;
+      visibility: visible;
+      .align-self(center);
+    }
+
+    &.site-outer-padding-extra-small {
+      .mobile-bar-flex-child {
+        padding: 3vw;
+      }
+    }
+
+    &.site-outer-padding-small {
+      .mobile-bar-flex-child {
+        padding: 4vw;
+      }
+    }
+
+    &.site-outer-padding-medium {
+      .mobile-bar-flex-child {
+        padding: 5vw;
+      }
+    }
+
+    &.site-outer-padding-large {
+      .mobile-bar-flex-child {
+        padding: 6vw;
+      }
+    }
+
+    &.site-outer-padding-extra-large {
+      .mobile-bar-flex-child {
+        padding: 7vw;
+      }
+    }
+
+    &.site-outer-padding-custom {
+      .mobile-bar-flex-child {
+        padding: @siteCustomPadding;
+      }
+    }
+
+    &.tweak-mobile-bar-menu-icon-position-left {
+      .mobile-nav-toggle-label {
+        .flex-order(1);
+      }
+      .mobile-branding-wrapper {
+        .flex-order(2);
+      }
+      .mobile-bar-flex-child {
+        .flex-order(3);
+      }
+    }
+  }
+
+  // mobile nav toggle icon, color, alignment
+
+  .mobile-nav-toggle-label {
+
+    display: block;
+    cursor: pointer;
+
+    .Icon--close {
+      display: none;
+      stroke: @tweak-mobile-bar-menu-icon-color;
+      .transition (color 300ms linear);
+    }
+    .Icon--hamburger {
+      display: block;
+      margin: 0 0 0 auto;
+      stroke: @tweak-mobile-bar-menu-icon-color;
+      .transition (color 300ms linear);
+    }
+
+    .tweak-mobile-bar-branding-position-left & {
+      .flex-order(1);
+      text-align: right;
+    }
+    .tweak-mobile-bar-branding-position-right & {
+      .flex-order(0);
+      text-align: left;
+    }
+  }
+
+  // vertical spacing between navigation wrappers
+
+  .mobile-primary-nav-wrapper + .mobile-secondary-nav-wrapper {
+    padding-top: @mobileMenuVerticalSpacing;
+  }
+
+
+  // =======================================================
+  //
+  //    Mobile Bar Menu is Open
+  //
+  // =======================================================
+
+
+  body.mobile-menu-open {
+
+    // body height change when mobile menu is open
+    background-color: @tweak-mobile-overlay-menu-color;
+    overflow: hidden;
+    height: 100vh;
+    .transition (height 0ms linear @mobileOpacityFadeOut);
+
+    // hide announcement and mobile info bar
+    .sqs-announcement-bar,
+    .sqs-mobile-info-bar {
+      display: none;
+    }
+
+    // collapse site container
+    .site-container {
+      opacity: 0;
+      height: 0;
+      // height: 100%;
+      // .transition(height 0ms linear 150ms);
+      .transition2(opacity @mobileOpacityFadeOut linear 0ms, height 0ms linear @mobileOpacityFadeOut);
+      overflow: hidden;
+    }
+
+    // overflow wrapper around entire site
+    .overflow-wrapper {
+      position: relative;
+      overflow: hidden;
+      background-color: @tweak-mobile-overlay-menu-color;
+    }
+
+    // set position of fixed mobile bar wrapper
+    &.tweak-mobile-bar-position-top-fixed .mobile-bar-wrapper,
+    &.tweak-mobile-bar-position-bottom-fixed .mobile-bar-wrapper {
+      // position: absolute;
+    }
+
+    // set background of fixed mobile bar wrapper
+    &.tweak-mobile-bar-position-top-fixed:not(.tweak-transparent-fixed-mobile-bar) .mobile-bar-wrapper,
+    &.tweak-mobile-bar-position-bottom-fixed:not(.tweak-transparent-fixed-mobile-bar) .mobile-bar-wrapper {
+      background-color: @tweak-mobile-overlay-menu-color;
+      .transition (background-color @mobileBgColorFadeIn linear);
+    }
+
+    // swap hamburger --> close icon
+    .mobile-bar-wrapper .mobile-nav-toggle-label {
+
+      .Icon--close {
+        display: block;
+        margin: 0 0 0 auto;
+        stroke: @tweak-mobile-menu-menu-icon-color;
+      }
+      .Icon--hamburger { display: none; }
+    }
+
+    // mobile bar is fixed bottom with menu open
+    &.tweak-mobile-bar-position-bottom-fixed {
+
+      // adjust container and wrapper to absolute
+      .overlay-nav-container {
+        position: absolute;
+      }
+      .mobile-bar-wrapper {
+        position: absolute;
+        bottom: 0;
+      }
+    }
+
+    // overlay bits
+
+    .overflow-wrapper {
+      .transition (background-color @mobileBgColorFadeIn linear);
+    }
+
+    .overlay-nav-container {
+      overflow-y: scroll;
+      visibility: visible;
+      pointer-events: auto;
+      opacity: 1;
+      width: 100%;
+      left: 0;
+      .transition (left 0ms linear @mobileOpacityFadeOut);
+    }
+
+    .overlay-nav-wrapper {
+      opacity: 1;
+      .transition (opacity @mobileBgColorFadeIn linear);
+    }
+  }
+}

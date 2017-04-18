@@ -1,0 +1,32 @@
+
+<header id="header" class="site-header" role="banner" data-nc-base="header" data-nc-group="header" data-controller="AncillaryLayout">
+  <div data-nc-container="left">
+    <div class="logo-wrapper" data-content-field="site-title" data-nc-element="branding">
+    {.section website}
+      {.section logoImageUrl}
+        <div class="logo-image"><a href="/"><img src="{logoImageUrl}?format=1500w" alt="{siteTitle}" /></a></div>
+      {.or}
+        <div class="site-title"><a href="/">{siteTitle}</a></div>
+      {.end}
+    {.end}
+    </div>
+
+    <div class="site-tagline-wrapper" data-nc-element="tagline">
+      {.section website.siteTagLine}<div class="site-tagline">{@}</div>{.end}
+    </div>
+
+    <div id="mainNavWrapper" class="nav-wrapper primary-nav-wrapper" data-nc-element="primary-nav">
+      <squarespace:navigation navigationId="mainNav" template="navigation" />
+    </div>
+
+    <div id="secondaryNavWrapper" class="nav-wrapper secondary-nav-wrapper" data-nc-element="secondary-nav">
+      <squarespace:navigation navigationId="secondaryNav" template="navigation" />
+    </div>
+
+    <div class="cart-wrapper" data-nc-element="cart">
+      {@|apply cart.block}
+    </div>
+  </div>
+  <div data-nc-container="center"></div>
+  <div data-nc-container="right"></div>
+</header>

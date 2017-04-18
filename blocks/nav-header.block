@@ -1,0 +1,18 @@
+{.section items}
+  {.repeated section @}{.collection?}{.folder?}<span class="Header-nav-item Header-nav-item--folder">
+
+    <a href="{.section items}{.section 0}{.collection?}{collection.fullUrl}{.or}{.section externalLink}{url}{.end}{.end}{.end}{.end}" class="Header-nav-folder-title" {.section items}{.section 0}{.section externalLink}{.section newWindow}target="_blank"{.end}{.end}{.end}{.end}>{collection.navigationTitle}</a>
+
+    <span class="Header-nav-folder">
+      {.repeated section items}
+        {.collection?}
+          <a href="{collection.fullUrl}" class="Header-nav-folder-item">{collection.navigationTitle}</a>
+        {.or}
+          {.section externalLink}
+            <a href="{url}"{.section newWindow} target="_blank"{.end} class="Header-nav-folder-item">{title}</a>
+          {.end}
+        {.end}
+      {.end}
+    </span>
+  </span>{.or}{.section collection}<a href="{fullUrl}" class="Header-nav-item">{navigationTitle}</a>{.end}{.end}{.end}{.section externalLink}<a href="{url}"{.section newWindow} target="_blank"{.end} class="Header-nav-item">{title}</a>{.end}{.end}
+{.end}

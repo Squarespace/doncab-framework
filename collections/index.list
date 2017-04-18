@@ -1,0 +1,39 @@
+{.section collection}
+
+	<div class="index-list clearfix" data-controller="IndexController" data-collection-id="{collection.id}">
+
+	{.repeated section collections}
+
+		<div id="index-section-{urlId}" class="index-section index-page-transition-link">
+			<article class="index-item{.background-source-video?} has-item-video{.or}{.section mainImage} has-item-image{.end}{.end}" data-item-id="{id}" data-url-id="{urlId}"{.background-source-video?}{.or}{.section mainImage}{.if colorData} style="background-color: #{colorData.suggestedBgColor}"{.end}{.end}{.end}>
+				<a class="index-item-link intrinsic" href="{fullUrl}">
+					{.background-source-video?}
+						<figure data-controller="VideoBackground" class="index-item-image-wrapper js-index-item-image-wrapper">
+		        	{@|apply sqs-video-background.block}
+						</figure>
+		      {.or}
+						{.section mainImage}<figure class="index-item-image-wrapper js-index-item-image-wrapper"><img class="index-item-image js-index-item-image loading" {@|image-meta} /></figure>{.end}
+					{.end}
+				</a>
+				<div class="index-item-text-wrapper<squarespace:category collection="{urlId}">{.if categories} has-categories{.end}</squarespace:category>">
+					<h2 class="index-item-title">
+						<a class="index-item-title-link" href="{fullUrl}"><span class="index-item-title-text">{navigationTitle}</span></a>
+					</h2>
+
+					{.equal? typeName "project"}
+						<squarespace:category collection="{urlId}" template="category-slugs" />
+					{.or}
+					{.equal? typeName "gallery"}
+						<squarespace:category collection="{urlId}" template="category-slugs" />
+					{.end}
+					{.end}
+
+				</div>
+			</article>
+		</div>
+
+	{.end}
+
+	</div>
+
+{.end}

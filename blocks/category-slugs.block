@@ -1,0 +1,6 @@
+
+{.if categories}
+	<div class="index-item-category-wrapper">
+		<span class="index-item-category">{.repeated section categories}{name|safe}{.alternates with}, {.end}</span>
+	</div>
+{.end}

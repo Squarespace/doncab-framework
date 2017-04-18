@@ -1,0 +1,241 @@
+
+/* TEMPLATE MIXINS
+-------------------------------------------------*/
+
+
+//  Font smoothing
+
+.font-smoothing (@a) when (lightness(@a) < 65%) {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.font-smoothing (@a) when (lightness(@a) >= 65%) {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+}
+
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+// Font scaling
+
+.scale-font (@min-font-size, @max-font-size, @equilibrium-width, @container-width: 1) {
+
+  // do the math
+  @container-ratio: 100 * @container-width;
+  @vw-size: @max-font-size / (@equilibrium-width / @container-ratio);
+  //set the breakpoints
+  @lower-breakpoint: round(100 * @min-font-size / @vw-size);
+  @upper-breakpoint: round(100 * @max-font-size / @vw-size);
+
+  // set square and above viewports (landscape) font size based on vw, enforce minimum and maximum
+  @media screen and (min-aspect-ratio: 1/1) and (min-width: @lower-breakpoint) and (max-width: @upper-breakpoint) {
+    font-size: unit(@vw-size, vw);
+  }
+  @media screen and (min-aspect-ratio: 1/1) and (max-width: @lower-breakpoint) {
+    font-size: @min-font-size;
+  }
+  @media screen and (min-aspect-ratio: 1/1) and (min-width: @upper-breakpoint) {
+    font-size: @max-font-size;
+  }
+
+  // set square and below (portrait) font size based on vh, enforce minimum and maximum
+  @media screen and (max-aspect-ratio: 1/1) and (min-width: @lower-breakpoint) and (max-width: @upper-breakpoint) {
+    font-size: unit(@vw-size, vh);
+  }
+  @media screen and (max-aspect-ratio: 1/1) and (max-width: @lower-breakpoint) {
+    font-size: @min-font-size;
+  }
+  @media screen and (max-aspect-ratio: 1/1) and (min-width: @upper-breakpoint) {
+    font-size: @max-font-size;
+  }
+
+}
+
+
+// Misc
+
+.border-box,
+.border-box:before,
+.border-box:after {
+  -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.backface-visibility(@display) {
+  backface-visibility: @display;
+  -webkit-backface-visibility: @display;
+}
+
+.content-box,
+.content-box:before,
+.content-box:after {
+  -webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+.button-style-reset {
+  outline: 0;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  text-transform: inherit;
+  letter-spacing: inherit;
+}
+
+.transition-webkit (@transition) {
+  -webkit-transition: @transition;
+  transition: @transition;
+}
+
+.transition (@transition) {
+	-webkit-transition: @transition;
+	-moz-transition: @transition;
+	-ms-transition: @transition;
+	-o-transition: @transition;
+	transition: @transition;
+}
+
+.transition2 (@transition1, @transition2) {
+	-webkit-transition: @transition1, @transition2;
+	-moz-transition: @transition1, @transition2;
+	-ms-transition: @transition1, @transition2;
+	-o-transition: @transition1, @transition2;
+	transition: @transition1, @transition2;
+}
+
+.transition-delay (@delay) {
+  -webkit-transition-delay: @delay;
+  -moz-transition-delay: @delay;
+  -o-transition-delay: @delay;
+  transition-delay: @delay;
+}
+
+.transform(@string){
+	-webkit-transform: @string;
+	-moz-transform: @string;
+	-ms-transform: @string;
+	-o-transform: @string;
+	transform: @string;
+}
+
+.transform-origin (@x:center, @y:center) {
+  -webkit-transform-origin: @x @y;
+  -moz-transform-origin: @x @y;
+  -ms-transform-origin: @x @y;
+  -o-transform-origin: @x @y;
+  transform-origin: @x @y;
+}
+
+.scale (@x, @y: 1.0) {
+	-webkit-transform: scale(@x, @y);
+	-moz-transform: scale(@x, @y);
+	-ms-transform: scale(@x, @y);
+	-o-transform: scale(@x, @y);
+  transform: scale(@x, @y);
+}
+
+.rotate (@deg) {
+	-webkit-transform: rotate(@deg);
+	-moz-transform: rotate(@deg);
+	-ms-transform: rotate(@deg);
+	-o-transform: rotate(@deg);
+  transform: rotate(@deg);
+}
+
+.skew (@deg, @deg2) {
+	-webkit-transform: skew(@deg, @deg2);
+	-moz-transform: skew(@deg, @deg2);
+	-ms-transform: skew(@deg, @deg2);
+	-o-transform: skew(@deg, @deg2);
+  transform: skew(@deg, @deg2);
+}
+
+.translate (@x, @y:0) {
+	-webkit-transform: translate(@x, @y);
+	-moz-transform: translate(@x, @y);
+	-ms-transform: translate(@x, @y);
+	-o-transform: translate(@x, @y);
+  transform: translate(@x, @y);
+}
+
+.translate3d (@x, @y:0, @z:0) {
+	-webkit-transform: translate3d(@x, @y, @z);
+	-moz-transform: translate3d(@x, @y, @z);
+	-ms-transform: translate3d(@x, @y, @z);
+	-o-transform: translate3d(@x, @y, @z);
+  transform: translate3d(@x, @y, @z);
+}
+
+.perspective (@value: 1000) {
+	-webkit-perspective: @value;
+	-moz-perspective: @value;
+	-ms-perspective: @value;
+	perspective: @value;
+}
+
+
+// Flexbox for parent (containers)
+
+.display-flex(@flex: flex){
+  display: ~"-webkit-@{flex}";
+  display: ~"@{flex}";
+}
+
+.flex-wrap(@wrap: nowrap) {
+  -webkit-flex-wrap: @wrap;
+  flex-wrap: @wrap;
+}
+
+.justify-content(@justify: space-between){
+  -webkit-justify-content: @justify;
+  justify-content: @justify;
+}
+
+.align-content(@align: stretch) {
+  -webkit-align-content: @align;
+  align-content: @align;
+}
+
+.flex-direction(@direction: row){
+  -webkit-flex-direction: @direction;
+  flex-direction: @direction;
+}
+
+.align-items(@align: stretch) {
+  -webkit-align-items: @align;
+  align-items: @align;
+}
+
+
+// Flexbox for children (items)
+
+.align-self(@align: auto) {
+  -webkit-align-self: @align;
+  align-self: @align;
+}
+
+.flex(@grow, @shrink, @basis) {
+  -webkit-flex: @grow @shrink @basis;
+  flex: @grow @shrink @basis;
+}
+
+.flex-order(@order: 0) {
+  -webkit-order: @order;
+  order: @order;
+}
+
+.flex-grow(@grow: 0) {
+  -webkit-flex-grow: @grow;
+  flex-grow: @grow;
+}
+

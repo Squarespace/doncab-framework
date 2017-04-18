@@ -1,0 +1,1015 @@
+
+/* PROJECT STYLES
+-------------------------------------------------*/
+
+
+.collection-type-project {
+
+  .site-page {
+    max-width: 100%;
+  }
+
+  &.show-project-banner .site-page,
+  &.homepage.show-homepage-banner .site-page {
+    margin-top: 0;
+  }
+
+  // Page Banner Wrapper Spacing
+
+  &.project-banner-spacing-small.show-project-banner .page-banner-wrapper {
+    margin-bottom: 5vw;
+  }
+
+  &.project-banner-spacing-medium.show-project-banner .page-banner-wrapper {
+    margin-bottom: 7vw;
+  }
+
+  &.project-banner-spacing-large.show-project-banner .page-banner-wrapper {
+    margin-bottom: 10vw;
+  }
+
+  &.project-banner-spacing-custom.show-project-banner .page-banner-wrapper {
+    margin-bottom: @projectBannerSpacing;
+  }
+
+  // Homepage Banner Wrapper Spacing
+  &.project-banner-spacing-small.homepage.show-homepage-banner .page-banner-wrapper {
+    margin-bottom: 5vw;
+  }
+
+  &.project-banner-spacing-medium.homepage.show-homepage-banner .page-banner-wrapper {
+    margin-bottom: 7vw;
+  }
+
+  &.project-banner-spacing-large.homepage.show-homepage-banner .page-banner-wrapper {
+    margin-bottom: 10vw;
+  }
+
+  &.project-banner-spacing-custom.homepage.show-homepage-banner .page-banner-wrapper {
+    margin-bottom: @projectBannerSpacing;
+  }
+
+  // Project Title and Project Description defaults
+  // Hide project slide captions by default until Show Project Captions is checked
+
+  .project-slide-description-wrapper {
+    display: none;
+    visibility: hidden;
+  }
+
+  &.show-project-captions .project-slide-description-wrapper {
+    display: block;
+    visibility: visible;
+  }
+
+  // Project Image Title, Caption
+
+  .project-slide-description-body {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  // max width of title, caption wrapper
+  @media screen and (min-width: 769px) and (max-width: 1440px) {
+    .project-slide-description-body {
+      max-width: 80vw;
+    }
+  }
+
+  @media screen and (min-width: 1441px) and (max-width: 1800px) {
+    .project-slide-description-body {
+      max-width: 65vw;
+    }
+  }
+
+  @media screen and (min-width: 1801px) {
+    .project-slide-description-body {
+      max-width: 60vw;
+    }
+  }
+
+  .project-slide-description-title {
+    .image-caption-title-font;
+    color: @imageCaptionTitleColor;
+    max-width: 32em;
+    margin-top: 0;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto;
+  }
+
+  .project-slide-description-text {
+    .image-caption-body-font;
+    color: @imageCaptionBodyColor;
+    max-width: 32em;
+    margin-left: auto;
+    margin-right: auto;
+
+    p:last-child { margin-bottom: 0; }
+  }
+
+  // add bottom margin to title only when description text follows
+  .has-description-text .project-slide-description-title {
+    margin-bottom: @projectCaptionTitleSpacing;
+  }
+
+  // remove description text margin top on first child if title precedes or is missing
+  .has-description-title .project-slide-description-text p:first-child {
+    margin-top: 0;
+  }
+  .has-description-text:not(.has-description-title) .project-slide-description-text p:first-child {
+    margin-top: 0;
+  }
+
+  // manage project image caption and description max-width
+  // based on viewport as a fallback to ems above
+
+  .project-slide-description-title,
+  .project-slide-description-text {
+    @media screen and (min-width: 1441px) { max-width: 36vw; }
+    @media screen and (max-width: 1440px) { max-width: 36vw; }
+    @media screen and (max-width: 1280px) { max-width: 46vw; }
+    @media screen and (max-width: 768px) { max-width: 66vw; }
+    @media screen and (max-width: 640px) { max-width: 96vw; }
+  }
+
+  // Scale project slide caption title and body font
+
+  &.scale-image-caption-title-font .project-slide-description-title {
+    .scale-font (@imageCaptionTitleMin, @image-caption-title-font-font-size, 1920px);
+  }
+
+  &.scale-image-caption-body-font .project-slide-description-text {
+    .scale-font (@imageCaptionBodyMin, @image-caption-body-font-font-size, 1920px);
+  }
+
+  // Collapse Landscape Spacing tweak
+  &.collapse-landscape-spacing:not(.show-project-captions) {
+    .project-slide-landscape + .project-slide-landscape {
+      // applied via js instead
+    }
+  }
+
+  // Allow full (native) width portrait images when not alternated
+  &.allow-full-width-portrait.project-image-portrait-caption-style-offset,
+  &.allow-full-width-portrait.project-image-portrait-caption-style-standard {
+
+    .project-slide-portrait,
+    .project-slide-square {
+
+      .project-slide-image-container { max-width: 100% !important; }
+    }
+  }
+
+}
+
+/* Default, vertical stacked, captions below project styles
+ **********************************************************/
+
+.project-slide {}
+
+.project-slide:not(:last-child) {
+  .project-image-spacing-small & {
+    margin-bottom: 5vw;
+  }
+  .project-image-spacing-medium & {
+    margin-bottom: 7vw;
+  }
+  .project-image-spacing-large & {
+    margin-bottom: 10vw;
+  }
+  .project-image-spacing-custom & {
+    margin-bottom: @projectImageSpacing;
+  }
+}
+
+.project-slide-video-wrapper {
+  margin: auto;
+  width: 100%;
+}
+
+.project-slide-image-container {
+  width: auto;
+  height: auto;
+  margin: auto;
+  line-height: 0;
+  text-align: center;
+
+  .project-slide-image-wrapper {
+    margin: auto;
+
+    &.not-ready {
+      -webkit-animation: colorPulse 1000ms infinite alternate;
+      animation: colorPulse 1000ms infinite alternate;
+      // magic number container sizing for now
+      min-height: 50vh;
+      min-width: 50vw;
+    }
+  }
+
+  @media screen and (min-width: 641px) {
+    .project-slide-pano & {  }
+    .project-slide-landscape & {  }
+    .project-slide-portrait & { max-width: 50% !important; }
+    .project-slide-square & { max-width: 50% !important; }
+  }
+
+  @media screen and (max-width: 640px) {
+    .project-slide-pano & {  }
+    .project-slide-landscape & {  }
+    .project-slide-portrait & { max-width: 85% !important; }
+    .project-slide-square & { max-width: 85% !important; }
+  }
+}
+
+.project-slide-image {
+  width: auto;
+  max-width: 100%;
+  top: 0 !important;
+  left: 0 !important;
+  height: auto;
+  line-height: 0;
+}
+
+.project-slide-description-wrapper {
+  margin: auto;
+}
+
+/* Project Caption Text Alignment */
+
+.collection-type-project.show-project-captions {
+
+  // project caption title alignment
+  &.image-caption-title-alignment-left {
+    .project-slide-description-title {text-align: left;}
+  }
+  &.image-caption-title-alignment-center {
+    .project-slide-description-title {text-align: center;}
+  }
+  &.image-caption-title-alignment-right {
+    .project-slide-description-title {text-align: right;}
+  }
+
+  // project caption description alignment
+  &.image-caption-body-alignment-left {
+    .project-slide-description-text {text-align: left;}
+  }
+  &.image-caption-body-alignment-center {
+    .project-slide-description-text {text-align: center;}
+  }
+  &.image-caption-body-alignment-right {
+    .project-slide-description-text {text-align: right;}
+  }
+}
+
+
+/* Image Alignment Defaults */
+
+.collection-type-project.project-image-alignment-left,
+.collection-type-project.project-image-alignment-right {
+
+  .project-slide {
+    max-width: 100%;
+  }
+}
+
+.collection-type-project.project-image-alignment-left .project-slide.project-slide-has-no-description {
+  .project-slide-image-container,
+  .project-slide-video-wrapper {
+    margin-left: 0;
+  }
+}
+
+.collection-type-project.project-image-alignment-right .project-slide.project-slide-has-no-description {
+  .project-slide-image-container,
+  .project-slide-video-wrapper {
+    margin-right: 0;
+  }
+}
+
+
+/* Project Image Alignment Left */
+
+.collection-type-project.project-image-alignment-left {
+
+  .project-slide {
+
+    &.project-slide-portrait { }
+    &.project-slide-square { }
+    &.project-slide-landscape { }
+    &.project-slide-pano { }
+
+    .project-slide-image-container,
+    .project-slide-video-wrapper {
+      margin-left: 0;
+      text-align: left;
+
+      .project-slide-image-wrapper {
+        margin-left: 0;
+      }
+    }
+
+    .project-slide-description-wrapper {
+      margin-left: 0;
+      text-align: left;
+    }
+
+    .project-slide-description-body {
+      margin-left: 0;
+
+      .project-slide-description-title,
+      .project-slide-description-text {
+        margin-left: 0;
+      }
+    }
+  }
+
+  /* Offset (left aligned) landscape caption text */
+
+  &.show-project-captions.project-left-image-landscape-caption-style-offset {
+
+    &.project-image-spacing-small {
+      .project-slide.project-slide-has-description.project-slide-pano .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-landscape .project-slide-description-wrapper {
+        margin-top: 10vw;
+        margin-bottom: 10vw;
+      }
+    }
+    &.project-image-spacing-medium  {
+      .project-slide.project-slide-has-description.project-slide-pano .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-landscape .project-slide-description-wrapper {
+        margin-top: 14vw;
+        margin-bottom: 14vw;
+      }
+    }
+    &.project-image-spacing-large {
+      .project-slide.project-slide-has-description.project-slide-pano .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-landscape .project-slide-description-wrapper {
+        margin-top: 20vw;
+        margin-bottom: 20vw;
+      }
+    }
+    &.project-image-spacing-custom {
+      .project-slide.project-slide-has-description.project-slide-pano .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-landscape .project-slide-description-wrapper {
+        margin-top: (@projectImageSpacing * 2);
+        margin-bottom: (@projectImageSpacing * 2);
+      }
+    }
+  }
+
+  /* Offset (left aligned) portrait caption text */
+
+  &.show-project-captions.project-left-image-portrait-caption-style-offset {
+
+    &.project-image-spacing-small {
+      .project-slide.project-slide-has-description.project-slide-portrait .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-square .project-slide-description-wrapper {
+        margin-top: 10vw;
+        margin-bottom: 10vw;
+      }
+    }
+    &.project-image-spacing-medium  {
+      .project-slide.project-slide-has-description.project-slide-portrait .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-square .project-slide-description-wrapper {
+        margin-top: 14vw;
+        margin-bottom: 14vw;
+      }
+    }
+    &.project-image-spacing-large {
+      .project-slide.project-slide-has-description.project-slide-portrait .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-square .project-slide-description-wrapper {
+        margin-top: 20vw;
+        margin-bottom: 20vw;
+      }
+    }
+    &.project-image-spacing-custom {
+      .project-slide.project-slide-has-description.project-slide-portrait .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-square .project-slide-description-wrapper {
+        margin-top: (@projectImageSpacing * 2);
+        margin-bottom: (@projectImageSpacing * 2);
+      }
+    }
+  }
+
+  /* Side (left aligned) portrait caption text */
+
+  &.show-project-captions.project-left-image-portrait-caption-style-side {
+
+    .project-slide.project-slide-has-description.project-slide-portrait,
+    .project-slide.project-slide-has-description.project-slide-square {
+
+      @media screen and (max-width: 768px) {
+        .project-slide-description-title,
+        .project-slide-description-text p:first-child {
+          margin-top: 1.25em;
+        }
+      }
+
+      @media screen and (max-width: 640px) {
+        .project-slide-image-container {
+          max-width: 85% !important;
+        }
+      }
+
+      @media screen and (min-width: 641px) and (max-width: 768px) {
+        .project-slide-image-container {
+          max-width: 65% !important;
+        }
+      }
+
+      @media screen and (min-width: 769px) and (max-width: 1280px) {
+        .project-slide-image-container {
+          max-width: 45% !important;
+        }
+        .project-slide-description-body {
+          padding-left: 2.5vw;
+        }
+      }
+
+      @media screen and (min-width: 1281px) {
+        .project-slide-image-container {
+          max-width: 50% !important;
+        }
+      }
+
+      @media screen and (min-width: 769px) {
+        .display-flex(flex);
+        .justify-content(space-between);
+        .align-items(flex-start);
+        .flex-direction(row);
+      }
+    }
+  }
+
+  /* Standard (left aligned) portrait caption text */
+
+  &.show-project-captions.project-left-image-portrait-caption-style-standard {
+
+    .project-slide.project-slide-has-description.project-slide-portrait,
+    .project-slide.project-slide-has-description.project-slide-square {
+
+      .project-slide-description-body.has-description-title .project-slide-description-title {
+        margin-top: 1.25em;
+      }
+      .project-slide-description-body.has-description-text .project-slide-description-text p:first-child {
+        margin-top: 1.25em;
+      }
+    }
+  }
+
+  /* Standard (left aligned) landscape caption text */
+
+  &.show-project-captions.project-left-image-landscape-caption-style-standard {
+
+    .project-slide.project-slide-has-description.project-slide-landscape,
+    .project-slide.project-slide-has-description.project-slide-pano {
+
+      .project-slide-description-body.has-description-title .project-slide-description-title {
+        margin-top: 1.25em;
+      }
+      .project-slide-description-body.has-description-text .project-slide-description-text p:first-child {
+        margin-top: 1.25em;
+      }
+    }
+  }
+}
+
+
+/* Project Image Alignment Right */
+
+.collection-type-project.project-image-alignment-right {
+
+  .project-slide {
+
+    &.project-slide-portrait { }
+    &.project-slide-square { }
+    &.project-slide-landscape { }
+    &.project-slide-pano { }
+
+    .project-slide-image-container,
+    .project-slide-video-wrapper {
+      margin-right: 0;
+      text-align: right;
+
+      .project-slide-image-wrapper {
+        margin-right: 0;
+      }
+    }
+
+    .project-slide-description-wrapper {
+      margin-right: 0;
+      // text-align: right;
+    }
+
+    .project-slide-description-body {
+      margin-right: 0;
+
+      .project-slide-description-title,
+      .project-slide-description-text {
+        margin-right: 0;
+      }
+    }
+  }
+
+  /* Offset (right aligned) landscape caption text */
+
+  &.show-project-captions.project-right-image-landscape-caption-style-offset {
+
+    &.project-image-spacing-small {
+      .project-slide.project-slide-has-description.project-slide-pano .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-landscape .project-slide-description-wrapper {
+        margin-top: 10vw;
+        margin-bottom: 10vw;
+      }
+    }
+    &.project-image-spacing-medium  {
+      .project-slide.project-slide-has-description.project-slide-pano .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-landscape .project-slide-description-wrapper {
+        margin-top: 14vw;
+        margin-bottom: 14vw;
+      }
+    }
+    &.project-image-spacing-large {
+      .project-slide.project-slide-has-description.project-slide-pano .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-landscape .project-slide-description-wrapper {
+        margin-top: 20vw;
+        margin-bottom: 20vw;
+      }
+    }
+    &.project-image-spacing-custom {
+      .project-slide.project-slide-has-description.project-slide-pano .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-landscape .project-slide-description-wrapper {
+        margin-top: (@projectImageSpacing * 2);
+        margin-bottom: (@projectImageSpacing * 2);
+      }
+    }
+  }
+
+  /* Offset (right aligned) portrait caption text */
+
+  &.show-project-captions.project-right-image-portrait-caption-style-offset {
+
+    &.project-image-spacing-small {
+      .project-slide.project-slide-has-description.project-slide-portrait .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-square .project-slide-description-wrapper {
+        margin-top: 10vw;
+        margin-bottom: 10vw;
+      }
+    }
+    &.project-image-spacing-medium  {
+      .project-slide.project-slide-has-description.project-slide-portrait .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-square .project-slide-description-wrapper {
+        margin-top: 14vw;
+        margin-bottom: 14vw;
+      }
+    }
+    &.project-image-spacing-large {
+      .project-slide.project-slide-has-description.project-slide-portrait .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-square .project-slide-description-wrapper {
+        margin-top: 20vw;
+        margin-bottom: 20vw;
+      }
+    }
+    &.project-image-spacing-custom {
+      .project-slide.project-slide-has-description.project-slide-portrait .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-square .project-slide-description-wrapper {
+        margin-top: (@projectImageSpacing * 2);
+        margin-bottom: (@projectImageSpacing * 2);
+      }
+    }
+  }
+
+  /* Side (right aligned) portrait caption text */
+
+  &.show-project-captions.project-right-image-portrait-caption-style-side {
+
+    .project-slide.project-slide-has-description.project-slide-portrait,
+    .project-slide.project-slide-has-description.project-slide-square {
+
+      @media screen and (max-width: 768px) {
+        .project-slide-description-title,
+        .project-slide-description-text p:first-child {
+          margin-top: 1.25em;
+        }
+      }
+
+      @media screen and (max-width: 640px) {
+        .project-slide-image-container {
+          max-width: 85% !important;
+        }
+      }
+
+      @media screen and (min-width: 641px) and (max-width: 768px) {
+        .project-slide-image-container {
+          max-width: 65% !important;
+        }
+      }
+
+      @media screen and (min-width: 769px) and (max-width: 1280px) {
+        .project-slide-image-container {
+          max-width: 45% !important;
+        }
+        .project-slide-description-body {
+          padding-right: 2.5vw;
+        }
+      }
+
+      @media screen and (min-width: 1281px) {
+        .project-slide-image-container {
+          max-width: 50% !important;
+        }
+      }
+
+      @media screen and (min-width: 769px) {
+        .display-flex(flex);
+        .justify-content(space-between);
+        .align-items(flex-start);
+        .flex-direction(row);
+
+        .project-slide-image-container,
+        .project-slide-video-wrapper {
+          .flex-order(1);
+        }
+        .project-slide-description-wrapper {
+          .flex-order(0);
+        }
+      }
+    }
+  }
+
+  /* Standard (right aligned) portrait caption text */
+
+  &.show-project-captions.project-right-image-portrait-caption-style-standard {
+
+    .project-slide.project-slide-has-description.project-slide-portrait,
+    .project-slide.project-slide-has-description.project-slide-square {
+
+      .project-slide-description-body.has-description-title .project-slide-description-title {
+        margin-top: 1.25em;
+      }
+      .project-slide-description-body.has-description-text .project-slide-description-text p:first-child {
+        margin-top: 1.25em;
+      }
+    }
+  }
+
+  /* Standard (right aligned) landscape caption text */
+
+  &.show-project-captions.project-right-image-landscape-caption-style-standard {
+
+    .project-slide.project-slide-has-description.project-slide-landscape,
+    .project-slide.project-slide-has-description.project-slide-pano {
+
+      .project-slide-description-body.has-description-title .project-slide-description-title {
+        margin-top: 1.25em;
+      }
+      .project-slide-description-body.has-description-text .project-slide-description-text p:first-child {
+        margin-top: 1.25em;
+      }
+    }
+  }
+}
+
+
+/* Project Image Alignment Center */
+
+.collection-type-project.project-image-alignment-center {
+
+  .project-slide {
+
+    &.project-slide-has-no-description {
+      display: block;
+    }
+  }
+
+  .project-slide-description-title {
+    // text-align: center;
+  }
+
+  &.full-bleed-project {
+
+    .site-page {
+      padding-right: 0;
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  /* Offset (center aligned) landscape caption text */
+
+  &.show-project-captions.project-image-landscape-caption-style-offset {
+
+    &.project-image-spacing-small {
+      .project-slide.project-slide-has-description.project-slide-pano .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-landscape .project-slide-description-wrapper {
+        margin-top: 10vw;
+        margin-bottom: 10vw;
+      }
+    }
+    &.project-image-spacing-medium  {
+      .project-slide.project-slide-has-description.project-slide-pano .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-landscape .project-slide-description-wrapper {
+        margin-top: 14vw;
+        margin-bottom: 14vw;
+      }
+    }
+    &.project-image-spacing-large {
+      .project-slide.project-slide-has-description.project-slide-pano .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-landscape .project-slide-description-wrapper {
+        margin-top: 20vw;
+        margin-bottom: 20vw;
+      }
+    }
+    &.project-image-spacing-custom {
+      .project-slide.project-slide-has-description.project-slide-pano .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-landscape .project-slide-description-wrapper {
+        margin-top: (@projectImageSpacing * 2);
+        margin-bottom: (@projectImageSpacing * 2);
+      }
+    }
+  }
+
+  /* Inset landscape or pano caption text */
+
+  &.show-project-captions.project-image-landscape-caption-style-inset {
+
+    .project-slide.project-slide-has-description.project-slide-pano,
+    .project-slide.project-slide-has-description.project-slide-landscape {
+
+      .project-slide-description-wrapper {
+        position: relative;
+        z-index: 1;
+        top: -20px;
+      }
+      .project-slide-description-body {
+        background-color: @bgColor;
+        padding-right: 2em;
+        padding-left: 2em;
+      }
+
+      // max width of title, caption wrapper
+      @media screen and (min-width: 769px) and (max-width: 1440px) {
+        .project-slide-description-body {
+          max-width: 60vw;
+        }
+      }
+
+      @media screen and (min-width: 1441px) and (max-width: 1800px) {
+        .project-slide-description-body {
+          max-width: 55vw;
+        }
+      }
+
+      @media screen and (min-width: 1801px) {
+        .project-slide-description-body {
+          max-width: 50vw;
+        }
+      }
+    }
+  }
+
+  /* Standard landscape or pano caption text */
+
+  &.show-project-captions.project-image-landscape-caption-style-standard {
+
+    .project-slide.project-slide-has-description.project-slide-pano,
+    .project-slide.project-slide-has-description.project-slide-landscape {
+
+      .project-slide-description-body.has-description-title .project-slide-description-title {
+        margin-top: 1.25em;
+      }
+      .project-slide-description-body.has-description-text .project-slide-description-text p:first-child {
+        margin-top: 1.25em;
+      }
+    }
+  }
+
+  /* Offset portrait caption text */
+
+  &.show-project-captions.project-image-portrait-caption-style-offset {
+
+    &.project-image-spacing-small {
+      .project-slide.project-slide-has-description.project-slide-portrait .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-square .project-slide-description-wrapper {
+        margin-top: 10vw;
+        margin-bottom: 10vw;
+      }
+    }
+    &.project-image-spacing-medium  {
+      .project-slide.project-slide-has-description.project-slide-portrait .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-square .project-slide-description-wrapper {
+        margin-top: 14vw;
+        margin-bottom: 14vw;
+      }
+    }
+    &.project-image-spacing-large {
+      .project-slide.project-slide-has-description.project-slide-portrait .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-square .project-slide-description-wrapper {
+        margin-top: 20vw;
+        margin-bottom: 20vw;
+      }
+    }
+    &.project-image-spacing-custom {
+      .project-slide.project-slide-has-description.project-slide-portrait .project-slide-description-wrapper,
+      .project-slide.project-slide-has-description.project-slide-square .project-slide-description-wrapper {
+        margin-top: (@projectImageSpacing * 2);
+        margin-bottom: (@projectImageSpacing * 2);
+      }
+    }
+  }
+
+
+  /* Alternate Captioned Portrait Images */
+
+  &.show-project-captions.project-image-portrait-caption-style-alternate {
+
+    // override text aligment to align to image
+    &.align-alternate-caption-to-image {
+
+      // override caption alignment
+      &.image-caption-title-alignment-left,
+      &.image-caption-title-alignment-center,
+      &.image-caption-title-alignment-right {
+
+        .portrait-caption-alternate-even .project-slide-description-title {
+          text-align: left;
+        }
+      }
+
+      &.image-caption-body-alignment-left,
+      &.image-caption-body-alignment-center,
+      &.image-caption-body-alignment-right {
+
+        .portrait-caption-alternate-even .project-slide-description-text {
+          text-align: left;
+        }
+      }
+
+      // swap text alignment for odd alternate
+      &.image-caption-title-alignment-left,
+      &.image-caption-title-alignment-center,
+      &.image-caption-title-alignment-right {
+
+        .portrait-caption-alternate-odd .project-slide-description-title {
+          text-align: right;
+        }
+      }
+
+      &.image-caption-body-alignment-left,
+      &.image-caption-body-alignment-center,
+      &.image-caption-body-alignment-right {
+
+        .portrait-caption-alternate-odd .project-slide-description-text {
+          text-align: right;
+        }
+      }
+    }
+
+
+    @media screen and (max-width: 768px) {
+      .project-slide-description-title,
+      .project-slide-description-text p:first-child {
+        margin-top: 1.25em;
+      }
+    }
+
+    @media screen and (min-width: 769px) {
+
+      .project-slide.project-slide-has-description.project-slide-staggerable {
+        .display-flex(flex);
+        .justify-content(space-between);
+        .align-items(center);
+        .flex-direction(row);
+        height: auto;
+        max-width: 100%;
+
+        // image wrapper
+        .project-slide-image-container {
+          .flex-order(0);
+          .flex-grow(1);
+          text-align: right;
+          width: 100%;
+          max-width: 45% !important;
+          .project-slide-image-wrapper {
+            margin-left: auto;
+            margin-right: 0;
+          }
+        }
+
+        .project-slide-video-wrapper {
+          .flex-order(0);
+          .flex-grow(1);
+          margin-left: auto;
+          margin-right: 0;
+          text-align: right;
+          width: 100%;
+        }
+
+        .project-slide-image {
+          max-width: 80%;
+        }
+
+        // image description
+        .project-slide-description-wrapper {
+          .flex-order(1);
+          .flex-grow(2);
+          margin-right: auto;
+          margin-left: 0;
+          .display-flex(flex);
+        }
+
+        .project-slide-description-body {
+          margin-left: 0;
+          margin-right: auto;
+          max-width: 37vw;
+
+          .project-slide-description-title,
+          .project-slide-description-text {
+            margin-left: 0;
+          }
+        }
+
+        // Styles for every odd slide
+        &.portrait-caption-alternate-odd {
+
+          .project-slide-image-container,
+          .project-slide-video-wrapper {
+            .flex-order(1);
+            margin-left: 0;
+            margin-right: auto;
+            text-align: left;
+
+            .project-slide-image-wrapper {
+              margin-left: 0;
+              margin-right: auto;
+              text-align: left;
+            }
+          }
+
+          .project-slide-description-wrapper {
+            .flex-order(0);
+            margin-left: auto;
+            margin-right: 0;
+          }
+
+          .project-slide-description-body {
+            margin-right: 0;
+            margin-left: auto;
+          }
+        }
+      }
+
+      // If there's no caption on a staggerable portrait image
+      .project-slide.project-slide-has-no-description.project-slide-staggerable {
+        .project-slide-image-container { }
+      }
+
+      // Staggered image description spacing
+
+      &.project-image-spacing-small {
+        .project-slide.project-slide-has-description.project-slide-staggerable {
+          .project-slide-description-wrapper { margin-left: 2.5vw; }
+          &.portrait-caption-alternate-odd .project-slide-description-wrapper { margin-right: 2.5vw; }
+        }
+      }
+
+      &.project-image-spacing-medium {
+        .project-slide.project-slide-has-description.project-slide-staggerable {
+          .project-slide-description-wrapper { margin-left: 3.75vw; }
+          &.portrait-caption-alternate-odd .project-slide-description-wrapper { margin-right: 3.75vw; }
+        }
+      }
+
+      &.project-image-spacing-large {
+        .project-slide.project-slide-has-description.project-slide-staggerable {
+          .project-slide-description-wrapper { margin-left: 5vw; }
+          &.portrait-caption-alternate-odd .project-slide-description-wrapper { margin-right: 5vw; }
+        }
+      }
+
+      &.project-image-spacing-custom {
+        .project-slide.project-slide-has-description.project-slide-staggerable {
+          .project-slide-description-wrapper { margin-left: (@projectImageSpacing * 0.60); }
+          &.portrait-caption-alternate-odd .project-slide-description-wrapper { margin-right: (@projectImageSpacing * 0.60); }
+        }
+      }
+    }
+  }
+
+  /* Standard portrait caption text */
+
+  &.show-project-captions:not(.offset-project-captions).project-image-portrait-caption-style-standard {
+
+    .project-slide.project-slide-has-description.project-slide-portrait,
+    .project-slide.project-slide-has-description.project-slide-square {
+
+      .project-slide-description-body.has-description-title .project-slide-description-title {
+        margin-top: 1.25em;
+      }
+      .project-slide-description-body.has-description-text .project-slide-description-text p:first-child {
+        margin-top: 1.25em;
+      }
+    }
+  }
+}

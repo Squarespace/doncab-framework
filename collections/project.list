@@ -1,0 +1,36 @@
+<div class="project-container">
+  <div class="project-slides">
+
+    {.repeated section items}
+        <div class="project-slide {.if title || body}project-slide-has-description{.or}project-slide-has-no-description{.end}{.equal? @index 1} project-first-slide{.end}{.video?} project-slide-video{.end}" data-slide-id="{id}" data-slide-url="{urlId}">
+
+          {.image?}
+          <div class="project-slide-image-container" data-image-dimensions="{originalSize}">
+            <figure class="project-slide-image-wrapper content-fill not-ready">
+              <img class="project-slide-image loading" {@|image-meta} data-fixed-ratio="true" data-load="false" />
+            </figure>
+          </div>
+          {.end}
+          {.video?}
+            <div class="project-slide-video-wrapper">
+              {@|video}
+            </div>
+          {.end}
+          {.if title || body}
+            <div class="project-slide-description-wrapper">
+              <div class="project-slide-description-body{.if title} has-description-title{.end}{.if body} has-description-text{.end}">
+                {.section title}
+                  <h3 class="project-slide-description-title">{@}</h3>
+                {.end}
+                {.section body}
+                  <div class="project-slide-description-text">{@}</div>
+                {.end}
+              </div>
+            </div>
+          {.end}
+
+        </div>
+    {.end}
+
+  </div>
+</div>
