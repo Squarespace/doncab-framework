@@ -88,6 +88,25 @@ var Util = {
     var showHomepageBanner = document.body.classList.contains('show-homepage-banner');
 
     return showCurrentPageTypeBanner || (isHomepage && showHomepageBanner);
+  },
+
+  replaceAttributes: function(element, referenceElement) {
+    var elementAttributes = Array.from(element.attributes);
+    for (let i = 0; i < elementAttributes.length; i++) {
+      element.removeAttribute(elementAttributes[i].name);
+    }
+    for (let i = 0; i < referenceElement.attributes.length; i++) {
+      element.setAttribute(referenceElement.attributes[i].name, referenceElement.attributes[i].value);
+    }
+  },
+
+  replaceScript: function(element, referenceElement) {
+    var parentElement = element.parentElement;
+    var newScriptElement = document.createElement('script');
+    newScriptElement.innerHTML = referenceElement.innerHTML;
+    this.replaceAttributes(newScriptElement, element);
+    parentElement.removeChild(element);
+    parentElement.appendChild(newScriptElement);
   }
 
 };
