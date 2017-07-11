@@ -286,7 +286,7 @@ AjaxLoader.prototype = {
 
     var docTitle = html.querySelector('title').textContent;
     var head = html.querySelector('head');
-    var staticContext = html.querySelector('script[data-name="static-context"]');
+    var staticContext = head.querySelector('script[data-name="static-context"]');
 
     var headMeta = this.findMetaTags(head);
     this.bindMetaTags(headMeta);
@@ -318,7 +318,7 @@ AjaxLoader.prototype = {
   updatePage: function (data) {
     var body = document.querySelector('body');
     var head = document.querySelector('head');
-    var staticContext = document.querySelector('script[data-name="static-context"]');
+    var staticContext = head.querySelector('script[data-name="static-context"]');
 
     Array.prototype.forEach.call(head.querySelectorAll('[data-ajax-meta="binded"]'), function(node){
       head.removeChild(node);
