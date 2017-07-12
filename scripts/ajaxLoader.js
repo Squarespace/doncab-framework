@@ -1,5 +1,6 @@
 import core from '@squarespace/core';
 import controller from '@squarespace/controller';
+import Util from './util';
 
 var httpRequest;
 var ajaxFired = false;
@@ -285,6 +286,7 @@ AjaxLoader.prototype = {
 
     var docTitle = html.querySelector('title').textContent;
     var head = html.querySelector('head');
+    var staticContext = head.querySelector('script[data-name="static-context"]');
 
     var headMeta = this.findMetaTags(head);
     this.bindMetaTags(headMeta);
@@ -301,6 +303,7 @@ AjaxLoader.prototype = {
     var dataObj = {
       newHeadChildren: docFrag,
       docTitle: docTitle,
+      staticContext: staticContext,
       bodyClasses: bodyClasses,
       bodyId: bodyId,
       content: html.querySelector(this.CONTENT) ? html.querySelector(this.CONTENT).outerHTML : null,
@@ -315,6 +318,7 @@ AjaxLoader.prototype = {
   updatePage: function (data) {
     var body = document.querySelector('body');
     var head = document.querySelector('head');
+    var staticContext = head.querySelector('script[data-name="static-context"]');
 
     Array.prototype.forEach.call(head.querySelectorAll('[data-ajax-meta="binded"]'), function(node){
       head.removeChild(node);
@@ -327,6 +331,7 @@ AjaxLoader.prototype = {
     body.id = data.bodyId;
 
     document.querySelector(this.SITE_CONTAINER).innerHTML = data.container;
+    Util.replaceScript(staticContext, data.staticContext);
 
     this.initializeSqsBlocks();
 
