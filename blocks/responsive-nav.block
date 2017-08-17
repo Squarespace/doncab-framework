@@ -30,6 +30,16 @@
     <squarespace:navigation navigationId="mainNav" template="mobile-primary-nav" />
     <squarespace:navigation navigationId="secondaryNav" template="mobile-secondary-nav" />
     {@|apply cart.block}
+    {.if websiteSettings.userAccountsSettings.loginAllowed}
+    <div class="Mobile-bar-account" data-nc-element="account">
+      <button data-controller="UserAccountsController"><span class="unauth">Sign In</span><span class="auth">My Account</span></button>
+      <div class="Icon Icon--user-accounts" data-controller="UserAccountsController">
+        <a href="#">
+          {@|apply user-account-icon.block}
+        </a>
+      </div>
+    </div>
+    {.end}
   </div>
 </div>
 {.end}

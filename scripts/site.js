@@ -14,6 +14,7 @@ import MobileOffset from './controllers/MobileOffset';
 import MobileOverlayFolders from './controllers/MobileOverlayFolders';
 import MobileOverlayToggle from './controllers/MobileOverlayToggle';
 import ProjectController from './controllers/ProjectController';
+import UserAccountLink from './controllers/UserAccountsController';
 import VideoBackground from '@squarespace/video-background';
 
 controller.register('AncillaryLayout', AncillaryLayout);
@@ -27,6 +28,7 @@ controller.register('MobileOverlayFolders', MobileOverlayFolders);
 controller.register('MobileOverlayFolders', MobileOverlayFolders);
 controller.register('MobileOverlayToggle', MobileOverlayToggle);
 controller.register('ProjectController', ProjectController);
+controller.register('UserAccountsController', UserAccountLink);
 
 const videoBannerTweaks = [
   'show-index-banner',

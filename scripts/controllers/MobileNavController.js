@@ -6,7 +6,7 @@ function MobileNavController() {
   const TRANSITION_DELAY = 100;
   const body = document.body;
   const mobileNavToggle = document.querySelector('#mobileNavToggle');
-  const mobileLinks = Array.prototype.map.call(document.querySelectorAll('#overlayNav a'), (link) => {
+  const mobileLinks = Array.prototype.map.call(document.querySelectorAll('#overlayNav a, #overlayNav button'), (link) => {
     return link;
   });
 
