@@ -17,7 +17,7 @@
 body:not(.mobile-menu-open) {
   height: 100%;
   // delay body height change when closed
-  .transition-delay (0ms);
+  .transition-delay(0ms);
 }
 
 .overflow-wrapper {
@@ -26,13 +26,13 @@ body:not(.mobile-menu-open) {
   height: 100%;
   min-height: 100vh;
   background-color: @bgColor;
-  .transition (background-color @mobileBgColorFadeIn linear);
+  .transition(background-color @mobileBgColorFadeIn linear);
 }
 
 .site-container {
   opacity: 1;
   height: 100%;
-  .transition (opacity @mobileOpacityFadeOut linear @mobileOpacityFadeOut);
+  .transition(opacity @mobileOpacityFadeOut linear @mobileOpacityFadeOut);
 }
 
 // mobile bar structure and layering
@@ -67,7 +67,7 @@ body:not(.mobile-menu-open) {
 
 .overlay-nav-container {
   position: absolute;
-  z-index: 10001;
+  z-index: 9998;
   box-sizing: border-box;
   min-height: 100vh;
   width: 0;
@@ -80,7 +80,7 @@ body:not(.mobile-menu-open) {
   bottom: 0;
   left: 100%;
   // need delay to avoid animation of left postion in hidden state
-  .transition-delay (@mobileBgColorFadeIn);
+  .transition-delay(@mobileBgColorFadeIn);
   // flex it so hard
   .display-flex(flex);
   .align-items(center);
@@ -93,7 +93,7 @@ body:not(.mobile-menu-open) {
   // padding: 20vh 20vw;
   opacity: 0;
   // .border-box;
-  .transition (opacity @mobileOpacityFadeOut linear);
+  .transition(opacity @mobileOpacityFadeOut linear);
 }
 
 
@@ -122,7 +122,7 @@ body:not(.mobile-menu-open) {
   // mobile bar defaults
 
   .mobile-bar-wrapper {
-    z-index: 10002;
+    z-index: 9999;
     position: relative;
     width: 100vw;
     .display-flex;
@@ -145,7 +145,7 @@ body:not(.mobile-menu-open) {
 
     &:not(.tweak-transparent-fixed-mobile-bar) .mobile-bar-wrapper {
       background-color: @bgColor;
-      .transition (background-color @mobileBgColorFadeIn linear);
+      .transition(background-color @mobileBgColorFadeIn linear);
     }
   }
 
@@ -164,7 +164,7 @@ body:not(.mobile-menu-open) {
     &:not(.tweak-transparent-fixed-mobile-bar) .mobile-bar-wrapper {
       .flex-order(2);
       background-color: @bgColor;
-      .transition (background-color @mobileBgColorFadeIn linear);
+      .transition(background-color @mobileBgColorFadeIn linear);
     }
   }
 
@@ -271,7 +271,7 @@ body:not(.mobile-menu-open) {
 
       a {
         color: @tweak-mobile-bar-branding-site-title-color;
-        .transition (color 300ms linear);
+        .transition(color 300ms linear);
         text-decoration: none;
       }
 
@@ -293,7 +293,7 @@ body:not(.mobile-menu-open) {
     .mobile-site-tagline {
       .tweak-mobile-bar-site-tagline-font;
       color: @tweak-mobile-bar-site-tagline-color;
-      .transition (color 300ms linear);
+      .transition(color 300ms linear);
 
       .mobile-menu-open & { color: @tweak-mobile-menu-site-tagline-color; }
     }
@@ -433,13 +433,13 @@ body:not(.mobile-menu-open) {
     .Icon--close {
       display: none;
       stroke: @tweak-mobile-bar-menu-icon-color;
-      .transition (color 300ms linear);
+      .transition(color 300ms linear);
     }
     .Icon--hamburger {
       display: block;
       margin: 0 0 0 auto;
       stroke: @tweak-mobile-bar-menu-icon-color;
-      .transition (color 300ms linear);
+      .transition(color 300ms linear);
     }
 
     .tweak-mobile-bar-branding-position-left & {
@@ -472,7 +472,7 @@ body:not(.mobile-menu-open) {
     background-color: @tweak-mobile-overlay-menu-color;
     overflow: hidden;
     height: 100vh;
-    .transition (height 0ms linear @mobileOpacityFadeOut);
+    .transition(height 0ms linear @mobileOpacityFadeOut);
 
     // hide announcement and mobile info bar
     .sqs-announcement-bar,
@@ -507,7 +507,7 @@ body:not(.mobile-menu-open) {
     &.tweak-mobile-bar-position-top-fixed:not(.tweak-transparent-fixed-mobile-bar) .mobile-bar-wrapper,
     &.tweak-mobile-bar-position-bottom-fixed:not(.tweak-transparent-fixed-mobile-bar) .mobile-bar-wrapper {
       background-color: @tweak-mobile-overlay-menu-color;
-      .transition (background-color @mobileBgColorFadeIn linear);
+      .transition(background-color @mobileBgColorFadeIn linear);
     }
 
     // swap hamburger --> close icon
@@ -537,7 +537,7 @@ body:not(.mobile-menu-open) {
     // overlay bits
 
     .overflow-wrapper {
-      .transition (background-color @mobileBgColorFadeIn linear);
+      .transition(background-color @mobileBgColorFadeIn linear);
     }
 
     .overlay-nav-container {
@@ -547,12 +547,66 @@ body:not(.mobile-menu-open) {
       opacity: 1;
       width: 100%;
       left: 0;
-      .transition (left 0ms linear @mobileOpacityFadeOut);
+      .transition(left 0ms linear @mobileOpacityFadeOut);
     }
 
     .overlay-nav-wrapper {
       opacity: 1;
-      .transition (opacity @mobileBgColorFadeIn linear);
+      .transition(opacity @mobileBgColorFadeIn linear);
     }
   }
+
+  //  Account
+
+  .Mobile-bar-account {
+    .tweak-mobile-bar-account-font;
+    line-height: 1em;
+
+    button {
+      display: none;
+      .tweak-mobile-bar-account-font;
+      line-height: 1em;
+      // Override
+      outline: 0;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      .no-select;
+      white-space: nowrap;
+      color: @tweak-mobile-bar-account-color;
+    }
+
+    .Icon--user-accounts {
+      margin: auto;
+      display: none;
+      stroke: @tweak-mobile-bar-account-icon-color;
+      fill: none;
+      overflow: visible;
+
+      svg,
+      a {
+        display: block;
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    .tweak-mobile-bar-account-style-text & {
+      button.loaded {
+        display: inline-block;
+      }
+    }
+
+    .tweak-mobile-bar-account-style-icon & {
+      .Icon--user-accounts {
+        display: block;
+      }
+    }
+
+    .tweak-mobile-bar-account-hidden & {
+      display: none;
+      visibility: hidden;
+    }
+  }  
 }
+

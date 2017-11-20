@@ -26,6 +26,16 @@
     <div class="cart-wrapper" data-nc-element="cart">
       {@|apply cart.block}
     </div>
+    {.if websiteSettings.userAccountsSettings.loginAllowed}
+    <div class="Header-account" data-nc-element="account">
+      <button data-controller="UserAccountsController"><span class="unauth">Sign In</span><span class="auth">My Account</span></button>
+      <div class="Icon Icon--user-accounts" data-controller="UserAccountsController">
+        <a href="#">
+          {@|apply user-account-icon.block}
+        </a>
+      </div>
+    </div>
+    {.end}    
   </div>
   <div data-nc-container="center"></div>
   <div data-nc-container="right"></div>

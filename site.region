@@ -7,7 +7,7 @@
     <script>(function(){var touchTest="ontouchstart"in window||navigator.msMaxTouchPoints;if(!touchTest){with(document.documentElement){className=className.replace(new RegExp("touch-styles"),"")}}})()</script>
   </head>
   {.if template.mobileStylesEnabled}<!-- Mobile Styles Enabled -->{.or}<!-- Mobile Styles Disabled -->{.end}
-  <body id="{squarespace.page-id}" class="{squarespace.page-classes}{.if website.logoImageUrl} has-logo-image{.or} has-site-title{.end}{.if website.siteTagLine} has-tagline{.end}{.if showCart} has-cart{.end}{.if website.socialAccounts.0} has-social{.end}<squarespace:navigation navigationId="mainNav">{.if items.0} has-primary-nav{.end}</squarespace:navigation><squarespace:navigation navigationId="secondaryNav">{.if items.0} has-secondary-nav{.end}</squarespace:navigation>{.section collection}{.background-source-video?} has-video-background-banner{.end}{.end}" data-controller="BodyClassController">
+  <body id="{squarespace.page-id}" class="{squarespace.page-classes}{.if website.logoImageUrl} has-logo-image{.or} has-site-title{.end}{.if website.siteTagLine} has-tagline{.end}{.if showCart} has-cart{.end}{.if websiteSettings.userAccountsSettings.loginAllowed} has-user-accounts{.end}{.if website.socialAccounts.0} has-social{.end}<squarespace:navigation navigationId="mainNav">{.if items.0} has-primary-nav{.end}</squarespace:navigation><squarespace:navigation navigationId="secondaryNav">{.if items.0} has-secondary-nav{.end}</squarespace:navigation>{.section collection}{.background-source-video?} has-video-background-banner{.end}{.end}" data-controller="BodyClassController">
 
   <div class="overflow-wrapper">
 
