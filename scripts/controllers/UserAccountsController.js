@@ -12,6 +12,7 @@ function UserAccountLink(element) {
   };
 
   const handleClick = (e) => {
+    e.preventDefault();
     UserAccounts.openAccountScreen();
   };
 
