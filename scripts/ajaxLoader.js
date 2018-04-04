@@ -391,9 +391,8 @@ AjaxLoader.prototype = {
 
   replaceHistory: function () {
     window.history.replaceState({
-      url: window.location.pathname,
+      url: window.location.pathname + (window.location.hash || ''),
       search: window.location.search,
-      hash: window.location.hash, // hash is used to direct link to slides in galleries
       docTitle: document.title,
       position: {
         x: window.scrollX,
