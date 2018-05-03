@@ -390,9 +390,10 @@ AjaxLoader.prototype = {
   },
 
   replaceHistory: function () {
+    var hash = (window.location.hash || '');
     window.history.replaceState(
       {
-        url: window.location.pathname + (window.location.hash || ''),
+        url: window.location.pathname + hash,
         search: window.location.search,
         docTitle: document.title,
         position: {
@@ -404,7 +405,7 @@ AjaxLoader.prototype = {
       // The final param is the new URL to show -- preserve the hash location
       // so things that use the hash like gallery deep-linking can still
       // retrieve it.
-      window.location.pathname + window.location.search + window.location.hash
+      window.location.pathname + window.location.search + hash
     );
   },
 
