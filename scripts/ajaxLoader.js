@@ -390,15 +390,23 @@ AjaxLoader.prototype = {
   },
 
   replaceHistory: function () {
-    window.history.replaceState({
-      url: window.location.pathname,
-      search: window.location.search,
-      docTitle: document.title,
-      position: {
-        x: window.scrollX,
-        y: window.scrollY
-      }
-    }, document.title, window.location.pathname + window.location.search);
+    var hash = (window.location.hash || '');
+    window.history.replaceState(
+      {
+        url: window.location.pathname + hash,
+        search: window.location.search,
+        docTitle: document.title,
+        position: {
+          x: window.scrollX,
+          y: window.scrollY
+        }
+      },
+      document.title,
+      // The final param is the new URL to show -- preserve the hash location
+      // so things that use the hash like gallery deep-linking can still
+      // retrieve it.
+      window.location.pathname + window.location.search + hash
+    );
   },
 
   bindPopState: function(e){
