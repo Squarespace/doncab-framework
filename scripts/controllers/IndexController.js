@@ -106,6 +106,13 @@ function IndexController() {
     }
   };
 
+  // Reveals index titles on touchscreen devices when set to reveal on hover
+  const revealIndexTitlesOnTouch = () => {
+    if (body.classList.contains('index-item-title-display-on-hover')) {
+      slideIntoView();
+    }
+  }
+
   /* Tweak Watcher */
   Tweak.watch(tweaks, initIndexImages);
   Tweak.watch(titleTweaks, revealIndexTitles);
@@ -120,6 +127,8 @@ function IndexController() {
   const sync = () => {
     window.addEventListener('resize', resizeIndexImages);
     window.addEventListener('scroll', revealIndexTitles);
+    window.addEventListener('touchstart', revealIndexTitlesOnTouch);
+    window.addEventListener('touchend', revealIndexTitlesOnTouch);
     initIndexImages();
     revealIndexTitlesTimeout = window.setTimeout(() => {
       revealIndexTitles();
@@ -129,6 +138,8 @@ function IndexController() {
   const destroy = () => {
     window.removeEventListener('resize', resizeIndexImages);
     window.removeEventListener('scroll', revealIndexTitles);
+    window.removeEventListener('touchstart', revealIndexTitlesOnTouch);
+    window.removeEventListener('touchend', revealIndexTitlesOnTouch);
     window.clearTimeout(revealIndexTitlesTimeout);
   };
 
