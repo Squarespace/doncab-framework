@@ -4,6 +4,7 @@ import util from '../util';
 function IndexController() {
   const body = document.body;
   let revealIndexTitlesTimeout;
+  const indexList = document.querySelector('.index-list')
 
   /* Tweaks array for Tweak Watcher */
   const tweaks = [
@@ -96,7 +97,7 @@ function IndexController() {
     });
   };
 
-  const revealIndexTitles = () => {
+  const revealIndexTitlesOnScroll = () => {
     if (body.classList.contains('index-item-title-display-on-scroll')) {
       slideIntoView();
     } else {
@@ -106,9 +107,40 @@ function IndexController() {
     }
   };
 
+  // Reveals index titles on touchscreen devices when set to reveal on hover (touch reveals titles)
+  const revealIndexTitlesOnTouch = (e) => {
+    if (body.classList.contains('index-item-title-display-on-hover')) {
+      let target = e.target;
+      let currentRevealedTitle = document.querySelector('.reveal-index-title');
+
+      if (target && target.classList.contains('index-section')) {
+        if (currentRevealedTitle) {
+          currentRevealedTitle.classList.remove('reveal-index-title');
+        }
+        return;
+      }
+
+      while (target && !target.classList.contains('index-item')) {
+        target = target.parentNode;
+      }
+
+      const textWrapper = target.querySelector('.index-item-text-wrapper');
+
+      if (!textWrapper.classList.contains('reveal-index-title')) {
+        e.preventDefault();
+
+        if (currentRevealedTitle) {
+          currentRevealedTitle.classList.remove('reveal-index-title');
+        }
+
+        textWrapper.classList.add('reveal-index-title');
+      }
+    }
+  };
+
   /* Tweak Watcher */
   Tweak.watch(tweaks, initIndexImages);
-  Tweak.watch(titleTweaks, revealIndexTitles);
+  Tweak.watch(titleTweaks, revealIndexTitlesOnScroll);
 
   Tweak.watch('index-item-height', (tweak) => {
     util.reloadImages(document.querySelectorAll('.js-index-item-image'), {
@@ -119,16 +151,18 @@ function IndexController() {
   /* Sync and Destroy */
   const sync = () => {
     window.addEventListener('resize', resizeIndexImages);
-    window.addEventListener('scroll', revealIndexTitles);
+    // window.addEventListener('scroll', revealIndexTitlesOnScroll);
+    indexList.addEventListener('touchend', revealIndexTitlesOnTouch);
     initIndexImages();
     revealIndexTitlesTimeout = window.setTimeout(() => {
-      revealIndexTitles();
+      revealIndexTitlesOnScroll();
     }, 1000);
   };
 
   const destroy = () => {
     window.removeEventListener('resize', resizeIndexImages);
-    window.removeEventListener('scroll', revealIndexTitles);
+    // window.removeEventListener('scroll', revealIndexTitlesOnScroll);
+    indexList.removeEventListener('touchend', revealIndexTitlesOnTouch);
     window.clearTimeout(revealIndexTitlesTimeout);
   };
 
