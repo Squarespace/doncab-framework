@@ -151,7 +151,7 @@ function IndexController() {
   /* Sync and Destroy */
   const sync = () => {
     window.addEventListener('resize', resizeIndexImages);
-    // window.addEventListener('scroll', revealIndexTitlesOnScroll);
+    window.addEventListener('scroll', revealIndexTitlesOnScroll);
     indexList.addEventListener('touchend', revealIndexTitlesOnTouch);
     initIndexImages();
     revealIndexTitlesTimeout = window.setTimeout(() => {
@@ -161,7 +161,7 @@ function IndexController() {
 
   const destroy = () => {
     window.removeEventListener('resize', resizeIndexImages);
-    // window.removeEventListener('scroll', revealIndexTitlesOnScroll);
+    window.removeEventListener('scroll', revealIndexTitlesOnScroll);
     indexList.removeEventListener('touchend', revealIndexTitlesOnTouch);
     window.clearTimeout(revealIndexTitlesTimeout);
   };
