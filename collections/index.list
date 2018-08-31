@@ -15,7 +15,7 @@
 						{.section mainImage}<figure class="index-item-image-wrapper js-index-item-image-wrapper"><img class="index-item-image js-index-item-image loading" {@|image-meta} data-load="false" /></figure>{.end}
 					{.end}
 				</a>
-				<div class="index-item-text-wrapper<squarespace:category collection="{urlId}">{.if categories} has-categories{.end}</squarespace:category>">
+				<div class="index-item-text-wrapper <squarespace:category collection="{urlId}">{.if categories} has-categories{.end}</squarespace:category>">
 					<h2 class="index-item-title">
 						<a class="index-item-title-link" href="{fullUrl}"><span class="index-item-title-text">{navigationTitle}</span></a>
 					</h2>
