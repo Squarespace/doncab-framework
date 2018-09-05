@@ -244,21 +244,22 @@
 // Index Width: Grid
 .collection-type-index {
 	&.index-item-width-grid {
+		.main-content {
+			.intrinsic {
+				padding-bottom: (@thumbnailRatio * 1%);
+				line-height: 0;
+				text-align: center;
+				position: relative;
+				overflow: hidden;
+			}
 
-		.intrinsic {
-			padding-bottom: (@thumbnailRatio * 1%);
-			line-height: 0;
-			text-align: center;
-			position: relative;
-			overflow: hidden;
-		}
-
-		.content-fill {
-			position: absolute;
-			top: 0;
-			left: 0;
-			bottom: 0;
-			right:0;
+			.content-fill {
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right:0;
+			}
 		}
 
 		// Mixins
